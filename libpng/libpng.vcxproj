@@ -19,28 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\png.h" />
-    <ClInclude Include="include\pngconf.h" />
-    <ClInclude Include="include\pngpriv.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\png.c" />
-    <ClCompile Include="src\pngerror.c" />
-    <ClCompile Include="src\pngget.c" />
-    <ClCompile Include="src\pngmem.c" />
-    <ClCompile Include="src\pngpread.c" />
-    <ClCompile Include="src\pngread.c" />
-    <ClCompile Include="src\pngrio.c" />
-    <ClCompile Include="src\pngrtran.c" />
-    <ClCompile Include="src\pngrutil.c" />
-    <ClCompile Include="src\pngset.c" />
-    <ClCompile Include="src\pngtrans.c" />
-    <ClCompile Include="src\pngwio.c" />
-    <ClCompile Include="src\pngwrite.c" />
-    <ClCompile Include="src\pngwtran.c" />
-    <ClCompile Include="src\pngwutil.c" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="ANNOUNCE" />
     <None Include="CHANGES" />
     <None Include="LICENSE" />
@@ -48,7 +26,32 @@
     <None Include="TODO" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="libpng-1.4.3.txt" />
+    <ClInclude Include="png.h" />
+    <ClInclude Include="pngconf.h" />
+    <ClInclude Include="pngdebug.h" />
+    <ClInclude Include="pnginfo.h" />
+    <ClInclude Include="pnglibconf.h" />
+    <ClInclude Include="pngpriv.h" />
+    <ClInclude Include="pngstruct.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="example.c" />
+    <ClCompile Include="png.c" />
+    <ClCompile Include="pngerror.c" />
+    <ClCompile Include="pngget.c" />
+    <ClCompile Include="pngmem.c" />
+    <ClCompile Include="pngpread.c" />
+    <ClCompile Include="pngread.c" />
+    <ClCompile Include="pngrio.c" />
+    <ClCompile Include="pngrtran.c" />
+    <ClCompile Include="pngrutil.c" />
+    <ClCompile Include="pngset.c" />
+    <ClCompile Include="pngtest.c" />
+    <ClCompile Include="pngtrans.c" />
+    <ClCompile Include="pngwio.c" />
+    <ClCompile Include="pngwrite.c" />
+    <ClCompile Include="pngwtran.c" />
+    <ClCompile Include="pngwutil.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CFE7F335-BE15-417C-9498-98E79F9EB18E}</ProjectGuid>
