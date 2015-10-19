@@ -1,4 +1,4 @@
-/* $Id: libport.h,v 1.2.2.3 2010-06-08 18:50:43 bfriesen Exp $ */
+/* $Id: libport.h,v 1.5 2015-08-19 02:31:04 bfriesen Exp $ */
 
 /*
  * Copyright (c) 2009 Frank Warmerdam
@@ -48,11 +48,13 @@ lfind(const void *key, const void *base, size_t *nmemb, size_t size,
       int(*compar)(const void *, const void *));
 #endif
 
+#if !defined(HAVE_SNPRINTF)
+#undef vsnprintf
+#define vsnprintf _TIFF_vsnprintf_f
+
+#undef snprintf
+#define snprintf _TIFF_snprintf_f
+int snprintf(char* str, size_t size, const char* format, ...);
+#endif
+
 #endif /* ndef _LIBPORT_ */
-/*
- * Local Variables:
- * mode: c
- * c-basic-offset: 8
- * fill-column: 78
- * End:
- */

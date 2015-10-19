@@ -8,10 +8,15 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libtiff", "libtiff\libtiff.vcxproj", "{1D6F8728-4BE8-4142-95E7-7430D3891C72}"
 	ProjectSection(ProjectDependencies) = postProject
 		{EBA2AE0F-2BBC-406D-9A34-3BC8EA89D5CF} = {EBA2AE0F-2BBC-406D-9A34-3BC8EA89D5CF}
+		{CFE7F335-BE15-417C-9498-98E79F9EB18E} = {CFE7F335-BE15-417C-9498-98E79F9EB18E}
+		{41F12953-3463-4CE0-B2E0-26EDD6948ED9} = {41F12953-3463-4CE0-B2E0-26EDD6948ED9}
 		{B6B31E79-633D-4C8B-8BEB-98E90394BC90} = {B6B31E79-633D-4C8B-8BEB-98E90394BC90}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libjpeg", "libjpeg\libjpeg.vcxproj", "{EBA2AE0F-2BBC-406D-9A34-3BC8EA89D5CF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B6B31E79-633D-4C8B-8BEB-98E90394BC90} = {B6B31E79-633D-4C8B-8BEB-98E90394BC90}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "leptonica", "leptonica\leptonica.vcxproj", "{E6961845-0D83-4CB0-9928-064E63D90FF2}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -23,6 +28,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "leptonica", "leptonica\lept
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "giflib", "giflib\giflib.vcxproj", "{41F12953-3463-4CE0-B2E0-26EDD6948ED9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B6B31E79-633D-4C8B-8BEB-98E90394BC90} = {B6B31E79-633D-4C8B-8BEB-98E90394BC90}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libpng", "libpng\libpng.vcxproj", "{CFE7F335-BE15-417C-9498-98E79F9EB18E}"
 	ProjectSection(ProjectDependencies) = postProject

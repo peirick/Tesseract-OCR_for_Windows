@@ -1,4 +1,4 @@
-/* $Id: strtoul.c,v 1.2.2.1 2010-06-08 18:50:43 bfriesen Exp $ */
+/* $Id: strtoul.c,v 1.2 2005/07/07 16:34:06 dron Exp $ */
 
 /*
  * Copyright (c) 1990, 1993
@@ -107,10 +107,3 @@ strtoul(const char *nptr, char **endptr, int base)
 		*endptr = (char *)(any ? s - 1 : nptr);
 	return (acc);
 }
-/*
- * Local Variables:
- * mode: c
- * c-basic-offset: 8
- * fill-column: 78
- * End:
- */

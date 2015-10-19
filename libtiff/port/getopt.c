@@ -1,4 +1,4 @@
-/* $Id: getopt.c,v 1.2.2.1 2010-06-08 18:50:43 bfriesen Exp $ */
+/* $Id: getopt.c,v 1.3 2009-01-22 20:53:07 fwarmerdam Exp $ */
 
 /*
  * Copyright (c) 1987, 1993, 1994
@@ -36,6 +36,7 @@ __RCSID("$NetBSD: getopt.c,v 1.26 2003/08/07 16:43:40 agc Exp $");
 
 #include <stdio.h>
 #include <string.h>
+#include "libport.h"
 
 int	opterr = 1,		/* if error message should be printed */
 	optind = 1,		/* index into parent argv vector */
@@ -122,10 +123,3 @@ getopt(int argc, char * const argv[], const char *optstring)
 	}
 	return (optopt);			/* return option letter */
 }
-/*
- * Local Variables:
- * mode: c
- * c-basic-offset: 8
- * fill-column: 78
- * End:
- */

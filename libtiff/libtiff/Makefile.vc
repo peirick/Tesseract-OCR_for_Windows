@@ -1,4 +1,4 @@
-# $Id: Makefile.vc,v 1.17.2.2 2007/07/18 14:30:05 dron Exp $
+# $Id: Makefile.vc,v 1.23 2015-08-19 02:31:04 bfriesen Exp $
 #
 # Copyright (C) 2004, Andrey Kiselev <dron@ak4719.spb.edu>
 #
@@ -55,6 +55,7 @@ OBJ	= \
 	tif_getimage.obj \
 	tif_jbig.obj \
 	tif_jpeg.obj \
+	tif_jpeg_12.obj \
 	tif_ojpeg.obj \
 	tif_flush.obj \
 	tif_luv.obj \
@@ -77,7 +78,7 @@ OBJ	= \
 	tif_zip.obj \
 	$(OBJ_SYSDEP_MODULE)
 
-all:	$(LIBNAME) $(DLLNAME)
+all:	libtiff.lib $(DLLNAME)
 
 tif_config.h:	tif_config.vc.h
 	copy tif_config.vc.h tif_config.h
@@ -85,26 +86,17 @@ tif_config.h:	tif_config.vc.h
 tiffconf.h:	tiffconf.vc.h
 	copy tiffconf.vc.h tiffconf.h
 
-$(LIBNAME):	tif_config.h tiffconf.h $(OBJ)
-	$(AR) /out:$(LIBNAME) $(OBJ) $(LIBS)
+libtiff.lib:	tif_config.h tiffconf.h $(OBJ)
+	$(AR) /out:libtiff.lib ..\port\libport.lib $(OBJ) $(LIBS)
 
 $(DLLNAME):	tif_config.h tiffconf.h libtiff.def $(OBJ)
-	$(LD) /dll /def:libtiff.def /out:$(DLLNAME) \
-	/implib:$(IMPLIB) $(OBJ) $(LIBS)
+	$(LD) /debug /dll /def:libtiff.def /out:$(DLLNAME) \
+	/implib:libtiff_i.lib ..\port\libport.lib $(OBJ) $(LIBS)
 	
 clean:
 	-del tif_config.h tiffconf.h
 	-del *.obj
 	-del *.lib
 	-del *.dll
-	-del *.exe
+	-del *.dll.manifest
 	-del *.pdb
-
-install:
-	-copy tiff.h $(INCLUDE_DIR)
-	-copy tiffio.h $(INCLUDE_DIR)
-	-copy tiffconf.h $(INCLUDE_DIR)
-	-copy tif_config.h $(INCLUDE_DIR)
-	-copy tiffvers.h $(INCLUDE_DIR)
-	-copy $(LIBNAME) $(LIB_DIR)
-

@@ -1,4 +1,4 @@
-/* $Id: strcasecmp.c,v 1.2.2.1 2010-06-08 18:50:43 bfriesen Exp $ */
+/* $Id: strcasecmp.c,v 1.4 2015-06-21 01:09:09 bfriesen Exp $ */
 
 /*
  * Copyright (c) 1987, 1993
@@ -36,6 +36,7 @@ __RCSID("$NetBSD: strcasecmp.c,v 1.16 2003/08/07 16:43:49 agc Exp $");
 
 #include <ctype.h>
 #include <string.h>
+#include "libport.h"
 
 int
 strcasecmp(const char *s1, const char *s2)
@@ -43,15 +44,8 @@ strcasecmp(const char *s1, const char *s2)
 	const unsigned char *us1 = (const unsigned char *)s1,
 			*us2 = (const unsigned char *)s2;
 
-	while (tolower(*us1) == tolower(*us2++))
+	while (tolower((int) *us1) == tolower((int) *us2++))
 		if (*us1++ == '\0')
 			return (0);
-	return (tolower(*us1) - tolower(*--us2));
+	return (tolower((int) *us1) - tolower((int) *--us2));
 }
-/*
- * Local Variables:
- * mode: c
- * c-basic-offset: 8
- * fill-column: 78
- * End:
- */

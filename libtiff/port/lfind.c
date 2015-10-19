@@ -1,4 +1,4 @@
-/* $Id: lfind.c,v 1.4.2.1 2010-06-08 18:50:43 bfriesen Exp $ */
+/* $Id: lfind.c,v 1.4 2007/01/15 18:40:39 mloskot Exp $ */
 
 /*
  * Copyright (c) 1989, 1993
@@ -60,10 +60,3 @@ lfind(const void *key, const void *base, size_t *nmemb, size_t size,
 
 	return NULL;
 }
-/*
- * Local Variables:
- * mode: c
- * c-basic-offset: 8
- * fill-column: 78
- * End:
- */

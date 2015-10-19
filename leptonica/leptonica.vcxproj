@@ -306,7 +306,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAs>CompileAsCpp</CompileAs>
-      <AdditionalIncludeDirectories>$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg\include;$(SolutionDir)libtiff\libtiff\include;$(SolutionDir)freetype2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg\include;$(SolutionDir)libtiff\libtiff;$(SolutionDir)freetype2\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -321,7 +321,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAs>CompileAsCpp</CompileAs>
-      <AdditionalIncludeDirectories>$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg\include;$(SolutionDir)libtiff\libtiff\include;$(SolutionDir)freetype2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg\include;$(SolutionDir)libtiff\libtiff;$(SolutionDir)freetype2\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -338,7 +338,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAs>CompileAsCpp</CompileAs>
-      <AdditionalIncludeDirectories>$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg\include;$(SolutionDir)libtiff\libtiff\include;$(SolutionDir)freetype2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg\include;$(SolutionDir)libtiff\libtiff;$(SolutionDir)freetype2\include</AdditionalIncludeDirectories>
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -360,7 +360,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAs>CompileAsCpp</CompileAs>
-      <AdditionalIncludeDirectories>$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg\include;$(SolutionDir)libtiff\libtiff\include;$(SolutionDir)freetype2\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg\include;$(SolutionDir)libtiff\libtiff;$(SolutionDir)freetype2\include</AdditionalIncludeDirectories>
       <OmitFramePointers>false</OmitFramePointers>
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>

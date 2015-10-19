@@ -70,20 +70,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)libtiff\include;$(IncludePath)</IncludePath>
-    <SourcePath>$(ProjectDir)libtiff\src;$(SourcePath)</SourcePath>
+    <IncludePath>$(ProjectDir)libtiff;$(ProjectDir)port;$(IncludePath)</IncludePath>
+    <SourcePath>$(ProjectDir)libtiff;$(ProjectDir)port;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir)libtiff\include;$(IncludePath)</IncludePath>
-    <SourcePath>$(ProjectDir)libtiff\src;$(SourcePath)</SourcePath>
+    <IncludePath>$(ProjectDir)libtiff;$(ProjectDir)port;$(IncludePath)</IncludePath>
+    <SourcePath>$(ProjectDir)libtiff;$(ProjectDir)port;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)libtiff\include;$(IncludePath)</IncludePath>
-    <SourcePath>$(ProjectDir)libtiff\src;$(SourcePath)</SourcePath>
+    <IncludePath>$(ProjectDir)libtiff;$(ProjectDir)port;$(IncludePath)</IncludePath>
+    <SourcePath>$(ProjectDir)libtiff;$(ProjectDir)port;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(ProjectDir)libtiff\include;$(IncludePath)</IncludePath>
-    <SourcePath>$(ProjectDir)libtiff\src;$(SourcePath)</SourcePath>
+    <IncludePath>$(ProjectDir)libtiff;$(ProjectDir)port;$(IncludePath)</IncludePath>
+    <SourcePath>$(ProjectDir)libtiff;$(ProjectDir)port;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -153,71 +153,71 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="libtiff\include\t4.h" />
-    <ClInclude Include="libtiff\include\tiff.h" />
-    <ClInclude Include="libtiff\include\tiffconf.h" />
-    <ClInclude Include="libtiff\include\tiffconf.wince.h" />
-    <ClInclude Include="libtiff\include\tiffio.h" />
-    <ClInclude Include="libtiff\include\tiffio.hxx" />
-    <ClInclude Include="libtiff\include\tiffiop.h" />
-    <ClInclude Include="libtiff\include\tiffvers.h" />
-    <ClInclude Include="libtiff\include\tif_config.h" />
-    <ClInclude Include="libtiff\include\tif_config.wince.h" />
-    <ClInclude Include="libtiff\include\tif_dir.h" />
-    <ClInclude Include="libtiff\include\tif_fax3.h" />
-    <ClInclude Include="libtiff\include\tif_predict.h" />
-    <ClInclude Include="libtiff\include\uvcode.h" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="ChangeLog" />
     <None Include="COPYRIGHT" />
-    <None Include="libtiff\include\tiffconf.h.in" />
-    <None Include="libtiff\include\tif_config.h-vms" />
-    <None Include="libtiff\include\tif_config.h.in" />
+    <None Include="libtiff\tiffconf.h.cmake.in" />
+    <None Include="libtiff\tif_config.h.cmake.in" />
     <None Include="README" />
     <None Include="RELEASE-DATE" />
     <None Include="TODO" />
     <None Include="VERSION" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="libtiff\src\tif_aux.c" />
-    <ClCompile Include="libtiff\src\tif_close.c" />
-    <ClCompile Include="libtiff\src\tif_codec.c" />
-    <ClCompile Include="libtiff\src\tif_color.c" />
-    <ClCompile Include="libtiff\src\tif_compress.c" />
-    <ClCompile Include="libtiff\src\tif_dir.c" />
-    <ClCompile Include="libtiff\src\tif_dirinfo.c" />
-    <ClCompile Include="libtiff\src\tif_dirread.c" />
-    <ClCompile Include="libtiff\src\tif_dirwrite.c" />
-    <ClCompile Include="libtiff\src\tif_dumpmode.c" />
-    <ClCompile Include="libtiff\src\tif_error.c" />
-    <ClCompile Include="libtiff\src\tif_extension.c" />
-    <ClCompile Include="libtiff\src\tif_fax3.c" />
-    <ClCompile Include="libtiff\src\tif_fax3sm.c" />
-    <ClCompile Include="libtiff\src\tif_flush.c" />
-    <ClCompile Include="libtiff\src\tif_getimage.c" />
-    <ClCompile Include="libtiff\src\tif_jbig.c" />
-    <ClCompile Include="libtiff\src\tif_jpeg.c" />
-    <ClCompile Include="libtiff\src\tif_luv.c" />
-    <ClCompile Include="libtiff\src\tif_lzw.c" />
-    <ClCompile Include="libtiff\src\tif_msdos.c" />
-    <ClCompile Include="libtiff\src\tif_next.c" />
-    <ClCompile Include="libtiff\src\tif_ojpeg.c" />
-    <ClCompile Include="libtiff\src\tif_open.c" />
-    <ClCompile Include="libtiff\src\tif_packbits.c" />
-    <ClCompile Include="libtiff\src\tif_pixarlog.c" />
-    <ClCompile Include="libtiff\src\tif_predict.c" />
-    <ClCompile Include="libtiff\src\tif_print.c" />
-    <ClCompile Include="libtiff\src\tif_read.c" />
-    <ClCompile Include="libtiff\src\tif_strip.c" />
-    <ClCompile Include="libtiff\src\tif_swab.c" />
-    <ClCompile Include="libtiff\src\tif_thunder.c" />
-    <ClCompile Include="libtiff\src\tif_tile.c" />
-    <ClCompile Include="libtiff\src\tif_unix.c" />
-    <ClCompile Include="libtiff\src\tif_version.c" />
-    <ClCompile Include="libtiff\src\tif_warning.c" />
-    <ClCompile Include="libtiff\src\tif_write.c" />
-    <ClCompile Include="libtiff\src\tif_zip.c" />
+    <ClCompile Include="libtiff\mkg3states.c" />
+    <ClCompile Include="libtiff\tif_aux.c" />
+    <ClCompile Include="libtiff\tif_close.c" />
+    <ClCompile Include="libtiff\tif_codec.c" />
+    <ClCompile Include="libtiff\tif_color.c" />
+    <ClCompile Include="libtiff\tif_compress.c" />
+    <ClCompile Include="libtiff\tif_dir.c" />
+    <ClCompile Include="libtiff\tif_dirinfo.c" />
+    <ClCompile Include="libtiff\tif_dirread.c" />
+    <ClCompile Include="libtiff\tif_dirwrite.c" />
+    <ClCompile Include="libtiff\tif_dumpmode.c" />
+    <ClCompile Include="libtiff\tif_error.c" />
+    <ClCompile Include="libtiff\tif_extension.c" />
+    <ClCompile Include="libtiff\tif_fax3.c" />
+    <ClCompile Include="libtiff\tif_fax3sm.c" />
+    <ClCompile Include="libtiff\tif_flush.c" />
+    <ClCompile Include="libtiff\tif_getimage.c" />
+    <ClCompile Include="libtiff\tif_jbig.c" />
+    <ClCompile Include="libtiff\tif_jpeg.c" />
+    <ClCompile Include="libtiff\tif_jpeg_12.c" />
+    <ClCompile Include="libtiff\tif_luv.c" />
+    <ClCompile Include="libtiff\tif_lzma.c" />
+    <ClCompile Include="libtiff\tif_lzw.c" />
+    <ClCompile Include="libtiff\tif_next.c" />
+    <ClCompile Include="libtiff\tif_ojpeg.c" />
+    <ClCompile Include="libtiff\tif_open.c" />
+    <ClCompile Include="libtiff\tif_packbits.c" />
+    <ClCompile Include="libtiff\tif_pixarlog.c" />
+    <ClCompile Include="libtiff\tif_predict.c" />
+    <ClCompile Include="libtiff\tif_print.c" />
+    <ClCompile Include="libtiff\tif_read.c" />
+    <ClCompile Include="libtiff\tif_stream.cxx" />
+    <ClCompile Include="libtiff\tif_strip.c" />
+    <ClCompile Include="libtiff\tif_swab.c" />
+    <ClCompile Include="libtiff\tif_thunder.c" />
+    <ClCompile Include="libtiff\tif_tile.c" />
+    <ClCompile Include="libtiff\tif_version.c" />
+    <ClCompile Include="libtiff\tif_warning.c" />
+    <ClCompile Include="libtiff\tif_win32.c" />
+    <ClCompile Include="libtiff\tif_write.c" />
+    <ClCompile Include="libtiff\tif_zip.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="libtiff\t4.h" />
+    <ClInclude Include="libtiff\tiff.h" />
+    <ClInclude Include="libtiff\tiffconf.h" />
+    <ClInclude Include="libtiff\tiffio.h" />
+    <ClInclude Include="libtiff\tiffio.hxx" />
+    <ClInclude Include="libtiff\tiffiop.h" />
+    <ClInclude Include="libtiff\tiffvers.h" />
+    <ClInclude Include="libtiff\tif_config.h" />
+    <ClInclude Include="libtiff\tif_dir.h" />
+    <ClInclude Include="libtiff\tif_fax3.h" />
+    <ClInclude Include="libtiff\tif_predict.h" />
+    <ClInclude Include="libtiff\uvcode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
