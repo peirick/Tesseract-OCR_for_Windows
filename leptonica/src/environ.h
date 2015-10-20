@@ -43,18 +43,22 @@
 
 
 #ifndef _MSC_VER
-#include <stdint.h>
+	#include <stdint.h>
 
 #else
 /* Note that _WIN32 is defined for both 32 and 64 bit applications,
    whereas _WIN64 is defined only for the latter */
 
-#ifdef _WIN64
-typedef __int64 intptr_t;
-typedef unsigned __int64 uintptr_t;
+#if(_MSC_VER >= 1900)
+	#include <stdint.h>
 #else
-typedef int intptr_t;
-typedef unsigned int uintptr_t;
+	#ifdef _WIN64
+	typedef __int64 intptr_t;
+	typedef unsigned __int64 uintptr_t;
+	#else
+	typedef int intptr_t;
+	typedef unsigned int uintptr_t;
+	#endif
 #endif
 
 /* VC++6 doesn't seem to have powf, expf. */
@@ -101,7 +105,7 @@ typedef uintptr_t l_uintptr_t;
 #define  HAVE_LIBTIFF     1
 #define  HAVE_LIBPNG      1
 #define  HAVE_LIBZ        1
-#define  HAVE_LIBGIF      0
+#define  HAVE_LIBGIF      1
 #define  HAVE_LIBUNGIF    0
 #define  HAVE_LIBWEBP     0
 #define  HAVE_LIBJP2K     0
@@ -487,7 +491,7 @@ LEPT_DLL extern l_int32  LeptMsgSeverity;
 /*------------------------------------------------------------------------*
  *                        snprintf() renamed in MSVC                      *
  *------------------------------------------------------------------------*/
-#ifdef _MSC_VER
+#if (_MSC_VER) && (_MSC_VER < 1900)
 #define snprintf(buf, size, ...)  _snprintf_s(buf, size, _TRUNCATE, __VA_ARGS__)
 #endif
 
