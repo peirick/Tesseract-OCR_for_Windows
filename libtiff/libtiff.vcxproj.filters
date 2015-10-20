@@ -149,9 +149,6 @@
     <ClCompile Include="libtiff\tif_zip.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="libtiff\mkg3states.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libtiff\t4.h">

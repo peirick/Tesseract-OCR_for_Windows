@@ -45,9 +45,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="example.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="png.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -76,9 +73,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pngset.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pngtest.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pngtrans.c">

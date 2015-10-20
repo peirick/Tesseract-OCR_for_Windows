@@ -87,9 +87,6 @@
     <ClInclude Include="src\recog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\regutils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\stack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -257,9 +254,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\encoding.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\endiantest.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\enhance.c">
@@ -511,9 +505,6 @@
     <ClCompile Include="src\recogtrain.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\regutils.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\rop.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -611,9 +602,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\writefile.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\xtractprotos.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\zlibmem.c">

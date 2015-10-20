@@ -163,7 +163,6 @@
     <None Include="VERSION" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="libtiff\mkg3states.c" />
     <ClCompile Include="libtiff\tif_aux.c" />
     <ClCompile Include="libtiff\tif_close.c" />
     <ClCompile Include="libtiff\tif_codec.c" />

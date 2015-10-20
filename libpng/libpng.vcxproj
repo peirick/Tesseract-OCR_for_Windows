@@ -35,7 +35,6 @@
     <ClInclude Include="pngstruct.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="example.c" />
     <ClCompile Include="png.c" />
     <ClCompile Include="pngerror.c" />
     <ClCompile Include="pngget.c" />
@@ -46,7 +45,6 @@
     <ClCompile Include="pngrtran.c" />
     <ClCompile Include="pngrutil.c" />
     <ClCompile Include="pngset.c" />
-    <ClCompile Include="pngtest.c" />
     <ClCompile Include="pngtrans.c" />
     <ClCompile Include="pngwio.c" />
     <ClCompile Include="pngwrite.c" />
