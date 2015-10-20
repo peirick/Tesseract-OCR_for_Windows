@@ -15,12 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\jconfig.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\jdct.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\jerror.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -40,6 +34,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\jversion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\jconfig.h" />
+    <ClInclude Include="include\jdct.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -195,5 +193,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="README" />
+    <None Include="jconfig.vc" />
   </ItemGroup>
 </Project>

@@ -184,11 +184,7 @@
     <ClInclude Include="libtiff\uvcode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="libtiff\tif_config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="libtiff\tiffconf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClInclude Include="libtiff\tif_config.h" />
+    <ClInclude Include="libtiff\tiffconf.h" />
   </ItemGroup>
 </Project>
