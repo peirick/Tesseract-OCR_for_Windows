@@ -70,19 +70,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)libtiff;$(ProjectDir)port;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)libtiff;$(ProjectDir)port;$(SolutionDir)zlib\include;$(SolutionDir)libjpeg\include;$(IncludePath)</IncludePath>
     <SourcePath>$(ProjectDir)libtiff;$(ProjectDir)port;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir)libtiff;$(ProjectDir)port;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)libtiff;$(ProjectDir)port;$(SolutionDir)zlib\include;$(SolutionDir)libjpeg\include;$(IncludePath)</IncludePath>
     <SourcePath>$(ProjectDir)libtiff;$(ProjectDir)port;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir)libtiff;$(ProjectDir)port;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)libtiff;$(ProjectDir)port;$(SolutionDir)zlib\include;$(SolutionDir)libjpeg\include;$(IncludePath)</IncludePath>
     <SourcePath>$(ProjectDir)libtiff;$(ProjectDir)port;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(ProjectDir)libtiff;$(ProjectDir)port;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)libtiff;$(ProjectDir)port;$(SolutionDir)zlib\include;$(SolutionDir)libjpeg\include;$(IncludePath)</IncludePath>
     <SourcePath>$(ProjectDir)libtiff;$(ProjectDir)port;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -161,8 +161,6 @@
   <ItemGroup>
     <None Include="ChangeLog" />
     <None Include="COPYRIGHT" />
-    <None Include="libtiff\tiffconf.h.cmake.in" />
-    <None Include="libtiff\tif_config.h.cmake.in" />
     <None Include="README" />
     <None Include="RELEASE-DATE" />
     <None Include="TODO" />

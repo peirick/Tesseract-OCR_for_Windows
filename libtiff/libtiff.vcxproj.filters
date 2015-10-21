@@ -21,12 +21,6 @@
     <None Include="RELEASE-DATE" />
     <None Include="TODO" />
     <None Include="VERSION" />
-    <None Include="libtiff\tif_config.h.cmake.in">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="libtiff\tiffconf.h.cmake.in">
-      <Filter>Source Files</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libtiff\tif_aux.c">
