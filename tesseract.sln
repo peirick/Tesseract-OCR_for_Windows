@@ -45,6 +45,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libtesseract", "libtesserac
 		{E6961845-0D83-4CB0-9928-064E63D90FF2} = {E6961845-0D83-4CB0-9928-064E63D90FF2}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tesseract", "tesseract\tesseract.vcxproj", "{262F8E5A-E3CA-4BFF-BB16-FFB05AFBA07B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D5811ADA-EF79-4F95-A81C-0CAE618C1198} = {D5811ADA-EF79-4F95-A81C-0CAE618C1198}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -109,6 +114,14 @@ Global
 		{D5811ADA-EF79-4F95-A81C-0CAE618C1198}.Release|x64.Build.0 = Release|x64
 		{D5811ADA-EF79-4F95-A81C-0CAE618C1198}.Release|x86.ActiveCfg = Release|Win32
 		{D5811ADA-EF79-4F95-A81C-0CAE618C1198}.Release|x86.Build.0 = Release|Win32
+		{262F8E5A-E3CA-4BFF-BB16-FFB05AFBA07B}.Debug|x64.ActiveCfg = Debug|x64
+		{262F8E5A-E3CA-4BFF-BB16-FFB05AFBA07B}.Debug|x64.Build.0 = Debug|x64
+		{262F8E5A-E3CA-4BFF-BB16-FFB05AFBA07B}.Debug|x86.ActiveCfg = Debug|Win32
+		{262F8E5A-E3CA-4BFF-BB16-FFB05AFBA07B}.Debug|x86.Build.0 = Debug|Win32
+		{262F8E5A-E3CA-4BFF-BB16-FFB05AFBA07B}.Release|x64.ActiveCfg = Release|x64
+		{262F8E5A-E3CA-4BFF-BB16-FFB05AFBA07B}.Release|x64.Build.0 = Release|x64
+		{262F8E5A-E3CA-4BFF-BB16-FFB05AFBA07B}.Release|x86.ActiveCfg = Release|Win32
+		{262F8E5A-E3CA-4BFF-BB16-FFB05AFBA07B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
