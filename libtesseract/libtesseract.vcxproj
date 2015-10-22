@@ -1,0 +1,640 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\tesseract_master\api\apitypes.h" />
+    <ClInclude Include="..\tesseract_master\api\baseapi.h" />
+    <ClInclude Include="..\tesseract_master\api\capi.h" />
+    <ClInclude Include="..\tesseract_master\api\renderer.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\blamer.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\blckerr.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\blobbox.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\blobs.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\blread.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\boxread.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\boxword.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\ccstruct.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\coutln.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\crakedge.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\detlinefit.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\dppoint.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\fontinfo.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\genblob.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\hpdsizes.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\imagedata.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\ipoints.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\linlsq.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\matrix.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\mod128.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\normalis.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\ocrblock.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\ocrpara.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\ocrrow.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\otsuthr.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\pageres.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\params_training_featdef.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\pdblock.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\points.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\polyaprx.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\polyblk.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\publictypes.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\quadlsq.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\quadratc.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\quspline.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\ratngs.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\rect.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\rejctmap.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\seam.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\split.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\statistc.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\stepblob.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\vecfuncs.h" />
+    <ClInclude Include="..\tesseract_master\ccstruct\werd.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\ambigs.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\basedir.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\bits16.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\bitvector.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\ccutil.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\clst.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\doubleptr.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\elst.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\elst2.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\errcode.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\fileerr.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\genericheap.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\genericvector.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\globaloc.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\hashfn.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\helpers.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\host.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\indexmapbidi.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\kdpair.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\lsterr.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\memry.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\ndminx.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\nwmain.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\object_cache.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\ocrclass.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\params.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\platform.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\qrsequence.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\scanutils.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\serialis.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\sorthelper.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\stderr.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\strngs.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\tesscallback.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\tessdatamanager.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\tprintf.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\unichar.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\unicharmap.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\unicharset.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\unicity_table.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\unicodes.h" />
+    <ClInclude Include="..\tesseract_master\ccutil\universalambigs.h" />
+    <ClInclude Include="..\tesseract_master\classify\adaptive.h" />
+    <ClInclude Include="..\tesseract_master\classify\blobclass.h" />
+    <ClInclude Include="..\tesseract_master\classify\classify.h" />
+    <ClInclude Include="..\tesseract_master\classify\cluster.h" />
+    <ClInclude Include="..\tesseract_master\classify\clusttool.h" />
+    <ClInclude Include="..\tesseract_master\classify\cutoffs.h" />
+    <ClInclude Include="..\tesseract_master\classify\errorcounter.h" />
+    <ClInclude Include="..\tesseract_master\classify\featdefs.h" />
+    <ClInclude Include="..\tesseract_master\classify\float2int.h" />
+    <ClInclude Include="..\tesseract_master\classify\fpoint.h" />
+    <ClInclude Include="..\tesseract_master\classify\intfeaturedist.h" />
+    <ClInclude Include="..\tesseract_master\classify\intfeaturemap.h" />
+    <ClInclude Include="..\tesseract_master\classify\intfeaturespace.h" />
+    <ClInclude Include="..\tesseract_master\classify\intfx.h" />
+    <ClInclude Include="..\tesseract_master\classify\intmatcher.h" />
+    <ClInclude Include="..\tesseract_master\classify\intproto.h" />
+    <ClInclude Include="..\tesseract_master\classify\kdtree.h" />
+    <ClInclude Include="..\tesseract_master\classify\mastertrainer.h" />
+    <ClInclude Include="..\tesseract_master\classify\mf.h" />
+    <ClInclude Include="..\tesseract_master\classify\mfdefs.h" />
+    <ClInclude Include="..\tesseract_master\classify\mfoutline.h" />
+    <ClInclude Include="..\tesseract_master\classify\mfx.h" />
+    <ClInclude Include="..\tesseract_master\classify\normfeat.h" />
+    <ClInclude Include="..\tesseract_master\classify\normmatch.h" />
+    <ClInclude Include="..\tesseract_master\classify\ocrfeatures.h" />
+    <ClInclude Include="..\tesseract_master\classify\outfeat.h" />
+    <ClInclude Include="..\tesseract_master\classify\picofeat.h" />
+    <ClInclude Include="..\tesseract_master\classify\protos.h" />
+    <ClInclude Include="..\tesseract_master\classify\sampleiterator.h" />
+    <ClInclude Include="..\tesseract_master\classify\shapeclassifier.h" />
+    <ClInclude Include="..\tesseract_master\classify\shapetable.h" />
+    <ClInclude Include="..\tesseract_master\classify\tessclassifier.h" />
+    <ClInclude Include="..\tesseract_master\classify\trainingsample.h" />
+    <ClInclude Include="..\tesseract_master\classify\trainingsampleset.h" />
+    <ClInclude Include="..\tesseract_master\cube\altlist.h" />
+    <ClInclude Include="..\tesseract_master\cube\beam_search.h" />
+    <ClInclude Include="..\tesseract_master\cube\bmp_8.h" />
+    <ClInclude Include="..\tesseract_master\cube\cached_file.h" />
+    <ClInclude Include="..\tesseract_master\cube\char_altlist.h" />
+    <ClInclude Include="..\tesseract_master\cube\char_bigrams.h" />
+    <ClInclude Include="..\tesseract_master\cube\char_samp.h" />
+    <ClInclude Include="..\tesseract_master\cube\char_samp_enum.h" />
+    <ClInclude Include="..\tesseract_master\cube\char_samp_set.h" />
+    <ClInclude Include="..\tesseract_master\cube\char_set.h" />
+    <ClInclude Include="..\tesseract_master\cube\classifier_base.h" />
+    <ClInclude Include="..\tesseract_master\cube\classifier_factory.h" />
+    <ClInclude Include="..\tesseract_master\cube\conv_net_classifier.h" />
+    <ClInclude Include="..\tesseract_master\cube\con_comp.h" />
+    <ClInclude Include="..\tesseract_master\cube\cube_const.h" />
+    <ClInclude Include="..\tesseract_master\cube\cube_line_object.h" />
+    <ClInclude Include="..\tesseract_master\cube\cube_line_segmenter.h" />
+    <ClInclude Include="..\tesseract_master\cube\cube_object.h" />
+    <ClInclude Include="..\tesseract_master\cube\cube_search_object.h" />
+    <ClInclude Include="..\tesseract_master\cube\cube_tuning_params.h" />
+    <ClInclude Include="..\tesseract_master\cube\cube_utils.h" />
+    <ClInclude Include="..\tesseract_master\cube\feature_base.h" />
+    <ClInclude Include="..\tesseract_master\cube\feature_bmp.h" />
+    <ClInclude Include="..\tesseract_master\cube\feature_chebyshev.h" />
+    <ClInclude Include="..\tesseract_master\cube\feature_hybrid.h" />
+    <ClInclude Include="..\tesseract_master\cube\hybrid_neural_net_classifier.h" />
+    <ClInclude Include="..\tesseract_master\cube\lang_model.h" />
+    <ClInclude Include="..\tesseract_master\cube\lang_mod_edge.h" />
+    <ClInclude Include="..\tesseract_master\cube\search_column.h" />
+    <ClInclude Include="..\tesseract_master\cube\search_node.h" />
+    <ClInclude Include="..\tesseract_master\cube\search_object.h" />
+    <ClInclude Include="..\tesseract_master\cube\string_32.h" />
+    <ClInclude Include="..\tesseract_master\cube\tess_lang_model.h" />
+    <ClInclude Include="..\tesseract_master\cube\tess_lang_mod_edge.h" />
+    <ClInclude Include="..\tesseract_master\cube\tuning_params.h" />
+    <ClInclude Include="..\tesseract_master\cube\word_altlist.h" />
+    <ClInclude Include="..\tesseract_master\cube\word_list_lang_model.h" />
+    <ClInclude Include="..\tesseract_master\cube\word_size_model.h" />
+    <ClInclude Include="..\tesseract_master\cube\word_unigrams.h" />
+    <ClInclude Include="..\tesseract_master\cutil\bitvec.h" />
+    <ClInclude Include="..\tesseract_master\cutil\callcpp.h" />
+    <ClInclude Include="..\tesseract_master\cutil\const.h" />
+    <ClInclude Include="..\tesseract_master\cutil\cutil.h" />
+    <ClInclude Include="..\tesseract_master\cutil\cutil_class.h" />
+    <ClInclude Include="..\tesseract_master\cutil\danerror.h" />
+    <ClInclude Include="..\tesseract_master\cutil\efio.h" />
+    <ClInclude Include="..\tesseract_master\cutil\emalloc.h" />
+    <ClInclude Include="..\tesseract_master\cutil\freelist.h" />
+    <ClInclude Include="..\tesseract_master\cutil\globals.h" />
+    <ClInclude Include="..\tesseract_master\cutil\listio.h" />
+    <ClInclude Include="..\tesseract_master\cutil\oldlist.h" />
+    <ClInclude Include="..\tesseract_master\cutil\structures.h" />
+    <ClInclude Include="..\tesseract_master\opencl\oclkernels.h" />
+    <ClInclude Include="..\tesseract_master\opencl\openclwrapper.h" />
+    <ClInclude Include="..\tesseract_master\opencl\opencl_device_selection.h" />
+    <ClInclude Include="..\tesseract_master\textord\alignedblob.h" />
+    <ClInclude Include="..\tesseract_master\textord\baselinedetect.h" />
+    <ClInclude Include="..\tesseract_master\textord\bbgrid.h" />
+    <ClInclude Include="..\tesseract_master\textord\blkocc.h" />
+    <ClInclude Include="..\tesseract_master\textord\blobgrid.h" />
+    <ClInclude Include="..\tesseract_master\textord\ccnontextdetect.h" />
+    <ClInclude Include="..\tesseract_master\textord\cjkpitch.h" />
+    <ClInclude Include="..\tesseract_master\textord\colfind.h" />
+    <ClInclude Include="..\tesseract_master\textord\colpartition.h" />
+    <ClInclude Include="..\tesseract_master\textord\colpartitiongrid.h" />
+    <ClInclude Include="..\tesseract_master\textord\colpartitionset.h" />
+    <ClInclude Include="..\tesseract_master\textord\devanagari_processing.h" />
+    <ClInclude Include="..\tesseract_master\textord\drawedg.h" />
+    <ClInclude Include="..\tesseract_master\textord\drawtord.h" />
+    <ClInclude Include="..\tesseract_master\textord\edgblob.h" />
+    <ClInclude Include="..\tesseract_master\textord\edgloop.h" />
+    <ClInclude Include="..\tesseract_master\textord\equationdetectbase.h" />
+    <ClInclude Include="..\tesseract_master\textord\fpchop.h" />
+    <ClInclude Include="..\tesseract_master\textord\gap_map.h" />
+    <ClInclude Include="..\tesseract_master\textord\imagefind.h" />
+    <ClInclude Include="..\tesseract_master\textord\linefind.h" />
+    <ClInclude Include="..\tesseract_master\textord\makerow.h" />
+    <ClInclude Include="..\tesseract_master\textord\oldbasel.h" />
+    <ClInclude Include="..\tesseract_master\textord\pithsync.h" />
+    <ClInclude Include="..\tesseract_master\textord\pitsync1.h" />
+    <ClInclude Include="..\tesseract_master\textord\scanedg.h" />
+    <ClInclude Include="..\tesseract_master\textord\sortflts.h" />
+    <ClInclude Include="..\tesseract_master\textord\strokewidth.h" />
+    <ClInclude Include="..\tesseract_master\textord\tabfind.h" />
+    <ClInclude Include="..\tesseract_master\textord\tablefind.h" />
+    <ClInclude Include="..\tesseract_master\textord\tablerecog.h" />
+    <ClInclude Include="..\tesseract_master\textord\tabvector.h" />
+    <ClInclude Include="..\tesseract_master\textord\textlineprojection.h" />
+    <ClInclude Include="..\tesseract_master\textord\textord.h" />
+    <ClInclude Include="..\tesseract_master\textord\topitch.h" />
+    <ClInclude Include="..\tesseract_master\textord\tordmain.h" />
+    <ClInclude Include="..\tesseract_master\textord\tovars.h" />
+    <ClInclude Include="..\tesseract_master\textord\underlin.h" />
+    <ClInclude Include="..\tesseract_master\textord\wordseg.h" />
+    <ClInclude Include="..\tesseract_master\textord\workingpartset.h" />
+    <ClInclude Include="..\tesseract_master\vs2010\port\gettimeofday.h" />
+    <ClInclude Include="..\tesseract_master\vs2010\port\mathfix.h" />
+    <ClInclude Include="..\tesseract_master\vs2010\port\strcasestr.h" />
+    <ClInclude Include="..\tesseract_master\vs2010\port\strtok_r.h" />
+    <ClInclude Include="..\tesseract_master\vs2010\port\vcsversion.h" />
+    <ClInclude Include="..\tesseract_master\wordrec\associate.h" />
+    <ClInclude Include="..\tesseract_master\wordrec\chop.h" />
+    <ClInclude Include="..\tesseract_master\wordrec\chopper.h" />
+    <ClInclude Include="..\tesseract_master\wordrec\drawfx.h" />
+    <ClInclude Include="..\tesseract_master\wordrec\findseam.h" />
+    <ClInclude Include="..\tesseract_master\wordrec\gradechop.h" />
+    <ClInclude Include="..\tesseract_master\wordrec\language_model.h" />
+    <ClInclude Include="..\tesseract_master\wordrec\lm_consistency.h" />
+    <ClInclude Include="..\tesseract_master\wordrec\lm_pain_points.h" />
+    <ClInclude Include="..\tesseract_master\wordrec\lm_state.h" />
+    <ClInclude Include="..\tesseract_master\wordrec\measure.h" />
+    <ClInclude Include="..\tesseract_master\wordrec\outlines.h" />
+    <ClInclude Include="..\tesseract_master\wordrec\params_model.h" />
+    <ClInclude Include="..\tesseract_master\wordrec\plotedges.h" />
+    <ClInclude Include="..\tesseract_master\wordrec\render.h" />
+    <ClInclude Include="..\tesseract_master\wordrec\wordrec.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\tesseract_master\api\baseapi.cpp" />
+    <ClCompile Include="..\tesseract_master\api\capi.cpp" />
+    <ClCompile Include="..\tesseract_master\api\pdfrenderer.cpp" />
+    <ClCompile Include="..\tesseract_master\api\renderer.cpp" />
+    <ClCompile Include="..\tesseract_master\api\tesseractmain.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\adaptions.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\applybox.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\control.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\cubeclassifier.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\cube_control.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\cube_reco_context.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\docqual.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\equationdetect.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\fixspace.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\fixxht.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\ltrresultiterator.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\osdetect.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\output.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\pageiterator.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\pagesegmain.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\pagewalk.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\paragraphs.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\paramsd.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\par_control.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\pgedit.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\recogtraining.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\reject.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\resultiterator.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\superscript.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\tessbox.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\tessedit.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\tesseractclass.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\tesseract_cube_combiner.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\tessvars.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\tfacepp.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\thresholder.cpp" />
+    <ClCompile Include="..\tesseract_master\ccmain\werdit.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\blamer.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\blobbox.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\blobs.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\blread.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\boxread.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\boxword.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\ccstruct.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\coutln.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\detlinefit.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\dppoint.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\fontinfo.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\genblob.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\imagedata.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\linlsq.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\matrix.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\mod128.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\normalis.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\ocrblock.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\ocrpara.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\ocrrow.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\otsuthr.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\pageres.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\params_training_featdef.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\pdblock.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\points.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\polyaprx.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\polyblk.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\publictypes.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\quadlsq.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\quspline.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\ratngs.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\rect.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\rejctmap.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\seam.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\split.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\statistc.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\stepblob.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\vecfuncs.cpp" />
+    <ClCompile Include="..\tesseract_master\ccstruct\werd.cpp" />
+    <ClCompile Include="..\tesseract_master\ccutil\ambigs.cpp" />
+    <ClCompile Include="..\tesseract_master\ccutil\basedir.cpp" />
+    <ClCompile Include="..\tesseract_master\ccutil\bits16.cpp" />
+    <ClCompile Include="..\tesseract_master\ccutil\bitvector.cpp" />
+    <ClCompile Include="..\tesseract_master\ccutil\ccutil.cpp" />
+    <ClCompile Include="..\tesseract_master\ccutil\clst.cpp" />
+    <ClCompile Include="..\tesseract_master\ccutil\elst.cpp" />
+    <ClCompile Include="..\tesseract_master\ccutil\elst2.cpp" />
+    <ClCompile Include="..\tesseract_master\ccutil\errcode.cpp" />
+    <ClCompile Include="..\tesseract_master\ccutil\globaloc.cpp" />
+    <ClCompile Include="..\tesseract_master\ccutil\indexmapbidi.cpp" />
+    <ClCompile Include="..\tesseract_master\ccutil\mainblk.cpp" />
+    <ClCompile Include="..\tesseract_master\ccutil\memry.cpp" />
+    <ClCompile Include="..\tesseract_master\ccutil\params.cpp" />
+    <ClCompile Include="..\tesseract_master\ccutil\scanutils.cpp" />
+    <ClCompile Include="..\tesseract_master\ccutil\serialis.cpp" />
+    <ClCompile Include="..\tesseract_master\ccutil\strngs.cpp" />
+    <ClCompile Include="..\tesseract_master\ccutil\tessdatamanager.cpp" />
+    <ClCompile Include="..\tesseract_master\ccutil\tprintf.cpp" />
+    <ClCompile Include="..\tesseract_master\ccutil\unichar.cpp" />
+    <ClCompile Include="..\tesseract_master\ccutil\unicharmap.cpp" />
+    <ClCompile Include="..\tesseract_master\ccutil\unicharset.cpp" />
+    <ClCompile Include="..\tesseract_master\ccutil\unicodes.cpp" />
+    <ClCompile Include="..\tesseract_master\ccutil\universalambigs.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\adaptive.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\adaptmatch.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\blobclass.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\classify.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\cluster.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\clusttool.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\cutoffs.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\errorcounter.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\featdefs.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\float2int.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\fpoint.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\intfeaturedist.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\intfeaturemap.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\intfeaturespace.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\intfx.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\intmatcher.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\intproto.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\kdtree.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\mastertrainer.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\mf.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\mfdefs.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\mfoutline.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\mfx.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\normfeat.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\normmatch.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\ocrfeatures.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\outfeat.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\picofeat.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\protos.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\sampleiterator.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\shapeclassifier.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\shapetable.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\tessclassifier.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\trainingsample.cpp" />
+    <ClCompile Include="..\tesseract_master\classify\trainingsampleset.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\altlist.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\beam_search.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\bmp_8.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\cached_file.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\char_altlist.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\char_bigrams.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\char_samp.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\char_samp_enum.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\char_samp_set.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\char_set.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\classifier_factory.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\conv_net_classifier.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\con_comp.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\cube_line_object.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\cube_line_segmenter.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\cube_object.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\cube_search_object.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\cube_tuning_params.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\cube_utils.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\feature_bmp.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\feature_chebyshev.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\feature_hybrid.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\hybrid_neural_net_classifier.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\search_column.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\search_node.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\tess_lang_model.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\tess_lang_mod_edge.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\word_altlist.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\word_list_lang_model.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\word_size_model.cpp" />
+    <ClCompile Include="..\tesseract_master\cube\word_unigrams.cpp" />
+    <ClCompile Include="..\tesseract_master\cutil\bitvec.cpp" />
+    <ClCompile Include="..\tesseract_master\cutil\callcpp.cpp" />
+    <ClCompile Include="..\tesseract_master\cutil\cutil.cpp" />
+    <ClCompile Include="..\tesseract_master\cutil\cutil_class.cpp" />
+    <ClCompile Include="..\tesseract_master\cutil\danerror.cpp" />
+    <ClCompile Include="..\tesseract_master\cutil\efio.cpp" />
+    <ClCompile Include="..\tesseract_master\cutil\emalloc.cpp" />
+    <ClCompile Include="..\tesseract_master\cutil\freelist.cpp" />
+    <ClCompile Include="..\tesseract_master\cutil\listio.cpp" />
+    <ClCompile Include="..\tesseract_master\cutil\oldlist.cpp" />
+    <ClCompile Include="..\tesseract_master\cutil\structures.cpp" />
+    <ClCompile Include="..\tesseract_master\dict\context.cpp" />
+    <ClCompile Include="..\tesseract_master\dict\dawg.cpp" />
+    <ClCompile Include="..\tesseract_master\dict\dawg_cache.cpp" />
+    <ClCompile Include="..\tesseract_master\dict\dict.cpp" />
+    <ClCompile Include="..\tesseract_master\dict\hyphen.cpp" />
+    <ClCompile Include="..\tesseract_master\dict\permdawg.cpp" />
+    <ClCompile Include="..\tesseract_master\dict\stopper.cpp" />
+    <ClCompile Include="..\tesseract_master\dict\trie.cpp" />
+    <ClCompile Include="..\tesseract_master\neural_networks\runtime\neural_net.cpp" />
+    <ClCompile Include="..\tesseract_master\neural_networks\runtime\neuron.cpp" />
+    <ClCompile Include="..\tesseract_master\neural_networks\runtime\sigmoid_table.cpp" />
+    <ClCompile Include="..\tesseract_master\opencl\openclwrapper.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\alignedblob.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\baselinedetect.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\bbgrid.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\blkocc.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\blobgrid.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\ccnontextdetect.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\cjkpitch.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\colfind.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\colpartition.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\colpartitiongrid.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\colpartitionset.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\devanagari_processing.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\drawedg.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\drawtord.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\edgblob.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\edgloop.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\equationdetectbase.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\fpchop.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\gap_map.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\imagefind.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\linefind.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\makerow.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\oldbasel.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\pithsync.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\pitsync1.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\scanedg.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\sortflts.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\strokewidth.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\tabfind.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\tablefind.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\tablerecog.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\tabvector.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\textlineprojection.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\textord.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\topitch.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\tordmain.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\tospace.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\tovars.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\underlin.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\wordseg.cpp" />
+    <ClCompile Include="..\tesseract_master\textord\workingpartset.cpp" />
+    <ClCompile Include="..\tesseract_master\vs2010\port\gettimeofday.cpp" />
+    <ClCompile Include="..\tesseract_master\vs2010\port\strcasestr.cpp" />
+    <ClCompile Include="..\tesseract_master\vs2010\port\strtok_r.cpp" />
+    <ClCompile Include="..\tesseract_master\wordrec\associate.cpp" />
+    <ClCompile Include="..\tesseract_master\wordrec\chop.cpp" />
+    <ClCompile Include="..\tesseract_master\wordrec\chopper.cpp" />
+    <ClCompile Include="..\tesseract_master\wordrec\drawfx.cpp" />
+    <ClCompile Include="..\tesseract_master\wordrec\findseam.cpp" />
+    <ClCompile Include="..\tesseract_master\wordrec\gradechop.cpp" />
+    <ClCompile Include="..\tesseract_master\wordrec\language_model.cpp" />
+    <ClCompile Include="..\tesseract_master\wordrec\lm_consistency.cpp" />
+    <ClCompile Include="..\tesseract_master\wordrec\lm_pain_points.cpp" />
+    <ClCompile Include="..\tesseract_master\wordrec\lm_state.cpp" />
+    <ClCompile Include="..\tesseract_master\wordrec\outlines.cpp" />
+    <ClCompile Include="..\tesseract_master\wordrec\params_model.cpp" />
+    <ClCompile Include="..\tesseract_master\wordrec\pieces.cpp" />
+    <ClCompile Include="..\tesseract_master\wordrec\plotedges.cpp" />
+    <ClCompile Include="..\tesseract_master\wordrec\render.cpp" />
+    <ClCompile Include="..\tesseract_master\wordrec\segsearch.cpp" />
+    <ClCompile Include="..\tesseract_master\wordrec\tface.cpp" />
+    <ClCompile Include="..\tesseract_master\wordrec\wordclass.cpp" />
+    <ClCompile Include="..\tesseract_master\wordrec\wordrec.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{D5811ADA-EF79-4F95-A81C-0CAE618C1198}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>libtesseract</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_CRT_SECURE_NO_WARNINGS;_LIB;USE_STD_NAMESPACE;WINDLLNAME="$(TargetFileName)"; WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)tesseract_master\vs2010\port;$(SolutionDir)tesseract_master\api;$(SolutionDir)tesseract_master\ccmain;$(SolutionDir)tesseract_master\ccutil;$(SolutionDir)tesseract_master\ccstruct;$(SolutionDir)tesseract_master\classify;$(SolutionDir)tesseract_master\cube;$(SolutionDir)tesseract_master\cutil;$(SolutionDir)tesseract_master\dict;$(SolutionDir)tesseract_master\neural_networks\runtime;$(SolutionDir)tesseract_master\textord;$(SolutionDir)tesseract_master\viewer;$(SolutionDir)tesseract_master\opencl;$(SolutionDir)tesseract_master\wordrec;$(SolutionDir)leptonica\src</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_CRT_SECURE_NO_WARNINGS;_LIB;USE_STD_NAMESPACE;WINDLLNAME="$(TargetFileName)"; _DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)tesseract_master\vs2010\port;$(SolutionDir)tesseract_master\api;$(SolutionDir)tesseract_master\ccmain;$(SolutionDir)tesseract_master\ccutil;$(SolutionDir)tesseract_master\ccstruct;$(SolutionDir)tesseract_master\classify;$(SolutionDir)tesseract_master\cube;$(SolutionDir)tesseract_master\cutil;$(SolutionDir)tesseract_master\dict;$(SolutionDir)tesseract_master\neural_networks\runtime;$(SolutionDir)tesseract_master\textord;$(SolutionDir)tesseract_master\viewer;$(SolutionDir)tesseract_master\opencl;$(SolutionDir)tesseract_master\wordrec;$(SolutionDir)leptonica\src</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_CRT_SECURE_NO_WARNINGS;_LIB;USE_STD_NAMESPACE;WINDLLNAME="$(TargetFileName)"; WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)tesseract_master\vs2010\port;$(SolutionDir)tesseract_master\api;$(SolutionDir)tesseract_master\ccmain;$(SolutionDir)tesseract_master\ccutil;$(SolutionDir)tesseract_master\ccstruct;$(SolutionDir)tesseract_master\classify;$(SolutionDir)tesseract_master\cube;$(SolutionDir)tesseract_master\cutil;$(SolutionDir)tesseract_master\dict;$(SolutionDir)tesseract_master\neural_networks\runtime;$(SolutionDir)tesseract_master\textord;$(SolutionDir)tesseract_master\viewer;$(SolutionDir)tesseract_master\opencl;$(SolutionDir)tesseract_master\wordrec;$(SolutionDir)leptonica\src</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_CRT_SECURE_NO_WARNINGS;_LIB;USE_STD_NAMESPACE;WINDLLNAME="$(TargetFileName)"; NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)tesseract_master\vs2010\port;$(SolutionDir)tesseract_master\api;$(SolutionDir)tesseract_master\ccmain;$(SolutionDir)tesseract_master\ccutil;$(SolutionDir)tesseract_master\ccstruct;$(SolutionDir)tesseract_master\classify;$(SolutionDir)tesseract_master\cube;$(SolutionDir)tesseract_master\cutil;$(SolutionDir)tesseract_master\dict;$(SolutionDir)tesseract_master\neural_networks\runtime;$(SolutionDir)tesseract_master\textord;$(SolutionDir)tesseract_master\viewer;$(SolutionDir)tesseract_master\opencl;$(SolutionDir)tesseract_master\wordrec;$(SolutionDir)leptonica\src</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
