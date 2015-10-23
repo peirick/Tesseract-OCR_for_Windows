@@ -99,12 +99,13 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)tesseract_master\vs2010\port;$(SolutionDir)tesseract_master\api;$(SolutionDir)tesseract_master\ccmain;$(SolutionDir)tesseract_master\ccutil;$(SolutionDir)tesseract_master\ccstruct;$(SolutionDir)tesseract_master\classify;$(SolutionDir)tesseract_master\cube;$(SolutionDir)tesseract_master\cutil;$(SolutionDir)tesseract_master\dict;$(SolutionDir)tesseract_master\neural_networks\runtime;$(SolutionDir)tesseract_master\textord;$(SolutionDir)tesseract_master\viewer;$(SolutionDir)tesseract_master\opencl;$(SolutionDir)tesseract_master\wordrec;$(SolutionDir)leptonica\src</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <StringPooling>true</StringPooling>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>zlib.lib;libpng.lib;giflib.lib;libjpeg.lib;libtiff.lib;leptonica.lib;libtesseract.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>zlib.lib;libpng.lib;giflib.lib;libjpeg.lib;openjpeg.lib;libtiff.lib;leptonica.lib;libtesseract.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -116,12 +117,13 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)tesseract_master\vs2010\port;$(SolutionDir)tesseract_master\api;$(SolutionDir)tesseract_master\ccmain;$(SolutionDir)tesseract_master\ccutil;$(SolutionDir)tesseract_master\ccstruct;$(SolutionDir)tesseract_master\classify;$(SolutionDir)tesseract_master\cube;$(SolutionDir)tesseract_master\cutil;$(SolutionDir)tesseract_master\dict;$(SolutionDir)tesseract_master\neural_networks\runtime;$(SolutionDir)tesseract_master\textord;$(SolutionDir)tesseract_master\viewer;$(SolutionDir)tesseract_master\opencl;$(SolutionDir)tesseract_master\wordrec;$(SolutionDir)leptonica\src</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <StringPooling>true</StringPooling>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>zlib.lib;libpng.lib;giflib.lib;libjpeg.lib;libtiff.lib;leptonica.lib;libtesseract.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>zlib.lib;libpng.lib;giflib.lib;libjpeg.lib;openjpeg.lib;libtiff.lib;leptonica.lib;libtesseract.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -136,14 +138,15 @@
       <AdditionalIncludeDirectories>$(SolutionDir)tesseract_master\vs2010\port;$(SolutionDir)tesseract_master\api;$(SolutionDir)tesseract_master\ccmain;$(SolutionDir)tesseract_master\ccutil;$(SolutionDir)tesseract_master\ccstruct;$(SolutionDir)tesseract_master\classify;$(SolutionDir)tesseract_master\cube;$(SolutionDir)tesseract_master\cutil;$(SolutionDir)tesseract_master\dict;$(SolutionDir)tesseract_master\neural_networks\runtime;$(SolutionDir)tesseract_master\textord;$(SolutionDir)tesseract_master\viewer;$(SolutionDir)tesseract_master\opencl;$(SolutionDir)tesseract_master\wordrec;$(SolutionDir)leptonica\src</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <StringPooling>true</StringPooling>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>zlib.lib;libpng.lib;giflib.lib;libjpeg.lib;libtiff.lib;leptonica.lib;libtesseract.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Configuration)\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>zlib.lib;libpng.lib;giflib.lib;libjpeg.lib;openjpeg.lib;libtiff.lib;leptonica.lib;libtesseract.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -158,14 +161,15 @@
       <AdditionalIncludeDirectories>$(SolutionDir)tesseract_master\vs2010\port;$(SolutionDir)tesseract_master\api;$(SolutionDir)tesseract_master\ccmain;$(SolutionDir)tesseract_master\ccutil;$(SolutionDir)tesseract_master\ccstruct;$(SolutionDir)tesseract_master\classify;$(SolutionDir)tesseract_master\cube;$(SolutionDir)tesseract_master\cutil;$(SolutionDir)tesseract_master\dict;$(SolutionDir)tesseract_master\neural_networks\runtime;$(SolutionDir)tesseract_master\textord;$(SolutionDir)tesseract_master\viewer;$(SolutionDir)tesseract_master\opencl;$(SolutionDir)tesseract_master\wordrec;$(SolutionDir)leptonica\src</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <StringPooling>true</StringPooling>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>zlib.lib;libpng.lib;giflib.lib;libjpeg.lib;libtiff.lib;leptonica.lib;libtesseract.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>zlib.lib;libpng.lib;giflib.lib;libjpeg.lib;openjpeg.lib;libtiff.lib;leptonica.lib;libtesseract.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

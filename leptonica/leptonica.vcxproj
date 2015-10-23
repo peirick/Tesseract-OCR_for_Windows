@@ -300,9 +300,9 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>OPJ_STATIC;_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAs>CompileAsCpp</CompileAs>
-      <AdditionalIncludeDirectories>$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg\include;$(SolutionDir)libtiff\libtiff;$(SolutionDir)giflib\lib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)openjpeg\src\lib\openjp2;$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg\include;$(SolutionDir)libtiff\libtiff;$(SolutionDir)giflib\lib</AdditionalIncludeDirectories>
       <StringPooling>true</StringPooling>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <SDLCheck>false</SDLCheck>
@@ -320,9 +320,9 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>OPJ_STATIC;_CRT_SECURE_NO_WARNINGS;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAs>CompileAsCpp</CompileAs>
-      <AdditionalIncludeDirectories>$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg\include;$(SolutionDir)libtiff\libtiff;$(SolutionDir)giflib\lib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)openjpeg\src\lib\openjp2;$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg\include;$(SolutionDir)libtiff\libtiff;$(SolutionDir)giflib\lib</AdditionalIncludeDirectories>
       <StringPooling>true</StringPooling>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <SDLCheck>false</SDLCheck>
@@ -342,9 +342,9 @@
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>OPJ_STATIC;_CRT_SECURE_NO_WARNINGS;NO_CONSOLE_IO;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAs>CompileAsCpp</CompileAs>
-      <AdditionalIncludeDirectories>$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg\include;$(SolutionDir)libtiff\libtiff;$(SolutionDir)giflib\lib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)openjpeg\src\lib\openjp2;$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg\include;$(SolutionDir)libtiff\libtiff;$(SolutionDir)giflib\lib</AdditionalIncludeDirectories>
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
@@ -367,9 +367,9 @@
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>OPJ_STATIC;_CRT_SECURE_NO_WARNINGS;NO_CONSOLE_IO;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAs>CompileAsCpp</CompileAs>
-      <AdditionalIncludeDirectories>$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg\include;$(SolutionDir)libtiff\libtiff;$(SolutionDir)giflib\lib</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)openjpeg\src\lib\openjp2;$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg\include;$(SolutionDir)libtiff\libtiff;$(SolutionDir)giflib\lib</AdditionalIncludeDirectories>
       <OmitFramePointers>false</OmitFramePointers>
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
