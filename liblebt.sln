@@ -41,6 +41,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "openjpeg", "openjpeg\openjpeg.vcxproj", "{6B46ED03-25FE-475D-A93C-34AEA797571F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -97,6 +99,14 @@ Global
 		{CFE7F335-BE15-417C-9498-98E79F9EB18E}.Release|x64.Build.0 = Release|x64
 		{CFE7F335-BE15-417C-9498-98E79F9EB18E}.Release|x86.ActiveCfg = Release|Win32
 		{CFE7F335-BE15-417C-9498-98E79F9EB18E}.Release|x86.Build.0 = Release|Win32
+		{6B46ED03-25FE-475D-A93C-34AEA797571F}.Debug|x64.ActiveCfg = Debug|x64
+		{6B46ED03-25FE-475D-A93C-34AEA797571F}.Debug|x64.Build.0 = Debug|x64
+		{6B46ED03-25FE-475D-A93C-34AEA797571F}.Debug|x86.ActiveCfg = Debug|Win32
+		{6B46ED03-25FE-475D-A93C-34AEA797571F}.Debug|x86.Build.0 = Debug|Win32
+		{6B46ED03-25FE-475D-A93C-34AEA797571F}.Release|x64.ActiveCfg = Release|x64
+		{6B46ED03-25FE-475D-A93C-34AEA797571F}.Release|x64.Build.0 = Release|x64
+		{6B46ED03-25FE-475D-A93C-34AEA797571F}.Release|x86.ActiveCfg = Release|Win32
+		{6B46ED03-25FE-475D-A93C-34AEA797571F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
