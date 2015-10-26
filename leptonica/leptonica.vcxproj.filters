@@ -349,9 +349,6 @@
     <ClCompile Include="src\list.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\maze.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\morph.c">
       <Filter>Source Files</Filter>
     </ClCompile>

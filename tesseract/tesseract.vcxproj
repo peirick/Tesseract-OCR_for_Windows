@@ -96,10 +96,12 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)tesseract_master\vs2010\port;$(SolutionDir)tesseract_master\api;$(SolutionDir)tesseract_master\ccmain;$(SolutionDir)tesseract_master\ccutil;$(SolutionDir)tesseract_master\ccstruct;$(SolutionDir)tesseract_master\classify;$(SolutionDir)tesseract_master\cube;$(SolutionDir)tesseract_master\cutil;$(SolutionDir)tesseract_master\dict;$(SolutionDir)tesseract_master\neural_networks\runtime;$(SolutionDir)tesseract_master\textord;$(SolutionDir)tesseract_master\viewer;$(SolutionDir)tesseract_master\opencl;$(SolutionDir)tesseract_master\wordrec;$(SolutionDir)leptonica\src</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <StringPooling>true</StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -114,10 +116,12 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)tesseract_master\vs2010\port;$(SolutionDir)tesseract_master\api;$(SolutionDir)tesseract_master\ccmain;$(SolutionDir)tesseract_master\ccutil;$(SolutionDir)tesseract_master\ccstruct;$(SolutionDir)tesseract_master\classify;$(SolutionDir)tesseract_master\cube;$(SolutionDir)tesseract_master\cutil;$(SolutionDir)tesseract_master\dict;$(SolutionDir)tesseract_master\neural_networks\runtime;$(SolutionDir)tesseract_master\textord;$(SolutionDir)tesseract_master\viewer;$(SolutionDir)tesseract_master\opencl;$(SolutionDir)tesseract_master\wordrec;$(SolutionDir)leptonica\src</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <StringPooling>true</StringPooling>
+      <ExceptionHandling>false</ExceptionHandling>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -134,7 +138,7 @@
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)tesseract_master\vs2010\port;$(SolutionDir)tesseract_master\api;$(SolutionDir)tesseract_master\ccmain;$(SolutionDir)tesseract_master\ccutil;$(SolutionDir)tesseract_master\ccstruct;$(SolutionDir)tesseract_master\classify;$(SolutionDir)tesseract_master\cube;$(SolutionDir)tesseract_master\cutil;$(SolutionDir)tesseract_master\dict;$(SolutionDir)tesseract_master\neural_networks\runtime;$(SolutionDir)tesseract_master\textord;$(SolutionDir)tesseract_master\viewer;$(SolutionDir)tesseract_master\opencl;$(SolutionDir)tesseract_master\wordrec;$(SolutionDir)leptonica\src</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -160,7 +164,7 @@
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)tesseract_master\vs2010\port;$(SolutionDir)tesseract_master\api;$(SolutionDir)tesseract_master\ccmain;$(SolutionDir)tesseract_master\ccutil;$(SolutionDir)tesseract_master\ccstruct;$(SolutionDir)tesseract_master\classify;$(SolutionDir)tesseract_master\cube;$(SolutionDir)tesseract_master\cutil;$(SolutionDir)tesseract_master\dict;$(SolutionDir)tesseract_master\neural_networks\runtime;$(SolutionDir)tesseract_master\textord;$(SolutionDir)tesseract_master\viewer;$(SolutionDir)tesseract_master\opencl;$(SolutionDir)tesseract_master\wordrec;$(SolutionDir)leptonica\src</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
