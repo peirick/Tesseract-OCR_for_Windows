@@ -1,0 +1,27 @@
+First, read the file PATENTS in the same directory as this file.
+
+Fetch leptonica from its website (http://leptonica.com/) and build it.
+For this you will also need the standard libtiff, libpng and libjpeg.
+
+If you're running a Unix-like OS, such as Linux, BSD, Mac OS X or msys
+ just run:
+
+./autogen.sh
+./configure
+make
+make install (or sudo make install)
+
+
+VC++ 2008 Notes
+===============
+
+Download leptonica-1.68-win32-lib-include-dirs.zip from
+http://leptonica.com/download.html and unpack it so 'include', 'lib' and
+'jbig2enc' directories are at the same directory (or adjust include path
+in VC++ project).
+
+Download stdint.h for Microsoft Visual Studio (part of package
+msinttypes-r26.zip from http://code.google.com/p/msinttypes/downloads/list)
+and place it to 'include' directory.
+
+Them open vs2008/jbig2enc.sln in Visual C++ 2008 and build solution.

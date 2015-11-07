@@ -1,0 +1,44 @@
+0.29: (not yet released)
+
+0.28:
+  * Update to the latest Leptonica (1.68)
+  * autotools support, VC++ 2008 solution
+  * fix binary file open mode on Windows
+  * version info (-V --version)
+  * pdf.py now correctly retains DPI from input images (thanks to Steven Lee
+    http://blog.rubypdf.com/2011/09/09/jbig2-pdf-py-patch-the-right-way-to-get-dpi/)
+  * R. Hatlapatka: option to use autoThresholding. Improved version from
+    bachelor thesis JBIG2 compression http://is.muni.cz/th/208155/fi_b/.
+
+0.27:
+  * Update to the latest Leptonica (1.58)
+  * Fix comments in pdf.py (thanks Dan)
+
+0.26:
+  * Update to the latest Leptonica (1.53)
+
+0.25:
+   * Should build on Windows if you get a leptonica which does so (thanks to
+     Dwight Kelly and a man known only as Dennis)
+
+0.24:
+   * Update to leptonica 1.38
+   * Add ability to gray symbols but it's commented out because it does little
+     good
+   * Refinement support broke because of memory savings in leptonica
+
+0.23:
+   * Quick release to support leptonica 1.37 (now bundled)
+
+0.22:
+   * Added segmentation support to extract text from mixed images
+   * Flyspeck removal disabled for now
+   * A few minor fixes
+
+0.21:
+   * Patch from Alberto Accomazzi to fix the pdf.py script and to output more
+     sensible filenames in pdf mode
+   * Symbols which are only used once are now included in a per-page dictionary
+     (great for scans of old books)
+   * Fixed several scale bugs (one at 65K symbols and one at 100K symbols)
+   * Page numbers > 256 went wrong
