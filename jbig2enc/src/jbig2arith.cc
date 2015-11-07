@@ -28,9 +28,13 @@
 
 // C++ doesn't have C99 restricted pointers, but GCC does allow __restrict__
 #if !defined(WIN32)
-#define restrict __restrict__
+	#define restrict __restrict__
 #else
-#define restrict
+	#ifdef _MSC_VER
+		#define restrict __restrict
+	#else
+		#define restrict 
+	#endif
 #endif
 
 // -----------------------------------------------------------------------------

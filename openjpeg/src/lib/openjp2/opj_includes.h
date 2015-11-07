@@ -114,7 +114,11 @@
 	#ifdef __GNUC__
 		#define restrict __restrict__
 	#else
-		#define restrict /* restrict */
+		#ifdef _MSC_VER
+			#define restrict __restrict
+		#else
+			#define restrict 
+		#endif
 	#endif
 #endif
 
