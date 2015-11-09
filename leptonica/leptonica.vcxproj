@@ -284,10 +284,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(ProjectDir)src;$(IncludePath)</IncludePath>
     <SourcePath>;$(ProjectDir)src,$(SourcePath)</SourcePath>
+    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(ProjectDir)src;$(IncludePath)</IncludePath>
     <SourcePath>;$(ProjectDir)src;$(SourcePath)</SourcePath>
+    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(ProjectDir)src;$(IncludePath)</IncludePath>
@@ -306,7 +308,6 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <SDLCheck>false</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <ExceptionHandling>false</ExceptionHandling>
       <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
@@ -327,7 +328,6 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <SDLCheck>false</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <ExceptionHandling>false</ExceptionHandling>
       <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
@@ -346,13 +346,13 @@
       <PreprocessorDefinitions>COMPILER_MSVC;OPJ_STATIC;_CRT_SECURE_NO_WARNINGS;NO_CONSOLE_IO;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAs>CompileAsCpp</CompileAs>
       <AdditionalIncludeDirectories>$(SolutionDir)openjpeg\src\lib\openjp2;$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg\include;$(SolutionDir)libtiff\libtiff;$(SolutionDir)giflib\lib</AdditionalIncludeDirectories>
-      <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <StringPooling>true</StringPooling>
       <SDLCheck>false</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalOptions> /Qvec-report:2 %(AdditionalOptions)</AdditionalOptions>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -373,13 +373,13 @@
       <CompileAs>CompileAsCpp</CompileAs>
       <AdditionalIncludeDirectories>$(SolutionDir)openjpeg\src\lib\openjp2;$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg\include;$(SolutionDir)libtiff\libtiff;$(SolutionDir)giflib\lib</AdditionalIncludeDirectories>
       <OmitFramePointers>false</OmitFramePointers>
-      <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <StringPooling>true</StringPooling>
       <SDLCheck>false</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalOptions> /Qvec-report:2 %(AdditionalOptions)</AdditionalOptions>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

@@ -83,12 +83,14 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -100,7 +102,6 @@
       <AdditionalIncludeDirectories>$(SolutionDir)tesseract_master\vs2010\port;$(SolutionDir)tesseract_master\api;$(SolutionDir)tesseract_master\ccmain;$(SolutionDir)tesseract_master\ccutil;$(SolutionDir)tesseract_master\ccstruct;$(SolutionDir)tesseract_master\classify;$(SolutionDir)tesseract_master\cube;$(SolutionDir)tesseract_master\cutil;$(SolutionDir)tesseract_master\dict;$(SolutionDir)tesseract_master\neural_networks\runtime;$(SolutionDir)tesseract_master\textord;$(SolutionDir)tesseract_master\viewer;$(SolutionDir)tesseract_master\opencl;$(SolutionDir)tesseract_master\wordrec;$(SolutionDir)leptonica\src</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <StringPooling>true</StringPooling>
-      <ExceptionHandling>false</ExceptionHandling>
       <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
@@ -120,7 +121,6 @@
       <AdditionalIncludeDirectories>$(SolutionDir)tesseract_master\vs2010\port;$(SolutionDir)tesseract_master\api;$(SolutionDir)tesseract_master\ccmain;$(SolutionDir)tesseract_master\ccutil;$(SolutionDir)tesseract_master\ccstruct;$(SolutionDir)tesseract_master\classify;$(SolutionDir)tesseract_master\cube;$(SolutionDir)tesseract_master\cutil;$(SolutionDir)tesseract_master\dict;$(SolutionDir)tesseract_master\neural_networks\runtime;$(SolutionDir)tesseract_master\textord;$(SolutionDir)tesseract_master\viewer;$(SolutionDir)tesseract_master\opencl;$(SolutionDir)tesseract_master\wordrec;$(SolutionDir)leptonica\src</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <StringPooling>true</StringPooling>
-      <ExceptionHandling>false</ExceptionHandling>
       <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
@@ -143,9 +143,9 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <StringPooling>true</StringPooling>
-      <ExceptionHandling>false</ExceptionHandling>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <AdditionalOptions> /Qvec-report:2 %(AdditionalOptions)</AdditionalOptions>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -169,9 +169,9 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <StringPooling>true</StringPooling>
-      <ExceptionHandling>false</ExceptionHandling>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <AdditionalOptions> /Qvec-report:2 %(AdditionalOptions)</AdditionalOptions>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
