@@ -50,6 +50,7 @@
     <ClInclude Include="src\jbig2comparator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="pdf.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="doc\PATENTS" />
