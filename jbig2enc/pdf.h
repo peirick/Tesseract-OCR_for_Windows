@@ -10,10 +10,10 @@ class Doc
 {
 public:
 
-	Doc(FILE* out_file) :
-		_out_file(out_file),
+	explicit Doc(FILE* out_file) :
 		_jbig2_global_obj_id(0),
-		_pages_obj_id(0)
+		_pages_obj_id(0),
+		_out_file(out_file)
 	{
 	}
 
@@ -34,7 +34,7 @@ public:
 		_pages_obj_id = _xref.size();
 	}
 
-	void addSymbolTable(const uint8_t* stream, size_t stream_size)
+	void addSymbolTable(const uint8_t* stream, const size_t stream_size)
 	{
 		_xref.push_back(ftell(_out_file));
 		_jbig2_global_obj_id = _xref.size();
@@ -50,7 +50,7 @@ public:
 	}
 
 
-	void addImage(uint32_t width, uint32_t height, const uint8_t* stream, size_t stream_size)
+	void addImage(const uint32_t width, const uint32_t height, const uint8_t* stream, const size_t stream_size)
 	{
 		size_t image_obj_id = printImage(width, height, stream, stream_size);
 		size_t contents_obj_id = printContents(width, height);
@@ -65,7 +65,7 @@ public:
 	}
 
 private:
-	size_t printImage(uint32_t width, uint32_t height, const uint8_t* stream, size_t stream_size)
+	size_t printImage(const uint32_t width, const uint32_t height, const uint8_t* stream, const size_t stream_size)
 	{
 		_xref.push_back(ftell(_out_file));
 		size_t image_obj_id = _xref.size();
@@ -85,7 +85,7 @@ private:
 			image_obj_id,
 			stream_size,
 			height,
-			width,			
+			width,
 			_jbig2_global_obj_id);
 		printStream(stream, stream_size);
 		fputs("\nendobj\n", _out_file);
@@ -93,7 +93,7 @@ private:
 	}
 
 
-	size_t printContents(uint32_t width, uint32_t height)
+	size_t printContents(const uint32_t width, const uint32_t height)
 	{
 		_xref.push_back(ftell(_out_file));
 		size_t contents_obj_id = _xref.size();
@@ -114,8 +114,8 @@ private:
 		return contents_obj_id;
 	}
 
-	void printPage(uint32_t width, uint32_t height,
-		size_t contents_obj_id, size_t image_obj_id)
+	void printPage(const uint32_t width, const uint32_t height,
+		const size_t contents_obj_id, const size_t image_obj_id)
 	{
 		_xref.push_back(ftell(_out_file));
 		size_t page_obj_id = _xref.size();
@@ -139,7 +139,7 @@ private:
 	}
 
 
-	void printStream(const uint8_t* stream, size_t stream_size)
+	void printStream(const uint8_t* stream, const size_t stream_size) const
 	{
 		fputs("stream\n", _out_file);
 		fwrite(stream, sizeof(uint8_t), stream_size, _out_file);
@@ -172,16 +172,16 @@ private:
 		fprintf(_out_file,
 			"xref\n"
 			"0 %zu\n"
-			"0000000000 65535 f\n",
+			"0000000000 65535 f \n",
 			_xref.size() + 1);
 		for (auto offset : _xref)
 		{
-			fprintf(_out_file, "%010d 00000 n\n", offset);
+			fprintf(_out_file, "%010d 00000 n \n", offset);
 		}
 		return startxref;
 	}
 
-	void printTrailer(long int startxref)
+	void printTrailer(const long int startxref)
 	{
 		fprintf(_out_file,
 			"trailer\n"

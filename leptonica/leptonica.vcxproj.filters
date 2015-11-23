@@ -102,12 +102,6 @@
     <ClInclude Include="src\environ.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\endianness.h.dist">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="src\endianness.h.in">
-      <Filter>Header Files</Filter>
-    </None>
     <None Include="README.html" />
     <None Include="version-notes.html" />
   </ItemGroup>

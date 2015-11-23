@@ -58,7 +58,6 @@
     <None Include="COPYING" />
     <None Include="INSTALL" />
     <None Include="NEWS" />
-    <None Include="pdf.py" />
     <None Include="README" />
     <None Include="ChangeLog" />
     <None Include="AUTHORS" />

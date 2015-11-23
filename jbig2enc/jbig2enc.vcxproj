@@ -42,7 +42,6 @@
     <None Include="doc\PATENTS" />
     <None Include="INSTALL" />
     <None Include="NEWS" />
-    <None Include="pdf.py" />
     <None Include="README" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

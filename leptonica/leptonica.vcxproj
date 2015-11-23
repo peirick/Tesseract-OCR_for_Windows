@@ -51,8 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="README.html" />
-    <None Include="src\endianness.h.dist" />
-    <None Include="src\endianness.h.in" />
     <None Include="version-notes.html" />
   </ItemGroup>
   <ItemGroup>

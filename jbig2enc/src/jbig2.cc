@@ -492,14 +492,6 @@ main(int argc, char **argv) {
   int length;
   ret = jbig2_pages_complete(ctx, &length);
   if (pdfmode) {
-    //char *filename;
-    //asprintf(&filename, "%s.sym", basename);
-    //const int fd = open(filename, O_WRONLY | O_TRUNC | O_CREAT | WINBINARY, 0600);
-    //free(filename);
-    //if (fd < 0) abort();
-    //write(fd, ret, length);
-    //close(fd);
-
 	char *filename;
 	asprintf(&filename, "%s.pdf", basename);
 	fd = fopen(filename, "wb");
@@ -514,13 +506,6 @@ main(int argc, char **argv) {
   for (int i = 0; i < num_pages; ++i) {
     ret = jbig2_produce_page(ctx, i, -1, -1, &length);
     if (pdfmode) {
-	  //char *filename;
-   //   asprintf(&filename, "%s.%04d", basename, i);
-   //   const int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC | WINBINARY, 0600);
-   //   free(filename);
-   //   if (fd < 0) abort();
-   //   write(fd, ret, length);
-   //   close(fd);
 		uint32_t width  = _byteswap_ulong(*(uint32_t*)(ret + 11));
 		uint32_t height = _byteswap_ulong(*(uint32_t*)(ret + 15));
 		doc->addImage(width, height, ret, length);
