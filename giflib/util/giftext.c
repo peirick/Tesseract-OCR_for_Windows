@@ -259,6 +259,12 @@ int main(int argc, char **argv)
 
 		    if (ExtCode == GRAPHICS_EXT_FUNC_CODE) {
 			GraphicsControlBlock gcb;
+			if (Extension == NULL) {
+			    printf("Invalid extension block\n");
+			    GifFile->Error = D_GIF_ERR_IMAGE_DEFECT;
+			    PrintGifError(GifFile->Error);
+			    exit(EXIT_FAILURE);
+			}
 			if (DGifExtensionToGCB(Extension[0], Extension+1, &gcb) == GIF_ERROR) {
 			    PrintGifError(GifFile->Error);
 			    exit(EXIT_FAILURE);

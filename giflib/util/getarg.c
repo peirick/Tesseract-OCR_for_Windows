@@ -172,8 +172,9 @@ GAGetArgs(int argc,
     va_list ap;
 
     strncpy(CtrlStrCopy, CtrlStr, sizeof(CtrlStrCopy)-1);
+    GASetParamCount(CtrlStr, strlen(CtrlStr), &ParamCount);
     va_start(ap, CtrlStr);
-    for (i = 1; i <= MAX_PARAM; i++)
+    for (i = 1; i <= ParamCount; i++)
         Parameters[i - 1] = va_arg(ap, void *);
     va_end(ap);
 

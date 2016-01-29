@@ -1,22 +1,43 @@
 			GIFLIB NEWS
 
-Repository head
-===============
+Version 5.1.2
+=============
 
 Code Fixes
 ----------
 
 * Code hardening using reallocarray() from OpenBSD.
 
-* Fix SourceForge bug #66: GifDrawBoxedText8x8() modifying constant input
-  parameter.
+* Sanity check in giffilter catches files with malformed extension records
+  Fixes SourceForge bug #63: malformed gif causes segfault in giffilter.
 
 * Inexpensive sanity check in DGifSlurp() catches malformed files with
   no image descriptor. Fixes SourceForge bug #64: malformed gif causes
   crash in giftool.
 
-* Sanity check in giffilter catches files with malformed extension records
-  Fixes SourceForge bug #63: malformed gif causes segfault in giffilter.
+* Fix SourceForge bug #66: GifDrawBoxedText8x8() modifying constant input
+  parameter.
+
+* Bail out of GIF read on invalid pixel width. Addresses Savannah bug
+  #67: invalid shift in dgif_lib.c
+
+* Fix SourceForge bug #69: #69 Malformed: Gif file with no extension
+  block after a GRAPHICS_EXT_FUNC_CODE extension causes segfault (in
+  giftext).
+
+* Fix SourceForge bug #71: Buffer overwrite when giffixing a malformed gif.
+
+* Fix SourceForge bug #73: Null pointer deference in gifclrmap (only
+  reachable with malformed GIF).
+
+* Fix SourceForge bug #74: Double free in gifsponge under 5.1,1,
+  for any valid gif image.
+
+* Fix SourceForge bug #75: GAGetArgs overflows due to uncounted use of va_arg.
+
+* Sanity check in giffix catches some malformed files. Addresses
+  SourceForge bug #77: dgif_lib.c: extension processing error
+
 
 Version 5.1.1
 =============

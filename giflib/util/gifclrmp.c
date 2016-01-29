@@ -127,6 +127,8 @@ int main(int argc, char **argv)
 
     if (!ImageNFlag) {
 	/* We are supposed to modify the screen color map, so do it: */
+	if (!GifFileIn->SColorMap)
+	    GIF_EXIT("No colormap to modify");
 	GifFileIn->SColorMap = ModifyColorMap(GifFileIn->SColorMap);
 	if (!HasGIFOutput) {
 	    /* We can quit here, as we have the color map: */

@@ -3,7 +3,7 @@ This repository should help developers to compile the leptonica library 1.72 (ht
 
 
 #Used Libraries
-* Giflib 5.1.1  http://giflib.sourceforge.net/
+* Giflib 5.1.2  http://giflib.sourceforge.net/
 * libtiff 4.0.6  http://www.remotesensing.org/libtiff/
 * zlib 1.2.8 http://www.zlib.net/
 * libpng 1.6.18  http://www.libpng.org/pub/png/libpng.html

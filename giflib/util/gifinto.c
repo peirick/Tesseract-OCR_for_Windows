@@ -70,6 +70,7 @@ mkstemp(char *tpl)
 ******************************************************************************/
 int main(int argc, char **argv)
 {
+    int FD;
     int	NumFiles;
     bool Error, MinSizeFlag = false, HelpFlag = false;
     char **FileName = NULL, FoutTmpName[STRLEN], FullPath[STRLEN], *p;
@@ -126,7 +127,6 @@ int main(int argc, char **argv)
     /* then add a name for the tempfile */
     if ( (strlen(FoutTmpName) + strlen(DEFAULT_TMP_NAME))  > STRLEN-1 ) GIF_EXIT("Filename too long.");
     strcat(FoutTmpName, DEFAULT_TMP_NAME);
-    int FD;
 #ifdef _WIN32
     char *tmpFN = _mktemp(FoutTmpName);
     if (tmpFN)
