@@ -24,3 +24,6 @@ ipch/
 *.cachefile
 
 *.opendb
+libpng/scripts/
+libpng/contrib/testpngs/
+libpng/projects/
