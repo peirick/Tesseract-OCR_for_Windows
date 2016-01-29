@@ -112,6 +112,8 @@ int main(int argc, char **argv)
 		Height = GifFileIn->Image.Height;
 		GifQprintf("\n%s: Image %d at (%d, %d) [%dx%d]:     ",
 		    PROGRAM_NAME, ++ImageNum, Col, Row, Width, Height);
+		if (Width > GifFileIn->SWidth)
+		    GIF_EXIT("Image is wider than total");
 
 		/* Put the image descriptor to out file: */
 		if (EGifPutImageDesc(GifFileOut, Col, Row, Width, Height,
@@ -158,10 +160,11 @@ int main(int argc, char **argv)
 		    QuitGifError(GifFileIn, GifFileOut);
 		if (EGifPutExtensionLeader(GifFileOut, ExtCode) == GIF_ERROR)
 		    QuitGifError(GifFileIn, GifFileOut);
-		if (EGifPutExtensionBlock(GifFileOut, 
+		if (Extension != NULL)
+		    if (EGifPutExtensionBlock(GifFileOut,
 					  Extension[0],
 					  Extension + 1) == GIF_ERROR)
-		    QuitGifError(GifFileIn, GifFileOut);
+			QuitGifError(GifFileIn, GifFileOut);
 		while (Extension != NULL) {
 		    if (DGifGetExtensionNext(GifFileIn, &Extension)==GIF_ERROR)
 			QuitGifError(GifFileIn, GifFileOut);

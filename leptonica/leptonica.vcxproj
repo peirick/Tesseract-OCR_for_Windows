@@ -42,6 +42,7 @@
     <ClInclude Include="src\pix.h" />
     <ClInclude Include="src\ptra.h" />
     <ClInclude Include="src\queue.h" />
+    <ClInclude Include="src\rbtree.h" />
     <ClInclude Include="src\readbarcode.h" />
     <ClInclude Include="src\recog.h" />
     <ClInclude Include="src\stack.h" />
@@ -70,7 +71,8 @@
     <ClCompile Include="src\bmf.c" />
     <ClCompile Include="src\bmpio.c" />
     <ClCompile Include="src\bmpiostub.c" />
-    <ClCompile Include="src\bootnumgen.c" />
+    <ClCompile Include="src\bootnumgen1.c" />
+    <ClCompile Include="src\bootnumgen2.c" />
     <ClCompile Include="src\boxbasic.c" />
     <ClCompile Include="src\boxfunc1.c" />
     <ClCompile Include="src\boxfunc2.c" />
@@ -133,6 +135,7 @@
     <ClCompile Include="src\leptwin.c" />
     <ClCompile Include="src\libversions.c" />
     <ClCompile Include="src\list.c" />
+    <ClCompile Include="src\map.c" />
     <ClCompile Include="src\morph.c" />
     <ClCompile Include="src\morphapp.c" />
     <ClCompile Include="src\morphdwa.c" />
@@ -178,6 +181,7 @@
     <ClCompile Include="src\quadtree.c" />
     <ClCompile Include="src\queue.c" />
     <ClCompile Include="src\rank.c" />
+    <ClCompile Include="src\rbtree.c" />
     <ClCompile Include="src\readbarcode.c" />
     <ClCompile Include="src\readfile.c" />
     <ClCompile Include="src\recogbasic.c" />
