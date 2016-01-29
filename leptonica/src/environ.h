@@ -43,22 +43,18 @@
 
 
 #ifndef _MSC_VER
-	#include <stdint.h>
+#include <stdint.h>
 
 #else
 /* Note that _WIN32 is defined for both 32 and 64 bit applications,
    whereas _WIN64 is defined only for the latter */
 
-#if(_MSC_VER >= 1900)
-	#include <stdint.h>
+#ifdef _WIN64
+typedef __int64 intptr_t;
+typedef unsigned __int64 uintptr_t;
 #else
-	#ifdef _WIN64
-	typedef __int64 intptr_t;
-	typedef unsigned __int64 uintptr_t;
-	#else
-	typedef int intptr_t;
-	typedef unsigned int uintptr_t;
-	#endif
+typedef int intptr_t;
+typedef unsigned int uintptr_t;
 #endif
 
 /* VC++6 doesn't seem to have powf, expf. */
@@ -105,15 +101,15 @@ typedef uintptr_t l_uintptr_t;
 #define  HAVE_LIBTIFF     1
 #define  HAVE_LIBPNG      1
 #define  HAVE_LIBZ        1
-#define  HAVE_LIBGIF      1
+#define  HAVE_LIBGIF      0
 #define  HAVE_LIBUNGIF    0
 #define  HAVE_LIBWEBP     0
-#define  HAVE_LIBJP2K     1
+#define  HAVE_LIBJP2K     0
 
     /* Leptonica supports both OpenJPEG 2.0 and 2.1.  If you have a
      * version of openjpeg (HAVE_LIBJP2K) that is not 2.1, set the
      * path to the openjpeg.h header in angle brackets here. */
-#define  LIBJP2K_HEADER   <openjpeg.h>
+#define  LIBJP2K_HEADER   <openjpeg-2.1/openjpeg.h>
 #endif  /* ! HAVE_CONFIG_H etc. */
 
 /*
@@ -152,30 +148,13 @@ typedef uintptr_t l_uintptr_t;
 
 
 /*--------------------------------------------------------------------*
- * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*
- *                          USER CONFIGURABLE                         *
- * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*
- *     Optional subdirectory translation for read/write to /tmp       *
- *--------------------------------------------------------------------*/
-/*
  * It is desirable on Windows to have all temp files written to the same
  * subdirectory of the Windows <Temp> directory, because files under <Temp>
  * persist after reboot, and the regression tests write a lot of files.
- * Consequently, all temp files on Windows are written to <Temp>/leptonica/
- * or subdirectories of it, with the translation:
- *        /tmp/xxx  -->   <Temp>/leptonica/xxx
- *
- * This is not the case for Unix, but we provide an option for reading
- * and writing on Unix with this translation:
- *        /tmp/xxx  -->   /tmp/leptonica/xxx
- * By default, leptonica is distributed for Unix without this translation
- * (except on Cygwin, which runs on Windows).
- */
-#if defined (__CYGWIN__)
-  #define  ADD_LEPTONICA_SUBDIR    1
-#else
-  #define  ADD_LEPTONICA_SUBDIR    0
-#endif
+ * We write all test files to /tmp/lept or subdirectories of /tmp/lept.
+ * Windows temp files are specified as in unix, but have the translation
+ *        /tmp/lept/xxx  -->   <Temp>/lept/xxx
+ *--------------------------------------------------------------------*/
 
 
 /*--------------------------------------------------------------------*
@@ -286,10 +265,10 @@ typedef struct L_WallTimer  L_WALLTIMER;
  *  on all heap data except for Pix.  Memory management for Pix           *
  *  also defaults to malloc and free.  See pix1.c for details.            *
  *------------------------------------------------------------------------*/
-#define MALLOC(blocksize)           malloc(blocksize)
-#define CALLOC(numelem, elemsize)   calloc(numelem, elemsize)
-#define REALLOC(ptr, blocksize)     realloc(ptr, blocksize)
-#define FREE(ptr)                   free(ptr)
+#define LEPT_MALLOC(blocksize)           malloc(blocksize)
+#define LEPT_CALLOC(numelem, elemsize)   calloc(numelem, elemsize)
+#define LEPT_REALLOC(ptr, blocksize)     realloc(ptr, blocksize)
+#define LEPT_FREE(ptr)                   free(ptr)
 
 
 /*------------------------------------------------------------------------*
@@ -491,7 +470,7 @@ LEPT_DLL extern l_int32  LeptMsgSeverity;
 /*------------------------------------------------------------------------*
  *                        snprintf() renamed in MSVC                      *
  *------------------------------------------------------------------------*/
-#if (_MSC_VER) && (_MSC_VER < 1900)
+#ifdef _MSC_VER
 #define snprintf(buf, size, ...)  _snprintf_s(buf, size, _TRUNCATE, __VA_ARGS__)
 #endif
 

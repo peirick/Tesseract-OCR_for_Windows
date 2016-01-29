@@ -7,7 +7,7 @@ This repository should help developers to compile the leptonica library 1.72 (ht
 * libtiff 4.0.6  http://www.remotesensing.org/libtiff/
 * zlib 1.2.8 http://www.zlib.net/
 * libpng 1.6.21  http://www.libpng.org/pub/png/libpng.html
-* leptonica-1.72 http://www.leptonica.com/
+* leptonica-1.73 http://www.leptonica.com/
 * libjpeg 9b http://ijg.org/
 * OpenJPEG 2.1.0 http://www.openjpeg.org/
 * jbig2enc 0.28 https://github.com/agl/jbig2enc

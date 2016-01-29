@@ -100,6 +100,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\environ.h" />
+    <ClInclude Include="src\rbtree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\endianness.h.dist">
@@ -158,9 +161,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\bmpiostub.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\bootnumgen.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\boxbasic.c">
@@ -605,6 +605,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\zlibmemstub.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bootnumgen1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\bootnumgen2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\map.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\rbtree.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
