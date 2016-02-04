@@ -193,6 +193,5 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="README" />
-    <None Include="jconfig.vc" />
   </ItemGroup>
 </Project>
