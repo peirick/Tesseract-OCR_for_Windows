@@ -49,12 +49,16 @@
 /* Note that _WIN32 is defined for both 32 and 64 bit applications,
    whereas _WIN64 is defined only for the latter */
 
+#if (_MSC_VER < 1900)
 #ifdef _WIN64
 typedef __int64 intptr_t;
 typedef unsigned __int64 uintptr_t;
 #else
 typedef int intptr_t;
 typedef unsigned int uintptr_t;
+#endif
+#else
+#include <stdint.h>
 #endif
 
 /* VC++6 doesn't seem to have powf, expf. */
@@ -101,15 +105,15 @@ typedef uintptr_t l_uintptr_t;
 #define  HAVE_LIBTIFF     1
 #define  HAVE_LIBPNG      1
 #define  HAVE_LIBZ        1
-#define  HAVE_LIBGIF      0
+#define  HAVE_LIBGIF      1
 #define  HAVE_LIBUNGIF    0
 #define  HAVE_LIBWEBP     0
-#define  HAVE_LIBJP2K     0
+#define  HAVE_LIBJP2K     1
 
     /* Leptonica supports both OpenJPEG 2.0 and 2.1.  If you have a
      * version of openjpeg (HAVE_LIBJP2K) that is not 2.1, set the
      * path to the openjpeg.h header in angle brackets here. */
-#define  LIBJP2K_HEADER   <openjpeg-2.1/openjpeg.h>
+#define  LIBJP2K_HEADER   <openjpeg.h>
 #endif  /* ! HAVE_CONFIG_H etc. */
 
 /*
@@ -470,7 +474,7 @@ LEPT_DLL extern l_int32  LeptMsgSeverity;
 /*------------------------------------------------------------------------*
  *                        snprintf() renamed in MSVC                      *
  *------------------------------------------------------------------------*/
-#ifdef _MSC_VER
+#if (_MSC_VER < 1900)
 #define snprintf(buf, size, ...)  _snprintf_s(buf, size, _TRUNCATE, __VA_ARGS__)
 #endif
 
