@@ -38,3 +38,9 @@ release: distcheck
 	cd doc; make website
 	shipper version=@VERSION@ | sh -e -x
 	rm -fr doc/staging
+
+# Refresh the wbsite
+refresh:
+	cd doc; make website
+	shipper -w version=@VERSION@ | sh -e -x
+	rm -fr doc/staging

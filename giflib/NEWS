@@ -1,5 +1,45 @@
 			GIFLIB NEWS
 
+
+Version 5.1.4
+=============
+
+Code Fixes
+----------
+
+* Fix SF bug #94: giflib 5 loves to fail to load images... a LOT.
+
+* Fix SF Bug #92: Fix buffer overread in gifbuild.
+
+* Fix SF Bug #93: Add bounds check in gifbuild netscape2.0 path
+
+* Fix SF Bug #89: Fix buffer overread in gifbuild.
+
+Version 5.1.3
+=============
+
+As of this version the library and code has been seriously abused by fuzzers,
+smoking out crash bugs (now fixed) induced by various kinds of severely
+malformed GIF.
+
+Code Fixes
+----------
+
+* Prevent malloc randomess from causing the header output routine to emit
+  a GIF89 version string even when no GIF89 features are present. Only
+  breaks tests, not production code, but it's odd this wasn't caught sooner.
+
+* Prevent malloc randomess from producing sporadic failures by causing
+  sanity checks added in 5.1.2 to misfire.
+
+* Bulletproof gif2rgb against 0-height images. Addressed SF bug #78:
+  Heap overflow in gif2rgb with images of size 0, also SF bug #82.
+
+* Remove unnecessary duplicate EGifClose() in gifcolor.c. Fixes SF bug #83
+  introduced in 5.1.2.
+
+* Fix SF Bug #84: incorrect return of DGifSlurp().
+
 Version 5.1.2
 =============
 
@@ -30,7 +70,7 @@ Code Fixes
 * Fix SourceForge bug #73: Null pointer deference in gifclrmap (only
   reachable with malformed GIF).
 
-* Fix SourceForge bug #74: Double free in gifsponge under 5.1,1,
+* Fix SourceForge bug #74: Double free in gifsponge under 5.1.1,
   for any valid gif image.
 
 * Fix SourceForge bug #75: GAGetArgs overflows due to uncounted use of va_arg.
@@ -146,7 +186,7 @@ Documentation and polish
 
 Retirements
 -----------
-* gifinter is gone.  Use convert -interlace from the ImageMagic suite.
+* gifinter is gone.  Use convert -interlace from the ImageMagick suite.
 
 Code Fixes
 ----------

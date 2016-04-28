@@ -84,7 +84,7 @@ to read. </para>
 <para>By default, convert a GIF input file to RGB triplets.  If -s is 
 specified, convert RGB input to a GIF.</para>
 
-<para>If no input file is given, gif2rgb will try to read adata
+<para>If no input file is given, gif2rgb will try to read data
 from stdin.</para>
 
 </refsect1>

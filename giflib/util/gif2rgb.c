@@ -181,9 +181,6 @@ static void SaveGif(GifByteType *OutputBuffer,
 			 0, 0, Width, Height, false, NULL) ==
 	                                                             GIF_ERROR)
 	PrintGifError(Error);
-	if (GifFile != NULL) {
-	    EGifCloseFile(GifFile, NULL);
-	}
 	exit(EXIT_FAILURE);
 
     GifQprintf("\n%s: Image 1 at (%d, %d) [%dx%d]:     ",
@@ -192,12 +189,7 @@ static void SaveGif(GifByteType *OutputBuffer,
 
     for (i = 0; i < Height; i++) {
 	if (EGifPutLine(GifFile, Ptr, Width) == GIF_ERROR)
-	{
-	    if (GifFile != NULL) {
-		EGifCloseFile(GifFile, NULL);
-	    }
 	    exit(EXIT_FAILURE);
-	}
 	GifQprintf("\b\b\b\b%-4d", Height - i - 1);
 
 	Ptr += Width;
@@ -205,9 +197,6 @@ static void SaveGif(GifByteType *OutputBuffer,
 
     if (EGifCloseFile(GifFile, &Error) == GIF_ERROR)
 	PrintGifError(Error);
-	if (GifFile != NULL) {
-	    EGifCloseFile(GifFile, NULL);
-	}
 	exit(EXIT_FAILURE);
 }
 
@@ -376,6 +365,11 @@ static void GIF2RGB(int NumFiles, char *FileName,
 	    PrintGifError(Error);
 	    exit(EXIT_FAILURE);
 	}
+    }
+
+    if (GifFile->SHeight == 0 || GifFile->SWidth == 0) {
+	fprintf(stderr, "Image of width or height 0\n");
+	exit(EXIT_FAILURE);
     }
 
     /* 
