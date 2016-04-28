@@ -14,6 +14,7 @@
 #undef NEED_FAR_POINTERS	/* we presume a 32-bit flat memory model */
 #undef NEED_SHORT_EXTERNAL_NAMES
 #undef INCOMPLETE_TYPES_BROKEN
+#undef USE_WINDOWS_MESSAGEBOX
 
 /* Define "boolean" as unsigned char, not enum, per Windows custom */
 #ifndef __RPCNDR_H__		/* don't conflict if rpcndr.h already read */

@@ -554,6 +554,15 @@
     <ClCompile Include="..\tesseract_master\wordrec\wordclass.cpp" />
     <ClCompile Include="..\tesseract_master\wordrec\wordrec.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\tesseract_master\AUTHORS" />
+    <None Include="..\tesseract_master\ChangeLog" />
+    <None Include="..\tesseract_master\COPYING" />
+    <None Include="..\tesseract_master\INSTALL" />
+    <None Include="..\tesseract_master\NEWS" />
+    <None Include="..\tesseract_master\README.md" />
+    <None Include="..\tesseract_master\ReleaseNotes" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D5811ADA-EF79-4F95-A81C-0CAE618C1198}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

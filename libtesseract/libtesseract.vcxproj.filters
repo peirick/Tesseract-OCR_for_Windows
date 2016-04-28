@@ -1700,4 +1700,13 @@
       <Filter>Source Files\neural_networks\runtime</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\tesseract_master\AUTHORS" />
+    <None Include="..\tesseract_master\ChangeLog" />
+    <None Include="..\tesseract_master\COPYING" />
+    <None Include="..\tesseract_master\INSTALL" />
+    <None Include="..\tesseract_master\NEWS" />
+    <None Include="..\tesseract_master\README.md" />
+    <None Include="..\tesseract_master\ReleaseNotes" />
+  </ItemGroup>
 </Project>

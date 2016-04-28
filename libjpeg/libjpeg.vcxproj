@@ -242,7 +242,6 @@
     <Text Include="wizard.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="jconfig.vc" />
     <None Include="README" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
