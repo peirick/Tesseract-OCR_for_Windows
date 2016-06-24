@@ -29,3 +29,4 @@ libpng/contrib/testpngs/
 libpng/projects/
 liblebt.VC.db
 tesseract.VC.db
+*.db
