@@ -118,6 +118,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;VERSION="0.28";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)liblept;$(SolutionDir)leptonica\src;$(SolutionDir)jbig2enc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <StringPooling>true</StringPooling>
+      <DisableSpecificWarnings>4305</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -135,6 +136,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;VERSION="0.28";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)liblept;$(SolutionDir)leptonica\src;$(SolutionDir)jbig2enc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <StringPooling>true</StringPooling>
+      <DisableSpecificWarnings>4305</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -158,6 +160,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalOptions> /Qvec-report:2 %(AdditionalOptions)</AdditionalOptions>
+      <DisableSpecificWarnings>4305</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -183,6 +186,7 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <AdditionalOptions> /Qvec-report:2 %(AdditionalOptions)</AdditionalOptions>
+      <DisableSpecificWarnings>4305</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
