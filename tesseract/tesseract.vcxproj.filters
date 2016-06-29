@@ -15,17 +15,17 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\tesseract_master\vs2010\tesseract\tesseract.rc">
+    <ResourceCompile Include="..\tesseract_3.04\vs2010\tesseract\tesseract.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\tesseract_master\vs2010\tesseract\resource.h">
+    <ClInclude Include="..\tesseract_3.04\vs2010\tesseract\resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\tesseract_master\api\tesseractmain.cpp">
+    <ClCompile Include="..\tesseract_3.04\api\tesseractmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
