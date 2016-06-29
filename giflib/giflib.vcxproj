@@ -161,28 +161,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="lib\gif_hash.h" />
-    <ClInclude Include="lib\gif_lib.h" />
-    <ClInclude Include="lib\gif_lib_private.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="lib\dgif_lib.c" />
-    <ClCompile Include="lib\egif_lib.c" />
-    <ClCompile Include="lib\gifalloc.c" />
-    <ClCompile Include="lib\gif_err.c" />
-    <ClCompile Include="lib\gif_font.c" />
-    <ClCompile Include="lib\gif_hash.c" />
-    <ClCompile Include="lib\openbsd-reallocarray.c" />
-    <ClCompile Include="lib\quantize.c" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="AUTHORS" />
-    <None Include="BUGS" />
-    <None Include="ChangeLog" />
     <None Include="COPYING" />
     <None Include="NEWS" />
     <None Include="README" />
-    <None Include="TODO" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dgif_lib.c" />
+    <ClCompile Include="egif_lib.c" />
+    <ClCompile Include="gifalloc.c" />
+    <ClCompile Include="gif_err.c" />
+    <ClCompile Include="gif_font.c" />
+    <ClCompile Include="gif_hash.c" />
+    <ClCompile Include="openbsd-reallocarray.c" />
+    <ClCompile Include="quantize.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="gif_hash.h" />
+    <ClInclude Include="gif_lib.h" />
+    <ClInclude Include="gif_lib_private.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

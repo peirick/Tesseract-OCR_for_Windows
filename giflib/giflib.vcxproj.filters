@@ -15,49 +15,46 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="lib\gif_hash.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gif_lib.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lib\gif_lib_private.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="lib\dgif_lib.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lib\egif_lib.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lib\gif_err.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lib\gif_font.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lib\gif_hash.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lib\gifalloc.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lib\openbsd-reallocarray.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lib\quantize.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="AUTHORS" />
-    <None Include="BUGS" />
-    <None Include="ChangeLog" />
     <None Include="COPYING" />
     <None Include="NEWS" />
     <None Include="README" />
-    <None Include="TODO" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="gifalloc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="openbsd-reallocarray.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="quantize.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dgif_lib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="egif_lib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gif_err.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gif_font.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gif_hash.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="gif_lib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gif_lib_private.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gif_hash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
