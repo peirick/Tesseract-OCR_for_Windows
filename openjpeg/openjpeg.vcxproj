@@ -19,57 +19,37 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\lib\openjp2\bio.h" />
-    <ClInclude Include="src\lib\openjp2\cio.h" />
-    <ClInclude Include="src\lib\openjp2\dwt.h" />
-    <ClInclude Include="src\lib\openjp2\event.h" />
-    <ClInclude Include="src\lib\openjp2\function_list.h" />
-    <ClInclude Include="src\lib\openjp2\image.h" />
-    <ClInclude Include="src\lib\openjp2\indexbox_manager.h" />
-    <ClInclude Include="src\lib\openjp2\invert.h" />
-    <ClInclude Include="src\lib\openjp2\j2k.h" />
-    <ClInclude Include="src\lib\openjp2\jp2.h" />
-    <ClInclude Include="src\lib\openjp2\mct.h" />
-    <ClInclude Include="src\lib\openjp2\mqc.h" />
-    <ClInclude Include="src\lib\openjp2\openjpeg.h" />
-    <ClInclude Include="src\lib\openjp2\opj_clock.h" />
-    <ClInclude Include="src\lib\openjp2\opj_codec.h" />
+    <ClInclude Include="bio.h" />
+    <ClInclude Include="cio.h" />
+    <ClInclude Include="dwt.h" />
+    <ClInclude Include="event.h" />
+    <ClInclude Include="function_list.h" />
+    <ClInclude Include="image.h" />
+    <ClInclude Include="indexbox_manager.h" />
+    <ClInclude Include="invert.h" />
+    <ClInclude Include="j2k.h" />
+    <ClInclude Include="jp2.h" />
+    <ClInclude Include="mct.h" />
+    <ClInclude Include="mqc.h" />
+    <ClInclude Include="openjpeg.h" />
+    <ClInclude Include="opj_clock.h" />
+    <ClInclude Include="opj_codec.h" />
+    <ClInclude Include="opj_config.h" />
+    <ClInclude Include="opj_config_private.h" />
+    <ClInclude Include="opj_includes.h" />
+    <ClInclude Include="opj_intmath.h" />
+    <ClInclude Include="opj_inttypes.h" />
+    <ClInclude Include="opj_malloc.h" />
+    <ClInclude Include="opj_stdint.h" />
+    <ClInclude Include="pi.h" />
+    <ClInclude Include="raw.h" />
     <ClInclude Include="src\lib\openjp2\opj_config.h" />
     <ClInclude Include="src\lib\openjp2\opj_config_private.h" />
-    <ClInclude Include="src\lib\openjp2\opj_includes.h" />
-    <ClInclude Include="src\lib\openjp2\opj_intmath.h" />
-    <ClInclude Include="src\lib\openjp2\opj_inttypes.h" />
-    <ClInclude Include="src\lib\openjp2\opj_malloc.h" />
-    <ClInclude Include="src\lib\openjp2\opj_stdint.h" />
-    <ClInclude Include="src\lib\openjp2\pi.h" />
-    <ClInclude Include="src\lib\openjp2\raw.h" />
-    <ClInclude Include="src\lib\openjp2\t1.h" />
-    <ClInclude Include="src\lib\openjp2\t1_luts.h" />
-    <ClInclude Include="src\lib\openjp2\t2.h" />
-    <ClInclude Include="src\lib\openjp2\tcd.h" />
-    <ClInclude Include="src\lib\openjp2\tgt.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\lib\openjp2\bio.c" />
-    <ClCompile Include="src\lib\openjp2\cio.c" />
-    <ClCompile Include="src\lib\openjp2\dwt.c" />
-    <ClCompile Include="src\lib\openjp2\event.c" />
-    <ClCompile Include="src\lib\openjp2\function_list.c" />
-    <ClCompile Include="src\lib\openjp2\image.c" />
-    <ClCompile Include="src\lib\openjp2\invert.c" />
-    <ClCompile Include="src\lib\openjp2\j2k.c" />
-    <ClCompile Include="src\lib\openjp2\jp2.c" />
-    <ClCompile Include="src\lib\openjp2\mct.c" />
-    <ClCompile Include="src\lib\openjp2\mqc.c" />
-    <ClCompile Include="src\lib\openjp2\openjpeg.c" />
-    <ClCompile Include="src\lib\openjp2\opj_clock.c" />
-    <ClCompile Include="src\lib\openjp2\pi.c" />
-    <ClCompile Include="src\lib\openjp2\raw.c" />
-    <ClCompile Include="src\lib\openjp2\t1.c" />
-    <ClCompile Include="src\lib\openjp2\t1_generate_luts.c" />
-    <ClCompile Include="src\lib\openjp2\t2.c" />
-    <ClCompile Include="src\lib\openjp2\tcd.c" />
-    <ClCompile Include="src\lib\openjp2\tgt.c" />
+    <ClInclude Include="t1.h" />
+    <ClInclude Include="t1_luts.h" />
+    <ClInclude Include="t2.h" />
+    <ClInclude Include="tcd.h" />
+    <ClInclude Include="tgt.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AUTHORS" />
@@ -79,6 +59,28 @@
     <None Include="NEWS" />
     <None Include="README" />
     <None Include="THANKS" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="bio.c" />
+    <ClCompile Include="cio.c" />
+    <ClCompile Include="dwt.c" />
+    <ClCompile Include="event.c" />
+    <ClCompile Include="function_list.c" />
+    <ClCompile Include="image.c" />
+    <ClCompile Include="invert.c" />
+    <ClCompile Include="j2k.c" />
+    <ClCompile Include="jp2.c" />
+    <ClCompile Include="mct.c" />
+    <ClCompile Include="mqc.c" />
+    <ClCompile Include="openjpeg.c" />
+    <ClCompile Include="opj_clock.c" />
+    <ClCompile Include="pi.c" />
+    <ClCompile Include="raw.c" />
+    <ClCompile Include="t1.c" />
+    <ClCompile Include="t1_generate_luts.c" />
+    <ClCompile Include="t2.c" />
+    <ClCompile Include="tcd.c" />
+    <ClCompile Include="tgt.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{6B46ED03-25FE-475D-A93C-34AEA797571F}</ProjectGuid>

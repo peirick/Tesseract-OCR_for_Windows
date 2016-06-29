@@ -285,16 +285,16 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(ProjectDir)src;$(IncludePath)</IncludePath>
-    <SourcePath>$(SourcePath);$(ProjectDir)src</SourcePath>
+    <SourcePath>$(ProjectDir)src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(ProjectDir)src;$(IncludePath)</IncludePath>
-    <SourcePath>;$(ProjectDir)src,$(SourcePath)</SourcePath>
+    <SourcePath>$(ProjectDir)src;$(SourcePath)</SourcePath>
     <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(ProjectDir)src;$(IncludePath)</IncludePath>
-    <SourcePath>;$(ProjectDir)src;$(SourcePath)</SourcePath>
+    <SourcePath>$(ProjectDir)src;$(SourcePath)</SourcePath>
     <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -334,7 +334,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>COMPILER_MSVC;OPJ_STATIC;_CRT_SECURE_NO_WARNINGS;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAs>CompileAsCpp</CompileAs>
-      <AdditionalIncludeDirectories>$(SolutionDir)openjpeg\..\leptonica\src\lib\openjp2;$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg\include;$(SolutionDir)libtiff\libtiff;$(SolutionDir)giflib\lib;$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)openjpeg\..\leptonica\src\lib\openjp2;$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg;$(SolutionDir)libtiff;$(SolutionDir)giflib;$(ProjectDir)</AdditionalIncludeDirectories>
       <StringPooling>true</StringPooling>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <SDLCheck>false</SDLCheck>
@@ -392,7 +392,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>COMPILER_MSVC;OPJ_STATIC;_CRT_SECURE_NO_WARNINGS;NO_CONSOLE_IO;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAs>CompileAsCpp</CompileAs>
-      <AdditionalIncludeDirectories>$(SolutionDir)openjpeg\..\leptonica\src\lib\openjp2;$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg\include;$(SolutionDir)libtiff\libtiff;$(SolutionDir)giflib\lib;$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)openjpeg\..\leptonica\src\lib\openjp2;$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg;$(SolutionDir)libtiff;$(SolutionDir)giflib;$(ProjectDir)</AdditionalIncludeDirectories>
       <OmitFramePointers>false</OmitFramePointers>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
