@@ -96,7 +96,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="endianness.h" />
-    <ClInclude Include="environ.h" />
+    <ClInclude Include="config_auto.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\leptonica\src\adaptmap.c">
@@ -610,6 +610,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\leptonica\src\ptafunc2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\leptonica\src\bootnumgen3.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

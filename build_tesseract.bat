@@ -1,6 +1,9 @@
 rem git clone --depth=1 --single-branch https://github.com/tesseract-ocr/tesseract.git  --branch="master" "tesseract_master"
 rem git clone --depth=1 --single-branch https://github.com/DanBloomberg/leptonica.git  --branch="master" "leptanica"
 
+git submodule update --init --recursive
+@if %errorlevel% NEQ 0 GOTO ERROR
+
 call "%programfiles% (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x86
 @if %errorlevel% NEQ 0 GOTO ERROR
 

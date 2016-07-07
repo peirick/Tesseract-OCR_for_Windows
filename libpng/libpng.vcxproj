@@ -51,6 +51,11 @@
     <ClCompile Include="pngwtran.c" />
     <ClCompile Include="pngwutil.c" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\zlib\zlib.vcxproj">
+      <Project>{b6b31e79-633d-4c8b-8beb-98e90394bc90}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CFE7F335-BE15-417C-9498-98E79F9EB18E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

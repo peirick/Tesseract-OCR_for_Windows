@@ -126,9 +126,6 @@
     <ClCompile Include="t1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="t1_generate_luts.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="t2.c">
       <Filter>Source Files</Filter>
     </ClCompile>

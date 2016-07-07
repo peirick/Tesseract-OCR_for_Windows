@@ -77,7 +77,6 @@
     <ClCompile Include="pi.c" />
     <ClCompile Include="raw.c" />
     <ClCompile Include="t1.c" />
-    <ClCompile Include="t1_generate_luts.c" />
     <ClCompile Include="t2.c" />
     <ClCompile Include="tcd.c" />
     <ClCompile Include="tgt.c" />

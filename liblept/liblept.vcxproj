@@ -48,7 +48,7 @@
     <ClInclude Include="..\leptonica\src\sudoku.h" />
     <ClInclude Include="..\leptonica\src\watershed.h" />
     <ClInclude Include="endianness.h" />
-    <ClInclude Include="environ.h" />
+    <ClInclude Include="config_auto.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\leptonica\src\adaptmap.c" />
@@ -69,6 +69,7 @@
     <ClCompile Include="..\leptonica\src\bmpiostub.c" />
     <ClCompile Include="..\leptonica\src\bootnumgen1.c" />
     <ClCompile Include="..\leptonica\src\bootnumgen2.c" />
+    <ClCompile Include="..\leptonica\src\bootnumgen3.c" />
     <ClCompile Include="..\leptonica\src\boxbasic.c" />
     <ClCompile Include="..\leptonica\src\boxfunc1.c" />
     <ClCompile Include="..\leptonica\src\boxfunc2.c" />
@@ -231,6 +232,29 @@
     <None Include="..\leptonica\README.html" />
     <None Include="..\leptonica\README.md" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\giflib\giflib.vcxproj">
+      <Project>{41f12953-3463-4ce0-b2e0-26edd6948ed9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\libjpeg\libjpeg.vcxproj">
+      <Project>{eba2ae0f-2bbc-406d-9a34-3bc8ea89d5cf}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\libpng\libpng.vcxproj">
+      <Project>{cfe7f335-be15-417c-9498-98e79f9eb18e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\libtiff\libtiff.vcxproj">
+      <Project>{1d6f8728-4be8-4142-95e7-7430d3891c72}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\libwebp\libwebp.vcxproj">
+      <Project>{37ad3712-9022-4665-bb77-0cc8b2b49d8a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\openjpeg\openjpeg.vcxproj">
+      <Project>{6b46ed03-25fe-475d-a93c-34aea797571f}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\zlib\zlib.vcxproj">
+      <Project>{b6b31e79-633d-4c8b-8beb-98e90394bc90}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E6961845-0D83-4CB0-9928-064E63D90FF2}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -298,8 +322,8 @@
     <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)src;$(IncludePath)</IncludePath>
-    <SourcePath>$(ProjectDir)src;$(SourcePath)</SourcePath>
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+    <SourcePath>$(ProjectDir);$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -307,9 +331,9 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>COMPILER_MSVC;OPJ_STATIC;_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>COMPILER_MSVC;OPJ_STATIC;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAs>CompileAsCpp</CompileAs>
-      <AdditionalIncludeDirectories>$(SolutionDir)openjpeg\..\leptonica\src\lib\openjp2;$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg;$(SolutionDir)libtiff;$(SolutionDir)giflib;$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)openjpeg;$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg;$(SolutionDir)libtiff;$(SolutionDir)giflib;$(SolutionDir)libwebp\src;$(ProjectDir)</AdditionalIncludeDirectories>
       <StringPooling>true</StringPooling>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <SDLCheck>false</SDLCheck>
@@ -332,9 +356,9 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>COMPILER_MSVC;OPJ_STATIC;_CRT_SECURE_NO_WARNINGS;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>COMPILER_MSVC;OPJ_STATIC;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAs>CompileAsCpp</CompileAs>
-      <AdditionalIncludeDirectories>$(SolutionDir)openjpeg\..\leptonica\src\lib\openjp2;$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg;$(SolutionDir)libtiff;$(SolutionDir)giflib;$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)openjpeg;$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg;$(SolutionDir)libtiff;$(SolutionDir)giflib;$(SolutionDir)libwebp\src;$(ProjectDir)</AdditionalIncludeDirectories>
       <StringPooling>true</StringPooling>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <SDLCheck>false</SDLCheck>
@@ -359,9 +383,9 @@
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>COMPILER_MSVC;OPJ_STATIC;_CRT_SECURE_NO_WARNINGS;NO_CONSOLE_IO;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>COMPILER_MSVC;OPJ_STATIC;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;NO_CONSOLE_IO;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAs>CompileAsCpp</CompileAs>
-      <AdditionalIncludeDirectories>$(SolutionDir)openjpeg\..\leptonica\src\lib\openjp2;$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg;$(SolutionDir)libtiff;$(SolutionDir)giflib;$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)openjpeg;$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg;$(SolutionDir)libtiff;$(SolutionDir)giflib;$(SolutionDir)libwebp\src;$(ProjectDir)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <StringPooling>true</StringPooling>
@@ -390,9 +414,9 @@
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>COMPILER_MSVC;OPJ_STATIC;_CRT_SECURE_NO_WARNINGS;NO_CONSOLE_IO;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>COMPILER_MSVC;OPJ_STATIC;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;NO_CONSOLE_IO;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAs>CompileAsCpp</CompileAs>
-      <AdditionalIncludeDirectories>$(SolutionDir)openjpeg\..\leptonica\src\lib\openjp2;$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg;$(SolutionDir)libtiff;$(SolutionDir)giflib;$(ProjectDir)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)openjpeg;$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg;$(SolutionDir)libtiff;$(SolutionDir)giflib;$(SolutionDir)libwebp\src;$(ProjectDir)</AdditionalIncludeDirectories>
       <OmitFramePointers>false</OmitFramePointers>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>

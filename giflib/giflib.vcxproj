@@ -181,6 +181,11 @@
     <ClInclude Include="gif_lib.h" />
     <ClInclude Include="gif_lib_private.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\zlib\zlib.vcxproj">
+      <Project>{b6b31e79-633d-4c8b-8beb-98e90394bc90}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

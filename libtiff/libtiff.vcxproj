@@ -236,6 +236,14 @@
     <ClInclude Include="tif_predict.h" />
     <ClInclude Include="uvcode.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\libjpeg\libjpeg.vcxproj">
+      <Project>{eba2ae0f-2bbc-406d-9a34-3bc8ea89d5cf}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\zlib\zlib.vcxproj">
+      <Project>{b6b31e79-633d-4c8b-8beb-98e90394bc90}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
