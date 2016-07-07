@@ -202,14 +202,21 @@ static opj_mqc_state_t mqc_states[47 * 2] = {
 ==========================================================
 */
 
-void opj_mqc_byteout(opj_mqc_t *mqc) {
-	if (*mqc->bp == 0xff) {
+static void opj_mqc_byteout(opj_mqc_t *mqc) {
+	/* avoid accessing uninitialized memory*/
+	if (mqc->bp == mqc->start-1) {
+		mqc->bp++;
+		*mqc->bp = (OPJ_BYTE)(mqc->c >> 19);
+		mqc->c &= 0x7ffff;
+		mqc->ct = 8;
+	}
+	else if (*mqc->bp == 0xff) {
 		mqc->bp++;
 		*mqc->bp = (OPJ_BYTE)(mqc->c >> 20);
 		mqc->c &= 0xfffff;
 		mqc->ct = 7;
 	} else {
-		if ((mqc->c & 0x8000000) == 0) {	/* ((mqc->c&0x8000000)==0) CHANGE */
+		if ((mqc->c & 0x8000000) == 0) {	
 			mqc->bp++;
 			*mqc->bp = (OPJ_BYTE)(mqc->c >> 19);
 			mqc->c &= 0x7ffff;
@@ -232,7 +239,7 @@ void opj_mqc_byteout(opj_mqc_t *mqc) {
 	}
 }
 
-void opj_mqc_renorme(opj_mqc_t *mqc) {
+static void opj_mqc_renorme(opj_mqc_t *mqc) {
 	do {
 		mqc->a <<= 1;
 		mqc->c <<= 1;
@@ -243,7 +250,7 @@ void opj_mqc_renorme(opj_mqc_t *mqc) {
 	} while ((mqc->a & 0x8000) == 0);
 }
 
-void opj_mqc_codemps(opj_mqc_t *mqc) {
+static void opj_mqc_codemps(opj_mqc_t *mqc) {
 	mqc->a -= (*mqc->curctx)->qeval;
 	if ((mqc->a & 0x8000) == 0) {
 		if (mqc->a < (*mqc->curctx)->qeval) {
@@ -258,7 +265,7 @@ void opj_mqc_codemps(opj_mqc_t *mqc) {
 	}
 }
 
-void opj_mqc_codelps(opj_mqc_t *mqc) {
+static void opj_mqc_codelps(opj_mqc_t *mqc) {
 	mqc->a -= (*mqc->curctx)->qeval;
 	if (mqc->a < (*mqc->curctx)->qeval) {
 		mqc->c += (*mqc->curctx)->qeval;
@@ -269,7 +276,7 @@ void opj_mqc_codelps(opj_mqc_t *mqc) {
 	opj_mqc_renorme(mqc);
 }
 
-void opj_mqc_setbits(opj_mqc_t *mqc) {
+static void opj_mqc_setbits(opj_mqc_t *mqc) {
 	OPJ_UINT32 tempc = mqc->c + mqc->a;
 	mqc->c |= 0xffff;
 	if (mqc->c >= tempc) {
@@ -362,7 +369,9 @@ static INLINE void opj_mqc_renormd(opj_mqc_t *const mqc) {
 opj_mqc_t* opj_mqc_create(void) {
 	opj_mqc_t *mqc = (opj_mqc_t*)opj_malloc(sizeof(opj_mqc_t));
 #ifdef MQC_PERF_OPT
-	mqc->buffer = NULL;
+	if (mqc) {
+		mqc->buffer = NULL;
+	}
 #endif
 	return mqc;
 }
@@ -370,7 +379,9 @@ opj_mqc_t* opj_mqc_create(void) {
 void opj_mqc_destroy(opj_mqc_t *mqc) {
 	if(mqc) {
 #ifdef MQC_PERF_OPT
-		opj_free(mqc->buffer);
+		if (mqc->buffer) {
+			opj_free(mqc->buffer);
+		}
 #endif
 		opj_free(mqc);
 	}
@@ -391,9 +402,6 @@ void opj_mqc_init_enc(opj_mqc_t *mqc, OPJ_BYTE *bp) {
 	mqc->c = 0;
 	mqc->bp = bp - 1;
 	mqc->ct = 12;
-	if (*mqc->bp == 0xff) {
-		mqc->ct = 13;
-	}
 	mqc->start = bp;
 }
 

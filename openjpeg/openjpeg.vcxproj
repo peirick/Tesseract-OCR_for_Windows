@@ -74,6 +74,7 @@
     <ClCompile Include="mqc.c" />
     <ClCompile Include="openjpeg.c" />
     <ClCompile Include="opj_clock.c" />
+    <ClCompile Include="opj_malloc.c" />
     <ClCompile Include="pi.c" />
     <ClCompile Include="raw.c" />
     <ClCompile Include="t1.c" />

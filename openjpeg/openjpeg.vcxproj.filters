@@ -168,5 +168,8 @@
     <ClCompile Include="mqc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="opj_malloc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
