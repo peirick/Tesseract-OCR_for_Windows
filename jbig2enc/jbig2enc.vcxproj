@@ -127,6 +127,7 @@
       <StringPooling>true</StringPooling>
       <DisableSpecificWarnings>4305</DisableSpecificWarnings>
       <CompileAs>CompileAsCpp</CompileAs>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,6 +150,7 @@
       <StringPooling>true</StringPooling>
       <DisableSpecificWarnings>4305</DisableSpecificWarnings>
       <CompileAs>CompileAsCpp</CompileAs>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

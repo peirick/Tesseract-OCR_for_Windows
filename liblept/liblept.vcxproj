@@ -235,24 +235,38 @@
   <ItemGroup>
     <ProjectReference Include="..\giflib\giflib.vcxproj">
       <Project>{41f12953-3463-4ce0-b2e0-26edd6948ed9}</Project>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
     </ProjectReference>
     <ProjectReference Include="..\libjpeg\libjpeg.vcxproj">
       <Project>{eba2ae0f-2bbc-406d-9a34-3bc8ea89d5cf}</Project>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
     </ProjectReference>
     <ProjectReference Include="..\libpng\libpng.vcxproj">
       <Project>{cfe7f335-be15-417c-9498-98e79f9eb18e}</Project>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
     </ProjectReference>
     <ProjectReference Include="..\libtiff\libtiff.vcxproj">
       <Project>{1d6f8728-4be8-4142-95e7-7430d3891c72}</Project>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
     </ProjectReference>
     <ProjectReference Include="..\libwebp\libwebp.vcxproj">
       <Project>{37ad3712-9022-4665-bb77-0cc8b2b49d8a}</Project>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
     </ProjectReference>
     <ProjectReference Include="..\openjpeg\openjpeg.vcxproj">
       <Project>{6b46ed03-25fe-475d-a93c-34aea797571f}</Project>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
     </ProjectReference>
     <ProjectReference Include="..\zlib\zlib.vcxproj">
       <Project>{b6b31e79-633d-4c8b-8beb-98e90394bc90}</Project>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -342,6 +356,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <DisableSpecificWarnings>4244;4305</DisableSpecificWarnings>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -367,6 +382,7 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>false</MinimalRebuild>
       <DisableSpecificWarnings>4244;4305</DisableSpecificWarnings>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

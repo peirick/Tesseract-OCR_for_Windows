@@ -30,6 +30,7 @@
   <ItemGroup>
     <ProjectReference Include="..\libtesseract\libtesseract.vcxproj">
       <Project>{d5811ada-ef79-4f95-a81c-0cae618c1198}</Project>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -111,6 +112,8 @@
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
       <CompileAs>CompileAsCpp</CompileAs>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,6 +133,8 @@
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
       <CompileAs>CompileAsCpp</CompileAs>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
