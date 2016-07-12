@@ -102,15 +102,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="AUTHORS" />
-    <None Include="CHANGES" />
-    <None Include="INSTALL" />
-    <None Include="LICENSE" />
-    <None Include="NEWS" />
-    <None Include="README" />
-    <None Include="THANKS" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="openjpeg.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -171,5 +162,14 @@
     <ClCompile Include="opj_malloc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AUTHORS.md" />
+    <None Include="CHANGELOG.md" />
+    <None Include="INSTALL.md" />
+    <None Include="NEWS.md" />
+    <None Include="README.md" />
+    <None Include="THANKS.md" />
+    <None Include="LICENSE" />
   </ItemGroup>
 </Project>
