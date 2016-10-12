@@ -97,6 +97,7 @@
     <ClCompile Include="..\leptonica\src\dewarp3.c" />
     <ClCompile Include="..\leptonica\src\dewarp4.c" />
     <ClCompile Include="..\leptonica\src\dnabasic.c" />
+    <ClCompile Include="..\leptonica\src\dnafunc1.c" />
     <ClCompile Include="..\leptonica\src\dnahash.c" />
     <ClCompile Include="..\leptonica\src\dwacomb.2.c" />
     <ClCompile Include="..\leptonica\src\dwacomblow.2.c" />
