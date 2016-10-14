@@ -20,6 +20,9 @@
     <Filter Include="Source Files\utils">
       <UniqueIdentifier>{c129caa0-c0b1-43fe-90bb-f97f70cde2fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\mux">
+      <UniqueIdentifier>{36c2a232-69e8-4611-9a9a-b3680deca89b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="README" />
@@ -319,6 +322,42 @@
     <ClCompile Include="src\utils\utils.c">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
+    <ClCompile Include="src\dsp\rescaler_msa.c">
+      <Filter>Source Files\dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dsp\upsampling_msa.c">
+      <Filter>Source Files\dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dsp\dec_msa.c">
+      <Filter>Source Files\dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dsp\enc_msa.c">
+      <Filter>Source Files\dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dsp\filters_msa.c">
+      <Filter>Source Files\dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dsp\lossless_enc_msa.c">
+      <Filter>Source Files\dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dsp\lossless_msa.c">
+      <Filter>Source Files\dsp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\enc\predictor.c">
+      <Filter>Source Files\enc</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mux\muxedit.c">
+      <Filter>Source Files\mux</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mux\muxinternal.c">
+      <Filter>Source Files\mux</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mux\muxread.c">
+      <Filter>Source Files\mux</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mux\anim_encode.c">
+      <Filter>Source Files\mux</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\dec\alphai.h">
@@ -437,6 +476,21 @@
     </ClInclude>
     <ClInclude Include="src\webp\extras.h">
       <Filter>Source Files\webp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dsp\common_sse2.h">
+      <Filter>Source Files\dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dsp\lossless_common.h">
+      <Filter>Source Files\dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dsp\msa_macro.h">
+      <Filter>Source Files\dsp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mux\muxi.h">
+      <Filter>Source Files\mux</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mux\animi.h">
+      <Filter>Source Files\mux</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -155,7 +155,7 @@ static int RGBToV(int r, int g, int b, VP8Random* const rg) {
 //------------------------------------------------------------------------------
 // Smart RGB->YUV conversion
 
-static const int kNumIterations = 6;
+static const int kNumIterations = 4;
 static const int kMinDimensionIterativeConversion = 4;
 
 // We could use SFIX=0 and only uint8_t for fixed_y_t, but it produces some
@@ -171,9 +171,9 @@ typedef uint16_t fixed_y_t;   // unsigned type with extra SFIX precision for W
 #if defined(USE_GAMMA_COMPRESSION)
 
 // float variant of gamma-correction
-// We use tables of different size and precision, along with a 'real-world'
-// Gamma value close to ~2.
-#define kGammaF 2.2
+// We use tables of different size and precision for the Rec709
+// transfer function.
+#define kGammaF (1./0.45)
 static float kGammaToLinearTabF[MAX_Y_T + 1];   // size scales with Y_FIX
 static float kLinearToGammaTabF[kGammaTabSize + 2];
 static volatile int kGammaTablesFOk = 0;
@@ -183,11 +183,26 @@ static WEBP_TSAN_IGNORE_FUNCTION void InitGammaTablesF(void) {
     int v;
     const double norm = 1. / MAX_Y_T;
     const double scale = 1. / kGammaTabSize;
+    const double a = 0.099;
+    const double thresh = 0.018;
     for (v = 0; v <= MAX_Y_T; ++v) {
-      kGammaToLinearTabF[v] = (float)pow(norm * v, kGammaF);
+      const double g = norm * v;
+      if (g <= thresh * 4.5) {
+        kGammaToLinearTabF[v] = (float)(g / 4.5);
+      } else {
+        const double a_rec = 1. / (1. + a);
+        kGammaToLinearTabF[v] = (float)pow(a_rec * (g + a), kGammaF);
+      }
     }
     for (v = 0; v <= kGammaTabSize; ++v) {
-      kLinearToGammaTabF[v] = (float)(MAX_Y_T * pow(scale * v, 1. / kGammaF));
+      const double g = scale * v;
+      double value;
+      if (g <= thresh) {
+        value = 4.5 * g;
+      } else {
+        value = (1. + a) * pow(g, 1. / kGammaF) - a;
+      }
+      kLinearToGammaTabF[v] = (float)(MAX_Y_T * value);
     }
     // to prevent small rounding errors to cause read-overflow:
     kLinearToGammaTabF[kGammaTabSize + 1] = kLinearToGammaTabF[kGammaTabSize];
@@ -235,12 +250,12 @@ static fixed_y_t clip_y(int y) {
 //------------------------------------------------------------------------------
 
 static int RGBToGray(int r, int g, int b) {
-  const int luma = 19595 * r + 38470 * g + 7471 * b + YUV_HALF;
+  const int luma = 13933 * r + 46871 * g + 4732 * b + YUV_HALF;
   return (luma >> YUV_FIX);
 }
 
 static float RGBToGrayF(float r, float g, float b) {
-  return 0.299f * r + 0.587f * g + 0.114f * b;
+  return (float)(0.2126 * r + 0.7152 * g + 0.0722 * b);
 }
 
 static int ScaleDown(int a, int b, int c, int d) {
@@ -262,31 +277,28 @@ static WEBP_INLINE void UpdateW(const fixed_y_t* src, fixed_y_t* dst, int len) {
   }
 }
 
-static int UpdateChroma(const fixed_y_t* src1,
-                        const fixed_y_t* src2,
-                        fixed_t* dst, fixed_y_t* tmp, int len) {
-  int diff = 0;
+static void UpdateChroma(const fixed_y_t* src1, const fixed_y_t* src2,
+                         fixed_t* dst, int len) {
   while (len--> 0) {
     const int r = ScaleDown(src1[0], src1[3], src2[0], src2[3]);
     const int g = ScaleDown(src1[1], src1[4], src2[1], src2[4]);
     const int b = ScaleDown(src1[2], src1[5], src2[2], src2[5]);
     const int W = RGBToGray(r, g, b);
-    const int r_avg = (src1[0] + src1[3] + src2[0] + src2[3] + 2) >> 2;
-    const int g_avg = (src1[1] + src1[4] + src2[1] + src2[4] + 2) >> 2;
-    const int b_avg = (src1[2] + src1[5] + src2[2] + src2[5] + 2) >> 2;
     dst[0] = (fixed_t)(r - W);
     dst[1] = (fixed_t)(g - W);
     dst[2] = (fixed_t)(b - W);
     dst += 3;
     src1 += 6;
     src2 += 6;
-    if (tmp != NULL) {
-      tmp[0] = tmp[1] = clip_y(W);
-      tmp += 2;
-    }
-    diff += abs(RGBToGray(r_avg, g_avg, b_avg) - W);
   }
-  return diff;
+}
+
+static void StoreGray(const fixed_y_t* rgb, fixed_y_t* y, int len) {
+  int i;
+  for (i = 0; i < len; ++i) {
+    y[i] = RGBToGray(rgb[0], rgb[1], rgb[2]);
+    rgb += 3;
+  }
 }
 
 //------------------------------------------------------------------------------
@@ -430,6 +442,7 @@ static int PreprocessARGB(const uint8_t* const r_ptr,
   const int h = (picture->height + 1) & ~1;
   const int uv_w = w >> 1;
   const int uv_h = h >> 1;
+  uint64_t prev_diff_y_sum = ~0;
   int i, j, iter;
 
   // TODO(skal): allocate one big memory chunk. But for now, it's easier
@@ -441,11 +454,8 @@ static int PreprocessARGB(const uint8_t* const r_ptr,
   fixed_t* const best_uv = SAFE_ALLOC(uv_w * 3, uv_h, fixed_t);
   fixed_t* const target_uv = SAFE_ALLOC(uv_w * 3, uv_h, fixed_t);
   fixed_t* const best_rgb_uv = SAFE_ALLOC(uv_w * 3, 1, fixed_t);
+  const uint64_t diff_y_threshold = (uint64_t)(3.0 * w * h);
   int ok;
-  int diff_sum = 0;
-  const int first_diff_threshold = (int)(2.5 * w * h);
-  const int min_improvement = 5;   // stop if improvement is below this %
-  const int min_first_improvement = 80;
 
   if (best_y == NULL || best_uv == NULL ||
       target_y == NULL || target_uv == NULL ||
@@ -476,21 +486,22 @@ static int PreprocessARGB(const uint8_t* const r_ptr,
     } else {
       memcpy(src2, src1, 3 * w * sizeof(*src2));
     }
+    StoreGray(src1, dst_y, 2 * w);      // convert two lines at a time
+
     UpdateW(src1, target_y + (j + 0) * w, w);
     UpdateW(src2, target_y + (j + 1) * w, w);
-    diff_sum += UpdateChroma(src1, src2, target_uv + uv_off, dst_y, uv_w);
+    UpdateChroma(src1, src2, target_uv + uv_off, uv_w);
     memcpy(best_uv + uv_off, target_uv + uv_off, 3 * uv_w * sizeof(*best_uv));
-    memcpy(dst_y + w, dst_y, w * sizeof(*dst_y));
   }
 
   // Iterate and resolve clipping conflicts.
   for (iter = 0; iter < kNumIterations; ++iter) {
-    int k;
     const fixed_t* cur_uv = best_uv;
     const fixed_t* prev_uv = best_uv;
-    const int old_diff_sum = diff_sum;
-    diff_sum = 0;
+    uint64_t diff_y_sum = 0;
+
     for (j = 0; j < h; j += 2) {
+      const int uv_off = (j >> 1) * 3 * uv_w;
       fixed_y_t* const src1 = tmp_buffer;
       fixed_y_t* const src2 = tmp_buffer + 3 * w;
       {
@@ -503,7 +514,7 @@ static int PreprocessARGB(const uint8_t* const r_ptr,
 
       UpdateW(src1, best_rgb_y + 0 * w, w);
       UpdateW(src2, best_rgb_y + 1 * w, w);
-      diff_sum += UpdateChroma(src1, src2, best_rgb_uv, NULL, uv_w);
+      UpdateChroma(src1, src2, best_rgb_uv, uv_w);
 
       // update two rows of Y and one row of RGB
       for (i = 0; i < 2 * w; ++i) {
@@ -511,39 +522,20 @@ static int PreprocessARGB(const uint8_t* const r_ptr,
         const int diff_y = target_y[off] - best_rgb_y[i];
         const int new_y = (int)best_y[off] + diff_y;
         best_y[off] = clip_y(new_y);
+        diff_y_sum += (uint64_t)abs(diff_y);
       }
-      for (i = 0; i < uv_w; ++i) {
-        const int off = 3 * (i + (j >> 1) * uv_w);
-        int W;
-        for (k = 0; k <= 2; ++k) {
-          const int diff_uv = (int)target_uv[off + k] - best_rgb_uv[3 * i + k];
-          best_uv[off + k] += diff_uv;
-        }
-        W = RGBToGray(best_uv[off + 0], best_uv[off + 1], best_uv[off + 2]);
-        for (k = 0; k <= 2; ++k) {
-          best_uv[off + k] -= W;
-        }
+      for (i = 0; i < 3 * uv_w; ++i) {
+        const int diff_uv = (int)target_uv[uv_off + i] - best_rgb_uv[i];
+        best_uv[uv_off + i] += diff_uv;
       }
     }
     // test exit condition
-    if (diff_sum > 0) {
-      const int improvement = 100 * abs(diff_sum - old_diff_sum) / diff_sum;
-      // Check if first iteration gave good result already, without a large
-      // jump of improvement (otherwise it means we need to try few extra
-      // iterations, just to be sure).
-      if (iter == 0 && diff_sum < first_diff_threshold &&
-          improvement < min_first_improvement) {
-        break;
-      }
-      // then, check if improvement is stalling.
-      if (improvement < min_improvement) {
-        break;
-      }
-    } else {
-      break;
+    if (iter > 0) {
+      if (diff_y_sum < diff_y_threshold) break;
+      if (diff_y_sum > prev_diff_y_sum) break;
     }
+    prev_diff_y_sum = diff_y_sum;
   }
-
   // final reconstruction
   ok = ConvertWRGBToYUV(best_y, best_uv, picture);
 
@@ -1125,32 +1117,44 @@ static int Import(WebPPicture* const picture,
 
 int WebPPictureImportRGB(WebPPicture* picture,
                          const uint8_t* rgb, int rgb_stride) {
-  return (picture != NULL) ? Import(picture, rgb, rgb_stride, 3, 0, 0) : 0;
+  return (picture != NULL && rgb != NULL)
+             ? Import(picture, rgb, rgb_stride, 3, 0, 0)
+             : 0;
 }
 
 int WebPPictureImportBGR(WebPPicture* picture,
                          const uint8_t* rgb, int rgb_stride) {
-  return (picture != NULL) ? Import(picture, rgb, rgb_stride, 3, 1, 0) : 0;
+  return (picture != NULL && rgb != NULL)
+             ? Import(picture, rgb, rgb_stride, 3, 1, 0)
+             : 0;
 }
 
 int WebPPictureImportRGBA(WebPPicture* picture,
                           const uint8_t* rgba, int rgba_stride) {
-  return (picture != NULL) ? Import(picture, rgba, rgba_stride, 4, 0, 1) : 0;
+  return (picture != NULL && rgba != NULL)
+             ? Import(picture, rgba, rgba_stride, 4, 0, 1)
+             : 0;
 }
 
 int WebPPictureImportBGRA(WebPPicture* picture,
                           const uint8_t* rgba, int rgba_stride) {
-  return (picture != NULL) ? Import(picture, rgba, rgba_stride, 4, 1, 1) : 0;
+  return (picture != NULL && rgba != NULL)
+             ? Import(picture, rgba, rgba_stride, 4, 1, 1)
+             : 0;
 }
 
 int WebPPictureImportRGBX(WebPPicture* picture,
                           const uint8_t* rgba, int rgba_stride) {
-  return (picture != NULL) ? Import(picture, rgba, rgba_stride, 4, 0, 0) : 0;
+  return (picture != NULL && rgba != NULL)
+             ? Import(picture, rgba, rgba_stride, 4, 0, 0)
+             : 0;
 }
 
 int WebPPictureImportBGRX(WebPPicture* picture,
                           const uint8_t* rgba, int rgba_stride) {
-  return (picture != NULL) ? Import(picture, rgba, rgba_stride, 4, 1, 0) : 0;
+  return (picture != NULL && rgba != NULL)
+             ? Import(picture, rgba, rgba_stride, 4, 1, 0)
+             : 0;
 }
 
 //------------------------------------------------------------------------------

@@ -39,8 +39,8 @@
 //   20..23  VP8X flags bit-map corresponding to the chunk-types present.
 //   24..26  Width of the Canvas Image.
 //   27..29  Height of the Canvas Image.
-// There can be extra chunks after the "VP8X" chunk (ICCP, FRGM, ANMF, VP8,
-// VP8L, XMP, EXIF  ...)
+// There can be extra chunks after the "VP8X" chunk (ICCP, ANMF, VP8, VP8L,
+// XMP, EXIF  ...)
 // All sizes are in little-endian order.
 // Note: chunk data size must be padded to multiple of 2 when written.
 
@@ -289,7 +289,6 @@ static VP8StatusCode ParseHeadersInternal(const uint8_t* data,
   int found_riff = 0;
   int found_vp8x = 0;
   int animation_present = 0;
-  int fragments_present = 0;
   const int have_all_data = (headers != NULL) ? headers->have_all_data : 0;
 
   VP8StatusCode status;
@@ -318,7 +317,6 @@ static VP8StatusCode ParseHeadersInternal(const uint8_t* data,
       return status;  // Wrong VP8X / insufficient data.
     }
     animation_present = !!(flags & ANIMATION_FLAG);
-    fragments_present = !!(flags & FRAGMENTS_FLAG);
     if (!found_riff && found_vp8x) {
       // Note: This restriction may be removed in the future, if it becomes
       // necessary to send VP8X chunk to the decoder.
@@ -330,8 +328,7 @@ static VP8StatusCode ParseHeadersInternal(const uint8_t* data,
 
     image_width = canvas_width;
     image_height = canvas_height;
-    if (found_vp8x && (animation_present || fragments_present) &&
-        headers == NULL) {
+    if (found_vp8x && animation_present && headers == NULL) {
       status = VP8_STATUS_OK;
       goto ReturnWidthHeight;  // Just return features from VP8X header.
     }
@@ -362,7 +359,7 @@ static VP8StatusCode ParseHeadersInternal(const uint8_t* data,
     return VP8_STATUS_BITSTREAM_ERROR;
   }
 
-  if (format != NULL && !(animation_present || fragments_present)) {
+  if (format != NULL && !animation_present) {
     *format = hdrs.is_lossless ? 2 : 1;
   }
 
@@ -415,7 +412,8 @@ static VP8StatusCode ParseHeadersInternal(const uint8_t* data,
 }
 
 VP8StatusCode WebPParseHeaders(WebPHeaderStructure* const headers) {
-  VP8StatusCode status;
+  // status is marked volatile as a workaround for a clang-3.8 (aarch64) bug
+  volatile VP8StatusCode status;
   int has_animation = 0;
   assert(headers != NULL);
   // fill out headers, ignore width/height/has_alpha.
@@ -512,10 +510,12 @@ static VP8StatusCode DecodeInto(const uint8_t* const data, size_t data_size,
 
   if (status != VP8_STATUS_OK) {
     WebPFreeDecBuffer(params->output);
-  }
-
-  if (params->options != NULL && params->options->flip) {
-    status = WebPFlipBuffer(params->output);
+  } else {
+    if (params->options != NULL && params->options->flip) {
+      // This restores the original stride values if options->flip was used
+      // during the call to WebPAllocateDecBuffer above.
+      status = WebPFlipBuffer(params->output);
+    }
   }
   return status;
 }
@@ -758,9 +758,24 @@ VP8StatusCode WebPDecode(const uint8_t* data, size_t data_size,
   }
 
   WebPResetDecParams(&params);
-  params.output = &config->output;
   params.options = &config->options;
-  status = DecodeInto(data, data_size, &params);
+  params.output = &config->output;
+  if (WebPAvoidSlowMemory(params.output, &config->input)) {
+    // decoding to slow memory: use a temporary in-mem buffer to decode into.
+    WebPDecBuffer in_mem_buffer;
+    WebPInitDecBuffer(&in_mem_buffer);
+    in_mem_buffer.colorspace = config->output.colorspace;
+    in_mem_buffer.width = config->input.width;
+    in_mem_buffer.height = config->input.height;
+    params.output = &in_mem_buffer;
+    status = DecodeInto(data, data_size, &params);
+    if (status == VP8_STATUS_OK) {  // do the slow-copy
+      status = WebPCopyDecBufferPixels(&in_mem_buffer, &config->output);
+    }
+    WebPFreeDecBuffer(&in_mem_buffer);
+  } else {
+    status = DecodeInto(data, data_size, &params);
+  }
 
   return status;
 }
@@ -809,7 +824,7 @@ int WebPIoInitFromOptions(const WebPDecoderOptions* const options,
   }
 
   // Filter
-  io->bypass_filtering = options && options->bypass_filtering;
+  io->bypass_filtering = (options != NULL) && options->bypass_filtering;
 
   // Fancy upsampler
 #ifdef FANCY_UPSAMPLING
@@ -826,4 +841,3 @@ int WebPIoInitFromOptions(const WebPDecoderOptions* const options,
 }
 
 //------------------------------------------------------------------------------
-

@@ -185,6 +185,13 @@ static int GetProba(int a, int b) {
                       : (255 * a + total / 2) / total;  // rounded proba
 }
 
+static void ResetSegments(VP8Encoder* const enc) {
+  int n;
+  for (n = 0; n < enc->mb_w_ * enc->mb_h_; ++n) {
+    enc->mb_info_[n].segment_ = 0;
+  }
+}
+
 static void SetSegmentProbas(VP8Encoder* const enc) {
   int p[NUM_MB_SEGMENTS] = { 0 };
   int n;
@@ -206,6 +213,7 @@ static void SetSegmentProbas(VP8Encoder* const enc) {
 
     enc->segment_hdr_.update_map_ =
         (probas[0] != 255) || (probas[1] != 255) || (probas[2] != 255);
+    if (!enc->segment_hdr_.update_map_) ResetSegments(enc);
     enc->segment_hdr_.size_ =
         p[0] * (VP8BitCost(0, probas[0]) + VP8BitCost(0, probas[1])) +
         p[1] * (VP8BitCost(0, probas[0]) + VP8BitCost(1, probas[1])) +
@@ -240,8 +248,9 @@ static int PutCoeffs(VP8BitWriter* const bw, int ctx, const VP8Residual* res) {
       p = res->prob[VP8EncBands[n]][1];
     } else {
       if (!VP8PutBit(bw, v > 4, p[3])) {
-        if (VP8PutBit(bw, v != 2, p[4]))
+        if (VP8PutBit(bw, v != 2, p[4])) {
           VP8PutBit(bw, v == 4, p[5]);
+        }
       } else if (!VP8PutBit(bw, v > 10, p[6])) {
         if (!VP8PutBit(bw, v > 6, p[7])) {
           VP8PutBit(bw, v == 6, 159);
@@ -406,9 +415,7 @@ static int RecordTokens(VP8EncIterator* const it, const VP8ModeScore* const rd,
     VP8InitResidual(0, 1, enc, &res);
     VP8SetResidualCoeffs(rd->y_dc_levels, &res);
     it->top_nz_[8] = it->left_nz_[8] =
-        VP8RecordCoeffTokens(ctx, 1,
-                             res.first, res.last, res.coeffs, tokens);
-    VP8RecordCoeffs(ctx, &res);
+        VP8RecordCoeffTokens(ctx, &res, tokens);
     VP8InitResidual(1, 0, enc, &res);
   } else {
     VP8InitResidual(0, 3, enc, &res);
@@ -420,9 +427,7 @@ static int RecordTokens(VP8EncIterator* const it, const VP8ModeScore* const rd,
       const int ctx = it->top_nz_[x] + it->left_nz_[y];
       VP8SetResidualCoeffs(rd->y_ac_levels[x + y * 4], &res);
       it->top_nz_[x] = it->left_nz_[y] =
-          VP8RecordCoeffTokens(ctx, res.coeff_type,
-                               res.first, res.last, res.coeffs, tokens);
-      VP8RecordCoeffs(ctx, &res);
+          VP8RecordCoeffTokens(ctx, &res, tokens);
     }
   }
 
@@ -434,9 +439,7 @@ static int RecordTokens(VP8EncIterator* const it, const VP8ModeScore* const rd,
         const int ctx = it->top_nz_[4 + ch + x] + it->left_nz_[4 + ch + y];
         VP8SetResidualCoeffs(rd->uv_levels[ch * 2 + x + y * 2], &res);
         it->top_nz_[4 + ch + x] = it->left_nz_[4 + ch + y] =
-            VP8RecordCoeffTokens(ctx, 2,
-                                 res.first, res.last, res.coeffs, tokens);
-        VP8RecordCoeffs(ctx, &res);
+            VP8RecordCoeffTokens(ctx, &res, tokens);
       }
     }
   }
@@ -555,8 +558,9 @@ static uint64_t OneStatPass(VP8Encoder* const enc, VP8RDLevel rd_opt,
     size += info.R + info.H;
     size_p0 += info.H;
     distortion += info.D;
-    if (percent_delta && !VP8IteratorProgress(&it, percent_delta))
+    if (percent_delta && !VP8IteratorProgress(&it, percent_delta)) {
       return 0;
+    }
     VP8IteratorSaveBoundary(&it);
   } while (VP8IteratorNext(&it) && --nb_mbs > 0);
 
@@ -814,7 +818,7 @@ int VP8EncTokenLoop(VP8Encoder* const enc) {
            num_pass_left, stats.last_value, stats.value,
            stats.last_q, stats.q, stats.dq);
 #endif
-    if (size_p0 > PARTITION0_SIZE_LIMIT) {
+    if (enc->max_i4_header_bits_ > 0 && size_p0 > PARTITION0_SIZE_LIMIT) {
       ++num_pass_left;
       enc->max_i4_header_bits_ >>= 1;  // strengthen header bit limitation...
       continue;                        // ...and start over

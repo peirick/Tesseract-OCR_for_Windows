@@ -4,7 +4,7 @@
           \__\__/\____/\_____/__/ ____  ___
                 / _/ /    \    \ /  _ \/ _/
                /  \_/   / /   \ \   __/  \__
-               \____/____/\_____/_____/____/v0.5.0
+               \____/____/\_____/_____/____/v0.5.1
 
 Description:
 ============
@@ -20,7 +20,7 @@ https://chromium.googlesource.com/webm/libwebp
 
 It is released under the same license as the WebM project.
 See http://www.webmproject.org/license/software/ or the
-file "COPYING" file for details. An additional intellectual
+"COPYING" file for details. An additional intellectual
 property rights grant can be found in the file PATENTS.
 
 Building:
@@ -83,6 +83,73 @@ Note: A decode-only library, libwebpdecoder, is available using the
 be installed independently using a minor modification in the corresponding
 Makefile.am configure files (see comments there). See './configure --help' for
 more options.
+
+Building for MIPS Linux:
+------------------------
+MIPS Linux toolchain stable available releases can be found at:
+https://community.imgtec.com/developers/mips/tools/codescape-mips-sdk/available-releases/
+
+# Add toolchain to PATH
+export PATH=$PATH:/path/to/toolchain/bin
+
+# 32-bit build for mips32r5 (p5600)
+HOST=mips-mti-linux-gnu
+MIPS_CFLAGS="-O3 -mips32r5 -mabi=32 -mtune=p5600 -mmsa -mfp64 \
+  -msched-weight -mload-store-pairs -fPIE"
+MIPS_LDFLAGS="-mips32r5 -mabi=32 -mmsa -mfp64 -pie"
+
+# 64-bit build for mips64r6 (i6400)
+HOST=mips-img-linux-gnu
+MIPS_CFLAGS="-O3 -mips64r6 -mabi=64 -mtune=i6400 -mmsa -mfp64 \
+  -msched-weight -mload-store-pairs -fPIE"
+MIPS_LDFLAGS="-mips64r6 -mabi=64 -mmsa -mfp64 -pie"
+
+./configure --host=${HOST} --build=`config.guess` \
+  CC="${HOST}-gcc -EL" \
+  CFLAGS="$MIPS_CFLAGS" \
+  LDFLAGS="$MIPS_LDFLAGS"
+make
+make install
+
+CMake:
+------
+The support for CMake is minimal: it only helps you compile libwebp, cwebp and
+dwebp.
+
+Prerequisites:
+A compiler (e.g., gcc with autotools) and CMake.
+On a Debian-like system the following should install everything you need for a
+minimal build:
+$ sudo apt-get install build-essential cmake
+
+When building from git sources, you will need to run cmake to generate the
+configure script.
+
+mkdir build && cd build && cmake ../
+make
+make install
+
+If you also want cwebp or dwebp, you will need to enable them through CMake:
+
+cmake -DWEBP_BUILD_CWEBP=ON -DWEBP_BUILD_DWEBP=ON ../
+
+or through your favorite interface (like ccmake or cmake-qt-gui).
+
+Gradle:
+-------
+The support for Gradle is minimal: it only helps you compile libwebp, cwebp and
+dwebp and webpmux_example.
+
+Prerequisites:
+A compiler (e.g., gcc with autotools) and gradle.
+On a Debian-like system the following should install everything you need for a
+minimal build:
+$ sudo apt-get install build-essential gradle
+
+When building from git sources, you will need to run the Gradle wrapper with the
+appropriate target, e.g. :
+
+./gradlew buildAllExecutables
 
 SWIG bindings:
 --------------
@@ -151,10 +218,11 @@ If input size (-s) for an image is not specified, it is
 assumed to be a PNG, JPEG, TIFF or WebP file.
 
 Options:
-  -h / -help  ............ short help
-  -H / -longhelp  ........ long help
-  -q <float> ............. quality factor (0:small..100:big)
-  -alpha_q <int> ......... transparency-compression quality (0..100)
+  -h / -help ............. short help
+  -H / -longhelp ......... long help
+  -q <float> ............. quality factor (0:small..100:big), default=75
+  -alpha_q <int> ......... transparency-compression quality (0..100),
+                           default=100
   -preset <string> ....... preset setting, one of:
                             default, photo, picture,
                             drawing, icon, text
@@ -162,15 +230,15 @@ Options:
   -z <int> ............... activates lossless preset with given
                            level in [0:fast, ..., 9:slowest]
 
-  -m <int> ............... compression method (0=fast, 6=slowest)
-  -segments <int> ........ number of segments to use (1..4)
+  -m <int> ............... compression method (0=fast, 6=slowest), default=4
+  -segments <int> ........ number of segments to use (1..4), default=4
   -size <int> ............ target size (in bytes)
   -psnr <float> .......... target PSNR (in dB. typically: 42)
 
   -s <int> <int> ......... input size (width x height) for YUV
-  -sns <int> ............. spatial noise shaping (0:off, 100:max)
-  -f <int> ............... filter strength (0=off..100)
-  -sharpness <int> ....... filter sharpness (0:most .. 7:least sharp)
+  -sns <int> ............. spatial noise shaping (0:off, 100:max), default=50
+  -f <int> ............... filter strength (0=off..100), default=60
+  -sharpness <int> ....... filter sharpness (0:most .. 7:least sharp), default=0
   -strong ................ use strong filter instead of simple (default)
   -nostrong .............. use simple filter instead of strong
   -partition_limit <int> . limit quality to fit the 512k limit on
@@ -185,18 +253,18 @@ Options:
   -print_ssim ............ prints averaged SSIM distortion
   -print_lsim ............ prints local-similarity distortion
   -d <file.pgm> .......... dump the compressed output (PGM file)
-  -alpha_method <int> .... transparency-compression method (0..1)
+  -alpha_method <int> .... transparency-compression method (0..1), default=1
   -alpha_filter <string> . predictive filtering for alpha plane,
                            one of: none, fast (default) or best
-  -exact ................. preserve RGB values in transparent area
+  -exact ................. preserve RGB values in transparent area, default=off
   -blend_alpha <hex> ..... blend colors against background color
                            expressed as RGB values written in
                            hexadecimal, e.g. 0xc0e0d0 for red=0xc0
                            green=0xe0 and blue=0xd0
   -noalpha ............... discard any transparency information
-  -lossless .............. encode image losslessly
+  -lossless .............. encode image losslessly, default=off
   -near_lossless <int> ... use near-lossless image
-                           preprocessing (0..100=off)
+                           preprocessing (0..100=off), default=100
   -hint <string> ......... specify image characteristics hint,
                            one of: photo, picture or graph
 
@@ -274,7 +342,7 @@ Use following options to convert into alternate image formats:
   -yuv ......... save the raw YUV samples in flat layout
 
  Other options are:
-  -version  .... print version number and exit
+  -version ..... print version number and exit
   -nofancy ..... don't use the fancy YUV420 upscaler
   -nofilter .... disable in-loop filtering
   -nodither .... disable dithering
@@ -286,8 +354,8 @@ Use following options to convert into alternate image formats:
   -flip ........ flip the output vertically
   -alpha ....... only save the alpha plane
   -incremental . use incremental decoding (useful for tests)
-  -h     ....... this help message
-  -v     ....... verbose (e.g. print encoding/decoding times)
+  -h ........... this help message
+  -v ........... verbose (e.g. print encoding/decoding times)
   -quiet ....... quiet mode, don't print anything
   -noasm ....... disable all assembly optimizations
 
@@ -303,7 +371,7 @@ Usage: vwebp in_file [options]
 
 Decodes the WebP image file and visualize it using OpenGL
 Options are:
-  -version  .... print version number and exit
+  -version ..... print version number and exit
   -noicc ....... don't use the icc profile if present
   -nofancy ..... don't use the fancy YUV420 upscaler
   -nofilter .... disable in-loop filtering
@@ -311,7 +379,7 @@ Options are:
   -noalphadither disable alpha plane dithering
   -mt .......... use multi-threading
   -info ........ print info
-  -h     ....... this help message
+  -h ........... this help message
 
 Keyboard shortcuts:
   'c' ................ toggle use of color profile
@@ -353,7 +421,7 @@ vwebp.
 Usage:
  gif2webp [options] gif_file -o webp_file
 Options:
-  -h / -help  ............ this help
+  -h / -help ............. this help
   -lossy ................. encode image using lossy compression
   -mixed ................. for each frame in the image, pick lossy
                            or lossless compression heuristically
@@ -637,7 +705,7 @@ an otherwise too-large picture. Some CPU can be saved too, incidentally.
 Bugs:
 =====
 
-Please report all bugs to our issue tracker:
+Please report all bugs to the issue tracker:
     https://bugs.chromium.org/p/webp
 Patches welcome! See this page to get started:
     http://www.webmproject.org/code/contribute/submitting-patches/

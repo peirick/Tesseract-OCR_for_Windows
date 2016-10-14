@@ -20,6 +20,7 @@
 #include "../dec/vp8li.h"
 #include "../utils/endian_inl.h"
 #include "./lossless.h"
+#include "./lossless_common.h"
 
 #define MAX_DIFF_COST (1e30f)
 
@@ -28,9 +29,7 @@
 
 // In-place sum of each component with mod 256.
 static WEBP_INLINE void AddPixelsEq(uint32_t* a, uint32_t b) {
-  const uint32_t alpha_and_green = (*a & 0xff00ff00u) + (b & 0xff00ff00u);
-  const uint32_t red_and_blue = (*a & 0x00ff00ffu) + (b & 0x00ff00ffu);
-  *a = (alpha_and_green & 0xff00ff00u) | (red_and_blue & 0x00ff00ffu);
+  *a = VP8LAddPixels(*a, b);
 }
 
 static WEBP_INLINE uint32_t Average2(uint32_t a0, uint32_t a1) {
@@ -247,9 +246,9 @@ void VP8LAddGreenToBlueAndRed_C(uint32_t* data, int num_pixels) {
   }
 }
 
-static WEBP_INLINE uint32_t ColorTransformDelta(int8_t color_pred,
-                                                int8_t color) {
-  return (uint32_t)((int)(color_pred) * color) >> 5;
+static WEBP_INLINE int ColorTransformDelta(int8_t color_pred,
+                                           int8_t color) {
+  return ((int)color_pred * color) >> 5;
 }
 
 static WEBP_INLINE void ColorCodeToMultipliers(uint32_t color_code,
@@ -266,8 +265,8 @@ void VP8LTransformColorInverse_C(const VP8LMultipliers* const m, uint32_t* data,
     const uint32_t argb = data[i];
     const uint32_t green = argb >> 8;
     const uint32_t red = argb >> 16;
-    uint32_t new_red = red;
-    uint32_t new_blue = argb;
+    int new_red = red;
+    int new_blue = argb;
     new_red += ColorTransformDelta(m->green_to_red_, green);
     new_red &= 0xff;
     new_blue += ColorTransformDelta(m->green_to_blue_, green);
@@ -574,6 +573,7 @@ VP8LMapAlphaFunc VP8LMapColor8b;
 extern void VP8LDspInitSSE2(void);
 extern void VP8LDspInitNEON(void);
 extern void VP8LDspInitMIPSdspR2(void);
+extern void VP8LDspInitMSA(void);
 
 static volatile VP8CPUInfo lossless_last_cpuinfo_used =
     (VP8CPUInfo)&lossless_last_cpuinfo_used;
@@ -626,6 +626,11 @@ WEBP_TSAN_IGNORE_FUNCTION void VP8LDspInit(void) {
 #if defined(WEBP_USE_MIPS_DSP_R2)
     if (VP8GetCPUInfo(kMIPSdspR2)) {
       VP8LDspInitMIPSdspR2();
+    }
+#endif
+#if defined(WEBP_USE_MSA)
+    if (VP8GetCPUInfo(kMSA)) {
+      VP8LDspInitMSA();
     }
 #endif
   }

@@ -17,6 +17,10 @@
 #include "./vp8enci.h"
 #include "../utils/utils.h"
 
+typedef double (*AccumulateFunc)(const uint8_t* src, int src_stride,
+                                 const uint8_t* ref, int ref_stride,
+                                 int w, int h);
+
 //------------------------------------------------------------------------------
 // local-min distortion
 //
@@ -25,9 +29,9 @@
 
 #define RADIUS 2  // search radius. Shouldn't be too large.
 
-static void AccumulateLSIM(const uint8_t* src, int src_stride,
-                           const uint8_t* ref, int ref_stride,
-                           int w, int h, DistoStats* stats) {
+static double AccumulateLSIM(const uint8_t* src, int src_stride,
+                             const uint8_t* ref, int ref_stride,
+                             int w, int h) {
   int x, y;
   double total_sse = 0.;
   for (y = 0; y < h; ++y) {
@@ -50,35 +54,90 @@ static void AccumulateLSIM(const uint8_t* src, int src_stride,
       total_sse += best_sse;
     }
   }
-  stats->w = w * h;
-  stats->xm = 0;
-  stats->ym = 0;
-  stats->xxm = total_sse;
-  stats->yym = 0;
-  stats->xxm = 0;
+  return total_sse;
 }
 #undef RADIUS
+
+static double AccumulateSSE(const uint8_t* src, int src_stride,
+                            const uint8_t* ref, int ref_stride,
+                            int w, int h) {
+  int y;
+  double total_sse = 0.;
+  for (y = 0; y < h; ++y) {
+    total_sse += VP8AccumulateSSE(src, ref, w);
+    src += src_stride;
+    ref += ref_stride;
+  }
+  return total_sse;
+}
+
+//------------------------------------------------------------------------------
+
+static double AccumulateSSIM(const uint8_t* src, int src_stride,
+                             const uint8_t* ref, int ref_stride,
+                             int w, int h) {
+  const int w0 = (w < VP8_SSIM_KERNEL) ? w : VP8_SSIM_KERNEL;
+  const int w1 = w - VP8_SSIM_KERNEL - 1;
+  const int h0 = (h < VP8_SSIM_KERNEL) ? h : VP8_SSIM_KERNEL;
+  const int h1 = h - VP8_SSIM_KERNEL - 1;
+  int x, y;
+  double sum = 0.;
+  for (y = 0; y < h0; ++y) {
+    for (x = 0; x < w; ++x) {
+      sum += VP8SSIMGetClipped(src, src_stride, ref, ref_stride, x, y, w, h);
+    }
+  }
+  for (; y < h1; ++y) {
+    for (x = 0; x < w0; ++x) {
+      sum += VP8SSIMGetClipped(src, src_stride, ref, ref_stride, x, y, w, h);
+    }
+    for (; x < w1; ++x) {
+      const int off1 = x - VP8_SSIM_KERNEL + (y - VP8_SSIM_KERNEL) * src_stride;
+      const int off2 = x - VP8_SSIM_KERNEL + (y - VP8_SSIM_KERNEL) * ref_stride;
+      sum += VP8SSIMGet(src + off1, src_stride, ref + off2, ref_stride);
+    }
+    for (; x < w; ++x) {
+      sum += VP8SSIMGetClipped(src, src_stride, ref, ref_stride, x, y, w, h);
+    }
+  }
+  for (; y < h; ++y) {
+    for (x = 0; x < w; ++x) {
+      sum += VP8SSIMGetClipped(src, src_stride, ref, ref_stride, x, y, w, h);
+    }
+  }
+  return sum;
+}
 
 //------------------------------------------------------------------------------
 // Distortion
 
 // Max value returned in case of exact similarity.
 static const double kMinDistortion_dB = 99.;
-static float GetPSNR(const double v) {
-  return (float)((v > 0.) ? -4.3429448 * log(v / (255 * 255.))
-                          : kMinDistortion_dB);
+
+static double GetPSNR(double v, double size) {
+  return (v > 0. && size > 0.) ? -4.3429448 * log(v / (size * 255 * 255.))
+                               : kMinDistortion_dB;
+}
+
+static double GetLogSSIM(double v, double size) {
+  v = (size > 0.) ? v / size : 1.;
+  return (v < 1.) ? -10.0 * log10(1. - v) : kMinDistortion_dB;
 }
 
 int WebPPictureDistortion(const WebPPicture* src, const WebPPicture* ref,
-                          int type, float result[5]) {
-  DistoStats stats[5];
-  int w, h;
-
-  memset(stats, 0, sizeof(stats));
+                          int type, float results[5]) {
+  int w, h, c;
+  double disto[4] = { 0. };
+  double sizes[4] = { 0. };
+  double total_size = 0., total_disto = 0.;
+  const AccumulateFunc metric = (type == 0) ? AccumulateSSE :
+                                (type == 1) ? AccumulateSSIM :
+                                              AccumulateLSIM;
+  VP8SSIMDspInit();
 
   if (src == NULL || ref == NULL ||
       src->width != ref->width || src->height != ref->height ||
-      src->use_argb != ref->use_argb || result == NULL) {
+      src->use_argb != ref->use_argb || results == NULL) {
     return 0;
   }
   w = src->width;
@@ -88,7 +147,7 @@ int WebPPictureDistortion(const WebPPicture* src, const WebPPicture* ref,
     if (src->argb == NULL || ref->argb == NULL) {
       return 0;
     } else {
-      int i, j, c;
+      int i, j;
       uint8_t* tmp1, *tmp2;
       uint8_t* const tmp_plane =
           (uint8_t*)WebPSafeMalloc(2ULL * w * h, sizeof(*tmp_plane));
@@ -102,13 +161,10 @@ int WebPPictureDistortion(const WebPPicture* src, const WebPPicture* ref,
             tmp2[j * w + i] = ref->argb[i + j * ref->argb_stride] >> (c * 8);
           }
         }
-        if (type >= 2) {
-          AccumulateLSIM(tmp1, w, tmp2, w, w, h, &stats[c]);
-        } else {
-          VP8SSIMAccumulatePlane(tmp1, w, tmp2, w, w, h, &stats[c]);
-        }
+        sizes[c] = w * h;
+        disto[c] = metric(tmp1, w, tmp2, w, w, h);
       }
-      free(tmp_plane);
+      WebPSafeFree(tmp_plane);
     }
   } else {
     int has_alpha, uv_w, uv_h;
@@ -125,50 +181,28 @@ int WebPPictureDistortion(const WebPPicture* src, const WebPPicture* ref,
 
     uv_w = (src->width + 1) >> 1;
     uv_h = (src->height + 1) >> 1;
-    if (type >= 2) {
-      AccumulateLSIM(src->y, src->y_stride, ref->y, ref->y_stride,
-                     w, h, &stats[0]);
-      AccumulateLSIM(src->u, src->uv_stride, ref->u, ref->uv_stride,
-                     uv_w, uv_h, &stats[1]);
-      AccumulateLSIM(src->v, src->uv_stride, ref->v, ref->uv_stride,
-                     uv_w, uv_h, &stats[2]);
-      if (has_alpha) {
-        AccumulateLSIM(src->a, src->a_stride, ref->a, ref->a_stride,
-                       w, h, &stats[3]);
-      }
-    } else {
-      VP8SSIMAccumulatePlane(src->y, src->y_stride,
-                             ref->y, ref->y_stride,
-                             w, h, &stats[0]);
-      VP8SSIMAccumulatePlane(src->u, src->uv_stride,
-                             ref->u, ref->uv_stride,
-                             uv_w, uv_h, &stats[1]);
-      VP8SSIMAccumulatePlane(src->v, src->uv_stride,
-                             ref->v, ref->uv_stride,
-                             uv_w, uv_h, &stats[2]);
-      if (has_alpha) {
-        VP8SSIMAccumulatePlane(src->a, src->a_stride,
-                               ref->a, ref->a_stride,
-                               w, h, &stats[3]);
-      }
+    sizes[0] = w * h;
+    sizes[1] = sizes[2] = uv_w * uv_h;
+    sizes[3] = has_alpha ? w * h : 0.;
+
+    disto[0] = metric(src->y, src->y_stride, ref->y, ref->y_stride, w, h);
+    disto[1] = metric(src->u, src->uv_stride, ref->u, ref->uv_stride,
+                      uv_w, uv_h);
+    disto[2] = metric(src->v, src->uv_stride, ref->v, ref->uv_stride,
+                      uv_w, uv_h);
+    if (has_alpha) {
+      disto[3] = metric(src->a, src->a_stride, ref->a, ref->a_stride, w, h);
     }
   }
-  // Final stat calculations.
-  {
-    int c;
-    for (c = 0; c <= 4; ++c) {
-      if (type == 1) {
-        const double v = VP8SSIMGet(&stats[c]);
-        result[c] = (float)((v < 1.) ? -10.0 * log10(1. - v)
-                                     : kMinDistortion_dB);
-      } else {
-        const double v = VP8SSIMGetSquaredError(&stats[c]);
-        result[c] = GetPSNR(v);
-      }
-      // Accumulate forward
-      if (c < 4) VP8SSIMAddStats(&stats[c], &stats[4]);
-    }
+
+  for (c = 0; c < 4; ++c) {
+    total_disto += disto[c];
+    total_size += sizes[c];
+    results[c] = (type == 1) ? (float)GetLogSSIM(disto[c], sizes[c])
+                             : (float)GetPSNR(disto[c], sizes[c]);
   }
+  results[4] = (type == 1) ? (float)GetLogSSIM(total_disto, total_size)
+                           : (float)GetPSNR(total_disto, total_size);
   return 1;
 }
 

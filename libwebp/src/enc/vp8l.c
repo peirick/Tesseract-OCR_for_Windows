@@ -20,6 +20,7 @@
 #include "./vp8enci.h"
 #include "./vp8li.h"
 #include "../dsp/lossless.h"
+#include "../dsp/lossless_common.h"
 #include "../utils/bit_writer.h"
 #include "../utils/huffman_encode.h"
 #include "../utils/utils.h"
@@ -34,8 +35,8 @@
 // Palette reordering for smaller sum of deltas (and for smaller storage).
 
 static int PaletteCompareColorsForQsort(const void* p1, const void* p2) {
-  const uint32_t a = WebPMemToUint32(p1);
-  const uint32_t b = WebPMemToUint32(p2);
+  const uint32_t a = WebPMemToUint32((uint8_t*)p1);
+  const uint32_t b = WebPMemToUint32((uint8_t*)p2);
   assert(a != b);
   return (a < b) ? -1 : 1;
 }
@@ -126,54 +127,8 @@ static int AnalyzeAndCreatePalette(const WebPPicture* const pic,
                                    int low_effort,
                                    uint32_t palette[MAX_PALETTE_SIZE],
                                    int* const palette_size) {
-  int i, x, y, key;
-  int num_colors = 0;
-  uint8_t in_use[MAX_PALETTE_SIZE * 4] = { 0 };
-  uint32_t colors[MAX_PALETTE_SIZE * 4];
-  static const uint32_t kHashMul = 0x1e35a7bd;
-  const uint32_t* argb = pic->argb;
-  const int width = pic->width;
-  const int height = pic->height;
-  uint32_t last_pix = ~argb[0];   // so we're sure that last_pix != argb[0]
-
-  for (y = 0; y < height; ++y) {
-    for (x = 0; x < width; ++x) {
-      if (argb[x] == last_pix) {
-        continue;
-      }
-      last_pix = argb[x];
-      key = (kHashMul * last_pix) >> PALETTE_KEY_RIGHT_SHIFT;
-      while (1) {
-        if (!in_use[key]) {
-          colors[key] = last_pix;
-          in_use[key] = 1;
-          ++num_colors;
-          if (num_colors > MAX_PALETTE_SIZE) {
-            return 0;
-          }
-          break;
-        } else if (colors[key] == last_pix) {
-          // The color is already there.
-          break;
-        } else {
-          // Some other color sits there.
-          // Do linear conflict resolution.
-          ++key;
-          key &= (MAX_PALETTE_SIZE * 4 - 1);  // key mask for 1K buffer.
-        }
-      }
-    }
-    argb += pic->argb_stride;
-  }
-
-  // TODO(skal): could we reuse in_use[] to speed up EncodePalette()?
-  num_colors = 0;
-  for (i = 0; i < (int)(sizeof(in_use) / sizeof(in_use[0])); ++i) {
-    if (in_use[i]) {
-      palette[num_colors] = colors[i];
-      ++num_colors;
-    }
-  }
+  const int num_colors = WebPGetColorPalette(pic, palette);
+  if (num_colors > MAX_PALETTE_SIZE) return 0;
   *palette_size = num_colors;
   qsort(palette, num_colors, sizeof(*palette), PaletteCompareColorsForQsort);
   if (!low_effort && PaletteHasNonMonotonousDeltas(palette, num_colors)) {
@@ -209,18 +164,25 @@ typedef enum {
   kHistoTotal  // Must be last.
 } HistoIx;
 
-static void AddSingleSubGreen(uint32_t p, uint32_t* r, uint32_t* b) {
-  const uint32_t green = p >> 8;  // The upper bits are masked away later.
+static void AddSingleSubGreen(int p, uint32_t* const r, uint32_t* const b) {
+  const int green = p >> 8;  // The upper bits are masked away later.
   ++r[((p >> 16) - green) & 0xff];
-  ++b[(p - green) & 0xff];
+  ++b[((p >>  0) - green) & 0xff];
 }
 
 static void AddSingle(uint32_t p,
-                      uint32_t* a, uint32_t* r, uint32_t* g, uint32_t* b) {
-  ++a[p >> 24];
+                      uint32_t* const a, uint32_t* const r,
+                      uint32_t* const g, uint32_t* const b) {
+  ++a[(p >> 24) & 0xff];
   ++r[(p >> 16) & 0xff];
-  ++g[(p >> 8) & 0xff];
-  ++b[(p & 0xff)];
+  ++g[(p >>  8) & 0xff];
+  ++b[(p >>  0) & 0xff];
+}
+
+static WEBP_INLINE uint32_t HashPix(uint32_t pix) {
+  // Note that masking with 0xffffffffu is for preventing an
+  // 'unsigned int overflow' warning. Doesn't impact the compiled code.
+  return ((((uint64_t)pix + (pix >> 19)) * 0x39c5fba7ull) & 0xffffffffu) >> 24;
 }
 
 static int AnalyzeEntropy(const uint32_t* argb,
@@ -260,8 +222,8 @@ static int AnalyzeEntropy(const uint32_t* argb,
                           &histo[kHistoBluePredSubGreen * 256]);
         {
           // Approximate the palette by the entropy of the multiplicative hash.
-          const int hash = ((pix + (pix >> 19)) * 0x39c5fba7) >> 24;
-          ++histo[kHistoPalette * 256 + (hash & 0xff)];
+          const uint32_t hash = HashPix(pix);
+          ++histo[kHistoPalette * 256 + hash];
         }
       }
       prev_row = curr_row;
@@ -270,9 +232,8 @@ static int AnalyzeEntropy(const uint32_t* argb,
     {
       double entropy_comp[kHistoTotal];
       double entropy[kNumEntropyIx];
-      EntropyIx k;
-      EntropyIx last_mode_to_analyze =
-          use_palette ? kPalette : kSpatialSubGreen;
+      int k;
+      int last_mode_to_analyze = use_palette ? kPalette : kSpatialSubGreen;
       int j;
       // Let's add one zero to the predicted histograms. The zeros are removed
       // too efficiently by the pix_diff == 0 comparison, at least one of the
@@ -309,7 +270,7 @@ static int AnalyzeEntropy(const uint32_t* argb,
       *min_entropy_ix = kDirect;
       for (k = kDirect + 1; k <= last_mode_to_analyze; ++k) {
         if (entropy[*min_entropy_ix] > entropy[k]) {
-          *min_entropy_ix = k;
+          *min_entropy_ix = (EntropyIx)k;
         }
       }
       *red_and_blue_always_zero = 1;
@@ -336,7 +297,7 @@ static int AnalyzeEntropy(const uint32_t* argb,
         }
       }
     }
-    free(histo);
+    WebPSafeFree(histo);
     return 1;
   } else {
     return 0;
@@ -743,7 +704,7 @@ static WebPEncodingError EncodeImageNoHuffman(VP8LBitWriter* const bw,
                                               VP8LHashChain* const hash_chain,
                                               VP8LBackwardRefs refs_array[2],
                                               int width, int height,
-                                              int quality) {
+                                              int quality, int low_effort) {
   int i;
   int max_tokens = 0;
   WebPEncodingError err = VP8_ENC_OK;
@@ -761,6 +722,11 @@ static WebPEncodingError EncodeImageNoHuffman(VP8LBitWriter* const bw,
   }
 
   // Calculate backward references from ARGB image.
+  if (!VP8LHashChainFill(hash_chain, quality, argb, width, height,
+                         low_effort)) {
+    err = VP8_ENC_ERROR_OUT_OF_MEMORY;
+    goto Error;
+  }
   refs = VP8LGetBackwardReferences(width, height, argb, quality, 0, &cache_bits,
                                    hash_chain, refs_array);
   if (refs == NULL) {
@@ -824,7 +790,8 @@ static WebPEncodingError EncodeImageInternal(VP8LBitWriter* const bw,
                                              VP8LHashChain* const hash_chain,
                                              VP8LBackwardRefs refs_array[2],
                                              int width, int height, int quality,
-                                             int low_effort, int* cache_bits,
+                                             int low_effort,
+                                             int use_cache, int* cache_bits,
                                              int histogram_bits,
                                              size_t init_byte_position,
                                              int* const hdr_size,
@@ -856,10 +823,15 @@ static WebPEncodingError EncodeImageInternal(VP8LBitWriter* const bw,
     goto Error;
   }
 
-  *cache_bits = MAX_COLOR_CACHE_BITS;
+  *cache_bits = use_cache ? MAX_COLOR_CACHE_BITS : 0;
   // 'best_refs' is the reference to the best backward refs and points to one
   // of refs_array[0] or refs_array[1].
   // Calculate backward references from ARGB image.
+  if (!VP8LHashChainFill(hash_chain, quality, argb, width, height,
+                         low_effort)) {
+    err = VP8_ENC_ERROR_OUT_OF_MEMORY;
+    goto Error;
+  }
   best_refs = VP8LGetBackwardReferences(width, height, argb, quality,
                                         low_effort, cache_bits, hash_chain,
                                         refs_array);
@@ -937,7 +909,7 @@ static WebPEncodingError EncodeImageInternal(VP8LBitWriter* const bw,
       err = EncodeImageNoHuffman(bw, histogram_argb, hash_chain, refs_array,
                                  VP8LSubSampleSize(width, histogram_bits),
                                  VP8LSubSampleSize(height, histogram_bits),
-                                 quality);
+                                 quality, low_effort);
       WebPSafeFree(histogram_argb);
       if (err != VP8_ENC_OK) goto Error;
     }
@@ -1007,14 +979,19 @@ static void ApplySubtractGreen(VP8LEncoder* const enc, int width, int height,
 static WebPEncodingError ApplyPredictFilter(const VP8LEncoder* const enc,
                                             int width, int height,
                                             int quality, int low_effort,
+                                            int used_subtract_green,
                                             VP8LBitWriter* const bw) {
   const int pred_bits = enc->transform_bits_;
   const int transform_width = VP8LSubSampleSize(width, pred_bits);
   const int transform_height = VP8LSubSampleSize(height, pred_bits);
+  // we disable near-lossless quantization if palette is used.
+  const int near_lossless_strength = enc->use_palette_ ? 100
+                                   : enc->config_->near_lossless;
 
   VP8LResidualImage(width, height, pred_bits, low_effort, enc->argb_,
                     enc->argb_scratch_, enc->transform_data_,
-                    enc->config_->exact);
+                    near_lossless_strength, enc->config_->exact,
+                    used_subtract_green);
   VP8LPutBits(bw, TRANSFORM_PRESENT, 1);
   VP8LPutBits(bw, PREDICTOR_TRANSFORM, 2);
   assert(pred_bits >= 2);
@@ -1023,12 +1000,12 @@ static WebPEncodingError ApplyPredictFilter(const VP8LEncoder* const enc,
                               (VP8LHashChain*)&enc->hash_chain_,
                               (VP8LBackwardRefs*)enc->refs_,  // cast const away
                               transform_width, transform_height,
-                              quality);
+                              quality, low_effort);
 }
 
 static WebPEncodingError ApplyCrossColorFilter(const VP8LEncoder* const enc,
                                                int width, int height,
-                                               int quality,
+                                               int quality, int low_effort,
                                                VP8LBitWriter* const bw) {
   const int ccolor_transform_bits = enc->transform_bits_;
   const int transform_width = VP8LSubSampleSize(width, ccolor_transform_bits);
@@ -1044,7 +1021,7 @@ static WebPEncodingError ApplyCrossColorFilter(const VP8LEncoder* const enc,
                               (VP8LHashChain*)&enc->hash_chain_,
                               (VP8LBackwardRefs*)enc->refs_,  // cast const away
                               transform_width, transform_height,
-                              quality);
+                              quality, low_effort);
 }
 
 // -----------------------------------------------------------------------------
@@ -1114,6 +1091,12 @@ static WebPEncodingError WriteImage(const WebPPicture* const pic,
 
 // -----------------------------------------------------------------------------
 
+static void ClearTransformBuffer(VP8LEncoder* const enc) {
+  WebPSafeFree(enc->transform_mem_);
+  enc->transform_mem_ = NULL;
+  enc->transform_mem_size_ = 0;
+}
+
 // Allocates the memory for argb (W x H) buffer, 2 rows of context for
 // prediction and transform data.
 // Flags influencing the memory allocated:
@@ -1122,41 +1105,46 @@ static WebPEncodingError WriteImage(const WebPPicture* const pic,
 static WebPEncodingError AllocateTransformBuffer(VP8LEncoder* const enc,
                                                  int width, int height) {
   WebPEncodingError err = VP8_ENC_OK;
-  if (enc->argb_ == NULL) {
-    const int tile_size = 1 << enc->transform_bits_;
-    const uint64_t image_size = width * height;
-    // Ensure enough size for tiles, as well as for two scanlines and two
-    // extra pixels for CopyImageWithPrediction.
-    const uint64_t argb_scratch_size =
-        enc->use_predict_ ? tile_size * width + width + 2 : 0;
-    const int transform_data_size =
-        (enc->use_predict_ || enc->use_cross_color_)
-            ? VP8LSubSampleSize(width, enc->transform_bits_) *
-              VP8LSubSampleSize(height, enc->transform_bits_)
-            : 0;
-    const uint64_t total_size =
-        image_size + WEBP_ALIGN_CST +
-        argb_scratch_size + WEBP_ALIGN_CST +
-        (uint64_t)transform_data_size;
-    uint32_t* mem = (uint32_t*)WebPSafeMalloc(total_size, sizeof(*mem));
+  const uint64_t image_size = width * height;
+  // VP8LResidualImage needs room for 2 scanlines of uint32 pixels with an extra
+  // pixel in each, plus 2 regular scanlines of bytes.
+  // TODO(skal): Clean up by using arithmetic in bytes instead of words.
+  const uint64_t argb_scratch_size =
+      enc->use_predict_
+          ? (width + 1) * 2 +
+            (width * 2 + sizeof(uint32_t) - 1) / sizeof(uint32_t)
+          : 0;
+  const uint64_t transform_data_size =
+      (enc->use_predict_ || enc->use_cross_color_)
+          ? VP8LSubSampleSize(width, enc->transform_bits_) *
+                VP8LSubSampleSize(height, enc->transform_bits_)
+          : 0;
+  const uint64_t max_alignment_in_words =
+      (WEBP_ALIGN_CST + sizeof(uint32_t) - 1) / sizeof(uint32_t);
+  const uint64_t mem_size =
+      image_size + max_alignment_in_words +
+      argb_scratch_size + max_alignment_in_words +
+      transform_data_size;
+  uint32_t* mem = enc->transform_mem_;
+  if (mem == NULL || mem_size > enc->transform_mem_size_) {
+    ClearTransformBuffer(enc);
+    mem = (uint32_t*)WebPSafeMalloc(mem_size, sizeof(*mem));
     if (mem == NULL) {
       err = VP8_ENC_ERROR_OUT_OF_MEMORY;
       goto Error;
     }
-    enc->argb_ = mem;
-    mem = (uint32_t*)WEBP_ALIGN(mem + image_size);
-    enc->argb_scratch_ = mem;
-    mem = (uint32_t*)WEBP_ALIGN(mem + argb_scratch_size);
-    enc->transform_data_ = mem;
-    enc->current_width_ = width;
+    enc->transform_mem_ = mem;
+    enc->transform_mem_size_ = (size_t)mem_size;
   }
+  enc->argb_ = mem;
+  mem = (uint32_t*)WEBP_ALIGN(mem + image_size);
+  enc->argb_scratch_ = mem;
+  mem = (uint32_t*)WEBP_ALIGN(mem + argb_scratch_size);
+  enc->transform_data_ = mem;
+
+  enc->current_width_ = width;
  Error:
   return err;
-}
-
-static void ClearTransformBuffer(VP8LEncoder* const enc) {
-  WebPSafeFree(enc->argb_);
-  enc->argb_ = NULL;
 }
 
 static WebPEncodingError MakeInputImageCopy(VP8LEncoder* const enc) {
@@ -1178,29 +1166,84 @@ static WebPEncodingError MakeInputImageCopy(VP8LEncoder* const enc) {
 
 // -----------------------------------------------------------------------------
 
-static void MapToPalette(const uint32_t palette[], int num_colors,
-                         uint32_t* const last_pix, int* const last_idx,
-                         const uint32_t* src, uint8_t* dst, int width) {
-  int x;
-  int prev_idx = *last_idx;
-  uint32_t prev_pix = *last_pix;
-  for (x = 0; x < width; ++x) {
-    const uint32_t pix = src[x];
-    if (pix != prev_pix) {
-      int i;
-      for (i = 0; i < num_colors; ++i) {
-        if (pix == palette[i]) {
-          prev_idx = i;
-          prev_pix = pix;
-          break;
-        }
-      }
+static WEBP_INLINE int SearchColorNoIdx(const uint32_t sorted[], uint32_t color,
+                                        int hi) {
+  int low = 0;
+  if (sorted[low] == color) return low;  // loop invariant: sorted[low] != color
+  while (1) {
+    const int mid = (low + hi) >> 1;
+    if (sorted[mid] == color) {
+      return mid;
+    } else if (sorted[mid] < color) {
+      low = mid;
+    } else {
+      hi = mid;
     }
-    dst[x] = prev_idx;
   }
-  *last_idx = prev_idx;
-  *last_pix = prev_pix;
 }
+
+#define APPLY_PALETTE_GREEDY_MAX 4
+
+static WEBP_INLINE uint32_t SearchColorGreedy(const uint32_t palette[],
+                                              int palette_size,
+                                              uint32_t color) {
+  (void)palette_size;
+  assert(palette_size < APPLY_PALETTE_GREEDY_MAX);
+  assert(3 == APPLY_PALETTE_GREEDY_MAX - 1);
+  if (color == palette[0]) return 0;
+  if (color == palette[1]) return 1;
+  if (color == palette[2]) return 2;
+  return 3;
+}
+
+static WEBP_INLINE uint32_t ApplyPaletteHash0(uint32_t color) {
+  // Focus on the green color.
+  return (color >> 8) & 0xff;
+}
+
+#define PALETTE_INV_SIZE_BITS 11
+#define PALETTE_INV_SIZE (1 << PALETTE_INV_SIZE_BITS)
+
+static WEBP_INLINE uint32_t ApplyPaletteHash1(uint32_t color) {
+  // Forget about alpha.
+  return ((color & 0x00ffffffu) * 4222244071u) >> (32 - PALETTE_INV_SIZE_BITS);
+}
+
+static WEBP_INLINE uint32_t ApplyPaletteHash2(uint32_t color) {
+  // Forget about alpha.
+  return (color & 0x00ffffffu) * ((1u << 31) - 1) >>
+         (32 - PALETTE_INV_SIZE_BITS);
+}
+
+// Sort palette in increasing order and prepare an inverse mapping array.
+static void PrepareMapToPalette(const uint32_t palette[], int num_colors,
+                                uint32_t sorted[], uint32_t idx_map[]) {
+  int i;
+  memcpy(sorted, palette, num_colors * sizeof(*sorted));
+  qsort(sorted, num_colors, sizeof(*sorted), PaletteCompareColorsForQsort);
+  for (i = 0; i < num_colors; ++i) {
+    idx_map[SearchColorNoIdx(sorted, palette[i], num_colors)] = i;
+  }
+}
+
+// Use 1 pixel cache for ARGB pixels.
+#define APPLY_PALETTE_FOR(COLOR_INDEX) do {         \
+  uint32_t prev_pix = palette[0];                   \
+  uint32_t prev_idx = 0;                            \
+  for (y = 0; y < height; ++y) {                    \
+    for (x = 0; x < width; ++x) {                   \
+      const uint32_t pix = src[x];                  \
+      if (pix != prev_pix) {                        \
+        prev_idx = COLOR_INDEX;                     \
+        prev_pix = pix;                             \
+      }                                             \
+      tmp_row[x] = prev_idx;                        \
+    }                                               \
+    VP8LBundleColorMap(tmp_row, width, xbits, dst); \
+    src += src_stride;                              \
+    dst += dst_stride;                              \
+  }                                                 \
+} while (0)
 
 // Remap argb values in src[] to packed palettes entries in dst[]
 // using 'row' as a temporary buffer of size 'width'.
@@ -1213,47 +1256,59 @@ static WebPEncodingError ApplyPalette(const uint32_t* src, uint32_t src_stride,
   // TODO(skal): this tmp buffer is not needed if VP8LBundleColorMap() can be
   // made to work in-place.
   uint8_t* const tmp_row = (uint8_t*)WebPSafeMalloc(width, sizeof(*tmp_row));
-  int i, x, y;
-  int use_LUT = 1;
+  int x, y;
 
   if (tmp_row == NULL) return VP8_ENC_ERROR_OUT_OF_MEMORY;
-  for (i = 0; i < palette_size; ++i) {
-    if ((palette[i] & 0xffff00ffu) != 0) {
-      use_LUT = 0;
-      break;
-    }
-  }
 
-  if (use_LUT) {
-    uint8_t inv_palette[MAX_PALETTE_SIZE] = { 0 };
-    for (i = 0; i < palette_size; ++i) {
-      const int color = (palette[i] >> 8) & 0xff;
-      inv_palette[color] = i;
-    }
-    for (y = 0; y < height; ++y) {
-      for (x = 0; x < width; ++x) {
-        const int color = (src[x] >> 8) & 0xff;
-        tmp_row[x] = inv_palette[color];
-      }
-      VP8LBundleColorMap(tmp_row, width, xbits, dst);
-      src += src_stride;
-      dst += dst_stride;
-    }
+  if (palette_size < APPLY_PALETTE_GREEDY_MAX) {
+    APPLY_PALETTE_FOR(SearchColorGreedy(palette, palette_size, pix));
   } else {
-    // Use 1 pixel cache for ARGB pixels.
-    uint32_t last_pix = palette[0];
-    int last_idx = 0;
-    for (y = 0; y < height; ++y) {
-      MapToPalette(palette, palette_size, &last_pix, &last_idx,
-                   src, tmp_row, width);
-      VP8LBundleColorMap(tmp_row, width, xbits, dst);
-      src += src_stride;
-      dst += dst_stride;
+    int i, j;
+    uint16_t buffer[PALETTE_INV_SIZE];
+    uint32_t (*const hash_functions[])(uint32_t) = {
+        ApplyPaletteHash0, ApplyPaletteHash1, ApplyPaletteHash2
+    };
+
+    // Try to find a perfect hash function able to go from a color to an index
+    // within 1 << PALETTE_INV_SIZE_BITS in order to build a hash map to go
+    // from color to index in palette.
+    for (i = 0; i < 3; ++i) {
+      int use_LUT = 1;
+      // Set each element in buffer to max uint16_t.
+      memset(buffer, 0xff, sizeof(buffer));
+      for (j = 0; j < palette_size; ++j) {
+        const uint32_t ind = hash_functions[i](palette[j]);
+        if (buffer[ind] != 0xffffu) {
+          use_LUT = 0;
+          break;
+        } else {
+          buffer[ind] = j;
+        }
+      }
+      if (use_LUT) break;
+    }
+
+    if (i == 0) {
+      APPLY_PALETTE_FOR(buffer[ApplyPaletteHash0(pix)]);
+    } else if (i == 1) {
+      APPLY_PALETTE_FOR(buffer[ApplyPaletteHash1(pix)]);
+    } else if (i == 2) {
+      APPLY_PALETTE_FOR(buffer[ApplyPaletteHash2(pix)]);
+    } else {
+      uint32_t idx_map[MAX_PALETTE_SIZE];
+      uint32_t palette_sorted[MAX_PALETTE_SIZE];
+      PrepareMapToPalette(palette, palette_size, palette_sorted, idx_map);
+      APPLY_PALETTE_FOR(
+          idx_map[SearchColorNoIdx(palette_sorted, pix, palette_size)]);
     }
   }
   WebPSafeFree(tmp_row);
   return VP8_ENC_OK;
 }
+#undef APPLY_PALETTE_FOR
+#undef PALETTE_INV_SIZE_BITS
+#undef PALETTE_INV_SIZE
+#undef APPLY_PALETTE_GREEDY_MAX
 
 // Note: Expects "enc->palette_" to be set properly.
 static WebPEncodingError MapImageFromPalette(VP8LEncoder* const enc,
@@ -1286,7 +1341,7 @@ static WebPEncodingError MapImageFromPalette(VP8LEncoder* const enc,
 }
 
 // Save palette_[] to bitstream.
-static WebPEncodingError EncodePalette(VP8LBitWriter* const bw,
+static WebPEncodingError EncodePalette(VP8LBitWriter* const bw, int low_effort,
                                        VP8LEncoder* const enc) {
   int i;
   uint32_t tmp_palette[MAX_PALETTE_SIZE];
@@ -1301,13 +1356,14 @@ static WebPEncodingError EncodePalette(VP8LBitWriter* const bw,
   }
   tmp_palette[0] = palette[0];
   return EncodeImageNoHuffman(bw, tmp_palette, &enc->hash_chain_, enc->refs_,
-                              palette_size, 1, 20 /* quality */);
+                              palette_size, 1, 20 /* quality */, low_effort);
 }
 
 #ifdef WEBP_EXPERIMENTAL_FEATURES
 
 static WebPEncodingError EncodeDeltaPalettePredictorImage(
-    VP8LBitWriter* const bw, VP8LEncoder* const enc, int quality) {
+    VP8LBitWriter* const bw, VP8LEncoder* const enc, int quality,
+    int low_effort) {
   const WebPPicture* const pic = enc->pic_;
   const int width = pic->width;
   const int height = pic->height;
@@ -1338,7 +1394,7 @@ static WebPEncodingError EncodeDeltaPalettePredictorImage(
   err = EncodeImageNoHuffman(bw, predictors, &enc->hash_chain_,
                              (VP8LBackwardRefs*)enc->refs_,  // cast const away
                              transform_width, transform_height,
-                             quality);
+                             quality, low_effort);
   WebPSafeFree(predictors);
   return err;
 }
@@ -1378,7 +1434,7 @@ static void VP8LEncoderDelete(VP8LEncoder* enc) {
 
 WebPEncodingError VP8LEncodeStream(const WebPConfig* const config,
                                    const WebPPicture* const picture,
-                                   VP8LBitWriter* const bw) {
+                                   VP8LBitWriter* const bw, int use_cache) {
   WebPEncodingError err = VP8_ENC_OK;
   const int quality = (int)config->quality;
   const int low_effort = (config->method == 0);
@@ -1405,7 +1461,8 @@ WebPEncodingError VP8LEncodeStream(const WebPConfig* const config,
   }
 
   // Apply near-lossless preprocessing.
-  use_near_lossless = !enc->use_palette_ && (config->near_lossless < 100);
+  use_near_lossless =
+      (config->near_lossless < 100) && !enc->use_palette_ && !enc->use_predict_;
   if (use_near_lossless) {
     if (!VP8ApplyNearLossless(width, height, picture->argb,
                               config->near_lossless)) {
@@ -1427,7 +1484,7 @@ WebPEncodingError VP8LEncodeStream(const WebPConfig* const config,
     if (enc->use_palette_) {
       err = AllocateTransformBuffer(enc, width, height);
       if (err != VP8_ENC_OK) goto Error;
-      err = EncodeDeltaPalettePredictorImage(bw, enc, quality);
+      err = EncodeDeltaPalettePredictorImage(bw, enc, quality, low_effort);
       if (err != VP8_ENC_OK) goto Error;
       use_delta_palettization = 1;
     }
@@ -1436,7 +1493,7 @@ WebPEncodingError VP8LEncodeStream(const WebPConfig* const config,
 
   // Encode palette
   if (enc->use_palette_) {
-    err = EncodePalette(bw, enc);
+    err = EncodePalette(bw, low_effort, enc);
     if (err != VP8_ENC_OK) goto Error;
     err = MapImageFromPalette(enc, use_delta_palettization);
     if (err != VP8_ENC_OK) goto Error;
@@ -1457,13 +1514,13 @@ WebPEncodingError VP8LEncodeStream(const WebPConfig* const config,
 
     if (enc->use_predict_) {
       err = ApplyPredictFilter(enc, enc->current_width_, height, quality,
-                               low_effort, bw);
+                               low_effort, enc->use_subtract_green_, bw);
       if (err != VP8_ENC_OK) goto Error;
     }
 
     if (enc->use_cross_color_) {
       err = ApplyCrossColorFilter(enc, enc->current_width_,
-                                  height, quality, bw);
+                                  height, quality, low_effort, bw);
       if (err != VP8_ENC_OK) goto Error;
     }
   }
@@ -1474,8 +1531,8 @@ WebPEncodingError VP8LEncodeStream(const WebPConfig* const config,
   // Encode and write the transformed image.
   err = EncodeImageInternal(bw, enc->argb_, &enc->hash_chain_, enc->refs_,
                             enc->current_width_, height, quality, low_effort,
-                            &enc->cache_bits_, enc->histo_bits_, byte_position,
-                            &hdr_size, &data_size);
+                            use_cache, &enc->cache_bits_, enc->histo_bits_,
+                            byte_position, &hdr_size, &data_size);
   if (err != VP8_ENC_OK) goto Error;
 
   if (picture->stats != NULL) {
@@ -1560,7 +1617,7 @@ int VP8LEncodeImage(const WebPConfig* const config,
   if (!WebPReportProgress(picture, 5, &percent)) goto UserAbort;
 
   // Encode main image stream.
-  err = VP8LEncodeStream(config, picture, &bw);
+  err = VP8LEncodeStream(config, picture, &bw, 1 /*use_cache*/);
   if (err != VP8_ENC_OK) goto Error;
 
   // TODO(skal): have a fine-grained progress report in VP8LEncodeStream().

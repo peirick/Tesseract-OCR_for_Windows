@@ -14,8 +14,11 @@
 #ifndef WEBP_DSP_DSP_H_
 #define WEBP_DSP_DSP_H_
 
+#ifdef HAVE_CONFIG_H
+#include "../webp/config.h"
+#endif
+
 #include "../webp/types.h"
-#include "../utils/utils.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -72,7 +75,8 @@ extern "C" {
 // The intrinsics currently cause compiler errors with arm-nacl-gcc and the
 // inline assembly would need to be modified for use with Native Client.
 #if (defined(__ARM_NEON__) || defined(WEBP_ANDROID_NEON) || \
-     defined(__aarch64__)) && !defined(__native_client__)
+     defined(__aarch64__) || defined(WEBP_HAVE_NEON)) && \
+    !defined(__native_client__)
 #define WEBP_USE_NEON
 #endif
 
@@ -92,12 +96,36 @@ extern "C" {
 #endif
 #endif
 
+#if defined(__mips_msa) && defined(__mips_isa_rev) && (__mips_isa_rev >= 5)
+#define WEBP_USE_MSA
+#endif
+
 // This macro prevents thread_sanitizer from reporting known concurrent writes.
 #define WEBP_TSAN_IGNORE_FUNCTION
 #if defined(__has_feature)
 #if __has_feature(thread_sanitizer)
 #undef WEBP_TSAN_IGNORE_FUNCTION
 #define WEBP_TSAN_IGNORE_FUNCTION __attribute__((no_sanitize_thread))
+#endif
+#endif
+
+#define WEBP_UBSAN_IGNORE_UNDEF
+#define WEBP_UBSAN_IGNORE_UNSIGNED_OVERFLOW
+#if defined(__clang__) && defined(__has_attribute)
+#if __has_attribute(no_sanitize)
+// This macro prevents the undefined behavior sanitizer from reporting
+// failures. This is only meant to silence unaligned loads on platforms that
+// are known to support them.
+#undef WEBP_UBSAN_IGNORE_UNDEF
+#define WEBP_UBSAN_IGNORE_UNDEF \
+  __attribute__((no_sanitize("undefined")))
+
+// This macro prevents the undefined behavior sanitizer from reporting
+// failures related to unsigned integer overflows. This is only meant to
+// silence cases where this well defined behavior is expected.
+#undef WEBP_UBSAN_IGNORE_UNSIGNED_OVERFLOW
+#define WEBP_UBSAN_IGNORE_UNSIGNED_OVERFLOW \
+  __attribute__((no_sanitize("unsigned-integer-overflow")))
 #endif
 #endif
 
@@ -109,7 +137,8 @@ typedef enum {
   kAVX2,
   kNEON,
   kMIPS32,
-  kMIPSdspR2
+  kMIPSdspR2,
+  kMSA
 } CPUFeature;
 // returns true if the CPU supports the feature.
 typedef int (*VP8CPUInfo)(CPUFeature feature);
@@ -151,7 +180,14 @@ typedef int (*VP8Metric)(const uint8_t* pix, const uint8_t* ref);
 extern VP8Metric VP8SSE16x16, VP8SSE16x8, VP8SSE8x8, VP8SSE4x4;
 typedef int (*VP8WMetric)(const uint8_t* pix, const uint8_t* ref,
                           const uint16_t* const weights);
+// The weights for VP8TDisto4x4 and VP8TDisto16x16 contain a row-major
+// 4 by 4 symmetric matrix.
 extern VP8WMetric VP8TDisto4x4, VP8TDisto16x16;
+
+// Compute the average (DC) of four 4x4 blocks.
+// Each sub-4x4 block #i sum is stored in dc[i].
+typedef void (*VP8MeanMetric)(const uint8_t* ref, uint32_t dc[4]);
+extern VP8MeanMetric VP8Mean16x4;
 
 typedef void (*VP8BlockCopy)(const uint8_t* src, uint8_t* dst);
 extern VP8BlockCopy VP8Copy4x4;
@@ -214,6 +250,42 @@ extern VP8GetResidualCostFunc VP8GetResidualCost;
 void VP8EncDspCostInit(void);
 
 //------------------------------------------------------------------------------
+// SSIM / PSNR utils
+
+// struct for accumulating statistical moments
+typedef struct {
+  uint32_t w;              // sum(w_i) : sum of weights
+  uint32_t xm, ym;         // sum(w_i * x_i), sum(w_i * y_i)
+  uint32_t xxm, xym, yym;  // sum(w_i * x_i * x_i), etc.
+} VP8DistoStats;
+
+// Compute the final SSIM value
+// The non-clipped version assumes stats->w = (2 * VP8_SSIM_KERNEL + 1)^2.
+double VP8SSIMFromStats(const VP8DistoStats* const stats);
+double VP8SSIMFromStatsClipped(const VP8DistoStats* const stats);
+
+#define VP8_SSIM_KERNEL 3   // total size of the kernel: 2 * VP8_SSIM_KERNEL + 1
+typedef double (*VP8SSIMGetClippedFunc)(const uint8_t* src1, int stride1,
+                                        const uint8_t* src2, int stride2,
+                                        int xo, int yo,  // center position
+                                        int W, int H);   // plane dimension
+
+// This version is called with the guarantee that you can load 8 bytes and
+// 8 rows at offset src1 and src2
+typedef double (*VP8SSIMGetFunc)(const uint8_t* src1, int stride1,
+                                 const uint8_t* src2, int stride2);
+
+extern VP8SSIMGetFunc VP8SSIMGet;         // unclipped / unchecked
+extern VP8SSIMGetClippedFunc VP8SSIMGetClipped;   // with clipping
+
+typedef uint32_t (*VP8AccumulateSSEFunc)(const uint8_t* src1,
+                                         const uint8_t* src2, int len);
+extern VP8AccumulateSSEFunc VP8AccumulateSSE;
+
+// must be called before using any of the above directly
+void VP8SSIMDspInit(void);
+
+//------------------------------------------------------------------------------
 // Decoding
 
 typedef void (*VP8DecIdct)(const int16_t* coeffs, uint8_t* dst);
@@ -264,6 +336,15 @@ extern VP8LumaFilterFunc VP8VFilter16i;   // filtering 3 inner edges altogether
 extern VP8LumaFilterFunc VP8HFilter16i;
 extern VP8ChromaFilterFunc VP8VFilter8i;  // filtering u and v altogether
 extern VP8ChromaFilterFunc VP8HFilter8i;
+
+// Dithering. Combines dithering values (centered around 128) with dst[],
+// according to: dst[] = clip(dst[] + (((dither[]-128) + 8) >> 4)
+#define VP8_DITHER_DESCALE 4
+#define VP8_DITHER_DESCALE_ROUNDER (1 << (VP8_DITHER_DESCALE - 1))
+#define VP8_DITHER_AMP_BITS 7
+#define VP8_DITHER_AMP_CENTER (1 << VP8_DITHER_AMP_BITS)
+extern void (*VP8DitherCombine8x8)(const uint8_t* dither, uint8_t* dst,
+                                   int dst_stride);
 
 // must be called before anything using the above
 void VP8DspInit(void);
@@ -472,8 +553,10 @@ typedef enum {     // Filter types.
 
 typedef void (*WebPFilterFunc)(const uint8_t* in, int width, int height,
                                int stride, uint8_t* out);
-typedef void (*WebPUnfilterFunc)(int width, int height, int stride,
-                                 int row, int num_rows, uint8_t* data);
+// In-place un-filtering.
+// Warning! 'prev_line' pointer can be equal to 'cur_line' or 'preds'.
+typedef void (*WebPUnfilterFunc)(const uint8_t* prev_line, const uint8_t* preds,
+                                 uint8_t* cur_line, int width);
 
 // Filter the given data using the given predictor.
 // 'in' corresponds to a 2-dimensional pixel array of size (stride * height)

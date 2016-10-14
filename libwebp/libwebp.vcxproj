@@ -184,6 +184,7 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)dsp\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)dsp\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\dsp\dec_msa.c" />
     <ClCompile Include="src\dsp\dec_neon.c">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)dsp\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)dsp\</ObjectFileName>
@@ -226,6 +227,7 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)dsp\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)dsp\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\dsp\enc_msa.c" />
     <ClCompile Include="src\dsp\enc_neon.c">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)dsp\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)dsp\</ObjectFileName>
@@ -256,6 +258,7 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)dsp\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)dsp\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\dsp\filters_msa.c" />
     <ClCompile Include="src\dsp\filters_sse2.c">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)dsp\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)dsp\</ObjectFileName>
@@ -286,6 +289,7 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)dsp\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)dsp\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\dsp\lossless_enc_msa.c" />
     <ClCompile Include="src\dsp\lossless_enc_neon.c">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)dsp\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)dsp\</ObjectFileName>
@@ -310,6 +314,7 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)dsp\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)dsp\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\dsp\lossless_msa.c" />
     <ClCompile Include="src\dsp\lossless_neon.c">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)dsp\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)dsp\</ObjectFileName>
@@ -340,6 +345,7 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)dsp\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)dsp\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\dsp\rescaler_msa.c" />
     <ClCompile Include="src\dsp\rescaler_neon.c">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)dsp\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)dsp\</ObjectFileName>
@@ -364,6 +370,7 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)dsp\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)dsp\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\dsp\upsampling_msa.c" />
     <ClCompile Include="src\dsp\upsampling_neon.c">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)dsp\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)dsp\</ObjectFileName>
@@ -496,6 +503,7 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)enc\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)enc\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\enc\predictor.c" />
     <ClCompile Include="src\enc\quant.c">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)enc\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)enc\</ObjectFileName>
@@ -532,6 +540,10 @@
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)enc\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)enc\</ObjectFileName>
     </ClCompile>
+    <ClCompile Include="src\mux\anim_encode.c" />
+    <ClCompile Include="src\mux\muxedit.c" />
+    <ClCompile Include="src\mux\muxinternal.c" />
+    <ClCompile Include="src\mux\muxread.c" />
     <ClCompile Include="src\utils\bit_reader.c">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)utils\</ObjectFileName>
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)utils\</ObjectFileName>
@@ -612,9 +624,12 @@
     <ClInclude Include="src\dec\vp8i.h" />
     <ClInclude Include="src\dec\vp8li.h" />
     <ClInclude Include="src\dec\webpi.h" />
+    <ClInclude Include="src\dsp\common_sse2.h" />
     <ClInclude Include="src\dsp\dsp.h" />
     <ClInclude Include="src\dsp\lossless.h" />
+    <ClInclude Include="src\dsp\lossless_common.h" />
     <ClInclude Include="src\dsp\mips_macro.h" />
+    <ClInclude Include="src\dsp\msa_macro.h" />
     <ClInclude Include="src\dsp\neon.h" />
     <ClInclude Include="src\dsp\yuv.h" />
     <ClInclude Include="src\enc\backward_references.h" />
@@ -623,6 +638,8 @@
     <ClInclude Include="src\enc\histogram.h" />
     <ClInclude Include="src\enc\vp8enci.h" />
     <ClInclude Include="src\enc\vp8li.h" />
+    <ClInclude Include="src\mux\animi.h" />
+    <ClInclude Include="src\mux\muxi.h" />
     <ClInclude Include="src\utils\bit_reader.h" />
     <ClInclude Include="src\utils\bit_reader_inl.h" />
     <ClInclude Include="src\utils\bit_writer.h" />

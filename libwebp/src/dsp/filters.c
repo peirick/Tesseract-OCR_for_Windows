@@ -184,19 +184,40 @@ static void GradientFilter(const uint8_t* data, int width, int height,
 
 //------------------------------------------------------------------------------
 
-static void VerticalUnfilter(int width, int height, int stride, int row,
-                             int num_rows, uint8_t* data) {
-  DoVerticalFilter(data, width, height, stride, row, num_rows, 1, data);
+static void HorizontalUnfilter(const uint8_t* prev, const uint8_t* in,
+                               uint8_t* out, int width) {
+  uint8_t pred = (prev == NULL) ? 0 : prev[0];
+  int i;
+  for (i = 0; i < width; ++i) {
+    out[i] = pred + in[i];
+    pred = out[i];
+  }
 }
 
-static void HorizontalUnfilter(int width, int height, int stride, int row,
-                               int num_rows, uint8_t* data) {
-  DoHorizontalFilter(data, width, height, stride, row, num_rows, 1, data);
+static void VerticalUnfilter(const uint8_t* prev, const uint8_t* in,
+                             uint8_t* out, int width) {
+  if (prev == NULL) {
+    HorizontalUnfilter(NULL, in, out, width);
+  } else {
+    int i;
+    for (i = 0; i < width; ++i) out[i] = prev[i] + in[i];
+  }
 }
 
-static void GradientUnfilter(int width, int height, int stride, int row,
-                             int num_rows, uint8_t* data) {
-  DoGradientFilter(data, width, height, stride, row, num_rows, 1, data);
+static void GradientUnfilter(const uint8_t* prev, const uint8_t* in,
+                             uint8_t* out, int width) {
+  if (prev == NULL) {
+    HorizontalUnfilter(NULL, in, out, width);
+  } else {
+    uint8_t top = prev[0], top_left = top, left = top;
+    int i;
+    for (i = 0; i < width; ++i) {
+      top = prev[i];  // need to read this first, in case prev==out
+      left = in[i] + GradientPredictor(left, top, top_left);
+      top_left = top;
+      out[i] = left;
+    }
+  }
 }
 
 //------------------------------------------------------------------------------
@@ -207,6 +228,7 @@ WebPUnfilterFunc WebPUnfilters[WEBP_FILTER_LAST];
 
 extern void VP8FiltersInitMIPSdspR2(void);
 extern void VP8FiltersInitSSE2(void);
+extern void VP8FiltersInitMSA(void);
 
 static volatile VP8CPUInfo filters_last_cpuinfo_used =
     (VP8CPUInfo)&filters_last_cpuinfo_used;
@@ -233,6 +255,11 @@ WEBP_TSAN_IGNORE_FUNCTION void VP8FiltersInit(void) {
 #if defined(WEBP_USE_MIPS_DSP_R2)
     if (VP8GetCPUInfo(kMIPSdspR2)) {
       VP8FiltersInitMIPSdspR2();
+    }
+#endif
+#if defined(WEBP_USE_MSA)
+    if (VP8GetCPUInfo(kMSA)) {
+      VP8FiltersInitMSA();
     }
 #endif
   }

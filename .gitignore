@@ -31,3 +31,6 @@ liblebt.VC.db
 tesseract.VC.db
 *.db
 /.vs/config
+/libpng/pngnow.png
+/libpng/pngbar.png
+/libpng/pngbar.jpg

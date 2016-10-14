@@ -22,10 +22,6 @@
 #include "../utils/utils.h"
 #include "../webp/encode.h"
 
-#ifdef WEBP_EXPERIMENTAL_FEATURES
-#include "./vp8li.h"
-#endif  // WEBP_EXPERIMENTAL_FEATURES
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -36,7 +32,7 @@ extern "C" {
 // version numbers
 #define ENC_MAJ_VERSION 0
 #define ENC_MIN_VERSION 5
-#define ENC_REV_VERSION 0
+#define ENC_REV_VERSION 1
 
 enum { MAX_LF_LEVELS = 64,       // Maximum loop filter level
        MAX_VARIABLE_LEVEL = 67,  // last (inclusive) level with variable cost
@@ -200,6 +196,9 @@ typedef struct {
   int lambda_i16_, lambda_i4_, lambda_uv_;
   int lambda_mode_, lambda_trellis_, tlambda_;
   int lambda_trellis_i16_, lambda_trellis_i4_, lambda_trellis_uv_;
+
+  // lambda values for distortion-based evaluation
+  score_t i4_penalty_;   // penalty for using Intra4
 } VP8SegmentInfo;
 
 // Handy transient struct to accumulate score and info during RD-optimization
@@ -220,7 +219,6 @@ typedef struct {
 // right neighbouring data (samples, predictions, contexts, ...)
 typedef struct {
   int x_, y_;                      // current macroblock
-  int y_stride_, uv_stride_;       // respective strides
   uint8_t*      yuv_in_;           // input samples
   uint8_t*      yuv_out_;          // output samples
   uint8_t*      yuv_out2_;         // secondary buffer swapped with yuv_out_.
@@ -326,9 +324,7 @@ int VP8EmitTokens(VP8TBuffer* const b, VP8BitWriter* const bw,
                   const uint8_t* const probas, int final_pass);
 
 // record the coding of coefficients without knowing the probabilities yet
-int VP8RecordCoeffTokens(const int ctx, const int coeff_type,
-                         int first, int last,
-                         const int16_t* const coeffs,
+int VP8RecordCoeffTokens(int ctx, const struct VP8Residual* const res,
                          VP8TBuffer* const tokens);
 
 // Estimate the final coded size given a set of 'probas'.
@@ -395,6 +391,7 @@ struct VP8Encoder {
   int method_;               // 0=fastest, 6=best/slowest.
   VP8RDLevel rd_opt_level_;  // Deduced from method_.
   int max_i4_header_bits_;   // partition #0 safeness factor
+  int mb_header_limit_;      // rough limit for header bits per MB
   int thread_level_;         // derived from config->thread_level
   int do_search_;            // derived from config->target_XXX
   int use_tokens_;           // if true, use token buffer
@@ -475,19 +472,6 @@ void VP8EncInitAlpha(VP8Encoder* const enc);    // initialize alpha compression
 int VP8EncStartAlpha(VP8Encoder* const enc);    // start alpha coding process
 int VP8EncFinishAlpha(VP8Encoder* const enc);   // finalize compressed data
 int VP8EncDeleteAlpha(VP8Encoder* const enc);   // delete compressed data
-
-  // in filter.c
-
-// SSIM utils
-typedef struct {
-  double w, xm, ym, xxm, xym, yym;
-} DistoStats;
-void VP8SSIMAddStats(const DistoStats* const src, DistoStats* const dst);
-void VP8SSIMAccumulatePlane(const uint8_t* src1, int stride1,
-                            const uint8_t* src2, int stride2,
-                            int W, int H, DistoStats* const stats);
-double VP8SSIMGet(const DistoStats* const stats);
-double VP8SSIMGetSquaredError(const DistoStats* const stats);
 
 // autofilter
 void VP8InitFilter(VP8EncIterator* const it);

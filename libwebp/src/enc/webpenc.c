@@ -75,7 +75,7 @@ static void ResetBoundaryPredictions(VP8Encoder* const enc) {
 //-------------------+---+---+---+---+---+---+---+
 // dynamic proba     | ~ | x | x | x | x | x | x |
 //-------------------+---+---+---+---+---+---+---+
-// fast mode analysis|   |   |   |   | x | x | x |
+// fast mode analysis|[x]|[x]|   |   | x | x | x |
 //-------------------+---+---+---+---+---+---+---+
 // basic rd-opt      |   |   |   | x | x | x | x |
 //-------------------+---+---+---+---+---+---+---+
@@ -104,6 +104,10 @@ static void MapConfigToTools(VP8Encoder* const enc) {
   enc->max_i4_header_bits_ =
       256 * 16 * 16 *                 // upper bound: up to 16bit per 4x4 block
       (limit * limit) / (100 * 100);  // ... modulated with a quadratic curve.
+
+  // partition0 = 512k max.
+  enc->mb_header_limit_ =
+      (score_t)256 * 510 * 8 * 1024 / (enc->mb_w_ * enc->mb_h_);
 
   enc->thread_level_ = config->thread_level;
 
@@ -311,18 +315,21 @@ int WebPReportProgress(const WebPPicture* const pic,
 
 int WebPEncode(const WebPConfig* config, WebPPicture* pic) {
   int ok = 0;
+  if (pic == NULL) return 0;
 
-  if (pic == NULL)
-    return 0;
   WebPEncodingSetError(pic, VP8_ENC_OK);  // all ok so far
-  if (config == NULL)  // bad params
+  if (config == NULL) {  // bad params
     return WebPEncodingSetError(pic, VP8_ENC_ERROR_NULL_PARAMETER);
-  if (!WebPValidateConfig(config))
+  }
+  if (!WebPValidateConfig(config)) {
     return WebPEncodingSetError(pic, VP8_ENC_ERROR_INVALID_CONFIGURATION);
-  if (pic->width <= 0 || pic->height <= 0)
+  }
+  if (pic->width <= 0 || pic->height <= 0) {
     return WebPEncodingSetError(pic, VP8_ENC_ERROR_BAD_DIMENSION);
-  if (pic->width > WEBP_MAX_DIMENSION || pic->height > WEBP_MAX_DIMENSION)
+  }
+  if (pic->width > WEBP_MAX_DIMENSION || pic->height > WEBP_MAX_DIMENSION) {
     return WebPEncodingSetError(pic, VP8_ENC_ERROR_BAD_DIMENSION);
+  }
 
   if (pic->stats != NULL) memset(pic->stats, 0, sizeof(*pic->stats));
 
