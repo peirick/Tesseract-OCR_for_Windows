@@ -1,7 +1,7 @@
 
 # OPENJPEG Library and Applications
 
-## What is OpenJPEG ?
+## What is OpenJPEG ? 
 
 OpenJPEG is an open-source JPEG 2000 codec written in C language. It has been developed in order to promote the use of [JPEG 2000](http://www.jpeg.org/jpeg2000), a still-image compression standard from the Joint Photographic Experts Group ([JPEG](http://www.jpeg.org)).  Since April 2015, it is officially recognized by ISO/IEC and ITU-T as a [JPEG 2000 Reference Software](http://www.itu.int/rec/T-REC-T.804-201504-I!Amd2).
 
@@ -73,10 +73,10 @@ API available is the one supported by OpenJPEG.
 [comment-license]: https://img.shields.io/github/license/uclouvain/openjpeg.svg "https://img.shields.io/badge/license-BSD--2--Clause-blue.svg"
 [badge-license]: https://img.shields.io/badge/license-BSD--2--Clause-blue.svg "BSD 2-clause "Simplified" License"
 [link-license]: https://github.com/uclouvain/openjpeg/blob/master/LICENSE "BSD 2-clause "Simplified" License"
-[badge-build]: https://travis-ci.org/uclouvain/openjpeg.svg?branch=openjpeg-2.1 "Build Status"
+[badge-build]: https://travis-ci.org/uclouvain/openjpeg.svg?branch=master "Build Status"
 [link-build]: https://travis-ci.org/uclouvain/openjpeg "Build Status"
-[badge-msvc-build]: https://ci.appveyor.com/api/projects/status/github/uclouvain/openjpeg?branch=openjpeg-2.1&svg=true "Windows Build Status"
-[link-msvc-build]: https://ci.appveyor.com/project/detonin/openjpeg/branch/openjpeg-2.1 "Windows Build Status"
+[badge-msvc-build]: https://ci.appveyor.com/api/projects/status/github/uclouvain/openjpeg?branch=master&svg=true "Windows Build Status"
+[link-msvc-build]: https://ci.appveyor.com/project/detonin/openjpeg/branch/master "Windows Build Status"
 [badge-coverity]: https://scan.coverity.com/projects/6383/badge.svg "Coverity Scan Build Status"
 [link-coverity]: https://scan.coverity.com/projects/uclouvain-openjpeg "Coverity Scan Build Status"
 [link-api-timeline]: http://www.openjpeg.org/abi-check/timeline/openjpeg "OpenJPEG API/ABI timeline"

@@ -580,7 +580,8 @@ OPJ_BOOL opj_tcd_rateallocate(  opj_tcd_t *tcd,
 
 OPJ_BOOL opj_tcd_init( opj_tcd_t *p_tcd,
                                            opj_image_t * p_image,
-                                           opj_cp_t * p_cp )
+                                           opj_cp_t * p_cp,
+                       opj_thread_pool_t* p_tp )
 {
         p_tcd->image = p_image;
         p_tcd->cp = p_cp;
@@ -597,6 +598,7 @@ OPJ_BOOL opj_tcd_init( opj_tcd_t *p_tcd,
 
         p_tcd->tcd_image->tiles->numcomps = p_image->numcomps;
         p_tcd->tp_pos = p_cp->m_specific_param.m_enc.m_tp_pos;
+        p_tcd->thread_pool = p_tp;
 
         return OPJ_TRUE;
 }
@@ -696,9 +698,20 @@ static INLINE OPJ_BOOL opj_tcd_init_tile(opj_tcd_t *p_tcd, OPJ_UINT32 p_tile_no,
 	l_tx0 = l_cp->tx0 + p * l_cp->tdx; /* can't be greater than l_image->x1 so won't overflow */
 	l_tile->x0 = (OPJ_INT32)opj_uint_max(l_tx0, l_image->x0);
 	l_tile->x1 = (OPJ_INT32)opj_uint_min(opj_uint_adds(l_tx0, l_cp->tdx), l_image->x1);
+	/* all those OPJ_UINT32 are casted to OPJ_INT32, let's do some sanity check */
+	if ((l_tile->x0 < 0) || (l_tile->x1 <= l_tile->x0)) {
+		opj_event_msg(manager, EVT_ERROR, "Tile X coordinates are not supported\n");
+		return OPJ_FALSE;
+	}
 	l_ty0 = l_cp->ty0 + q * l_cp->tdy; /* can't be greater than l_image->y1 so won't overflow */
 	l_tile->y0 = (OPJ_INT32)opj_uint_max(l_ty0, l_image->y0);
 	l_tile->y1 = (OPJ_INT32)opj_uint_min(opj_uint_adds(l_ty0, l_cp->tdy), l_image->y1);
+	/* all those OPJ_UINT32 are casted to OPJ_INT32, let's do some sanity check */
+	if ((l_tile->y0 < 0) || (l_tile->y1 <= l_tile->y0)) {
+		opj_event_msg(manager, EVT_ERROR, "Tile Y coordinates are not supported\n");
+		return OPJ_FALSE;
+	}
+	
 
 	/* testcase 1888.pdf.asan.35.988 */
 	if (l_tccp->numresolutions == 0) {
@@ -808,12 +821,22 @@ static INLINE OPJ_BOOL opj_tcd_init_tile(opj_tcd_t *p_tcd, OPJ_UINT32 p_tile_no,
 			l_br_prc_y_end = opj_int_ceildivpow2(l_res->y1, (OPJ_INT32)l_pdy) << l_pdy;
 			/*fprintf(stderr, "\t\t\tprc_x_start=%d, prc_y_start=%d, br_prc_x_end=%d, br_prc_y_end=%d \n", l_tl_prc_x_start, l_tl_prc_y_start, l_br_prc_x_end ,l_br_prc_y_end );*/
 			
-			l_res->pw = (l_res->x0 == l_res->x1) ? 0 : (OPJ_UINT32)((l_br_prc_x_end - l_tl_prc_x_start) >> l_pdx);
-			l_res->ph = (l_res->y0 == l_res->y1) ? 0 : (OPJ_UINT32)((l_br_prc_y_end - l_tl_prc_y_start) >> l_pdy);
+			l_res->pw = (l_res->x0 == l_res->x1) ? 0U : (OPJ_UINT32)((l_br_prc_x_end - l_tl_prc_x_start) >> l_pdx);
+			l_res->ph = (l_res->y0 == l_res->y1) ? 0U : (OPJ_UINT32)((l_br_prc_y_end - l_tl_prc_y_start) >> l_pdy);
 			/*fprintf(stderr, "\t\t\tres_pw=%d, res_ph=%d\n", l_res->pw, l_res->ph );*/
-			
+
+			if ((l_res->pw != 0U) && ((((OPJ_UINT32)-1) / l_res->pw) < l_res->ph)) {
+				opj_event_msg(manager, EVT_ERROR, "Not enough memory for tile data\n");
+				return OPJ_FALSE;
+			}
 			l_nb_precincts = l_res->pw * l_res->ph;
+
+			if ((((OPJ_UINT32)-1) / (OPJ_UINT32)sizeof(opj_tcd_precinct_t)) < l_nb_precincts) {
+				opj_event_msg(manager, EVT_ERROR, "Not enough memory for tile data\n");
+				return OPJ_FALSE;
+			}
 			l_nb_precinct_size = l_nb_precincts * (OPJ_UINT32)sizeof(opj_tcd_precinct_t);
+
 			if (resno == 0) {
 				tlcbgxstart = l_tl_prc_x_start;
 				tlcbgystart = l_tl_prc_y_start;
@@ -870,6 +893,7 @@ static INLINE OPJ_BOOL opj_tcd_init_tile(opj_tcd_t *p_tcd, OPJ_UINT32 p_tile_no,
 				if (!l_band->precincts && (l_nb_precincts > 0U)) {
 					l_band->precincts = (opj_tcd_precinct_t *) opj_malloc( /*3 * */ l_nb_precinct_size);
 					if (! l_band->precincts) {
+						opj_event_msg(manager, EVT_ERROR, "Not enough memory to handle band precints\n");
 						return OPJ_FALSE;
 					}
 					/*fprintf(stderr, "\t\t\t\tAllocate precincts of a band (opj_tcd_precinct_t): %d\n",l_nb_precinct_size);     */
@@ -1566,30 +1590,22 @@ static OPJ_BOOL opj_tcd_t2_decode (opj_tcd_t *p_tcd,
 static OPJ_BOOL opj_tcd_t1_decode ( opj_tcd_t *p_tcd )
 {
         OPJ_UINT32 compno;
-        opj_t1_t * l_t1;
         opj_tcd_tile_t * l_tile = p_tcd->tcd_image->tiles;
         opj_tcd_tilecomp_t* l_tile_comp = l_tile->comps;
         opj_tccp_t * l_tccp = p_tcd->tcp->tccps;
-
-
-        l_t1 = opj_t1_create(OPJ_FALSE);
-        if (l_t1 == 00) {
-                return OPJ_FALSE;
-        }
+        volatile OPJ_BOOL ret = OPJ_TRUE;
 
         for (compno = 0; compno < l_tile->numcomps; ++compno) {
-                /* The +3 is headroom required by the vectorized DWT */
-                if (OPJ_FALSE == opj_t1_decode_cblks(l_t1, l_tile_comp, l_tccp)) {
-                        opj_t1_destroy(l_t1);
-                        return OPJ_FALSE;
-                }
+                opj_t1_decode_cblks(p_tcd->thread_pool, &ret, l_tile_comp, l_tccp);
+                if( !ret )
+                    break;
                 ++l_tile_comp;
                 ++l_tccp;
         }
 
-        opj_t1_destroy(l_t1);
+        opj_thread_pool_wait_completion(p_tcd->thread_pool, 0);
 
-        return OPJ_TRUE;
+        return ret;
 }
 
 
@@ -1616,7 +1632,7 @@ static OPJ_BOOL opj_tcd_dwt_decode ( opj_tcd_t *p_tcd )
                 */
 
                 if (l_tccp->qmfbid == 1) {
-                        if (! opj_dwt_decode(l_tile_comp, l_img_comp->resno_decoded+1)) {
+                        if (! opj_dwt_decode(p_tcd->thread_pool, l_tile_comp, l_img_comp->resno_decoded+1)) {
                                 return OPJ_FALSE;
                         }
                 }

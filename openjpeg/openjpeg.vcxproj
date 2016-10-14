@@ -31,6 +31,7 @@
     <ClInclude Include="jp2.h" />
     <ClInclude Include="mct.h" />
     <ClInclude Include="mqc.h" />
+    <ClInclude Include="mqc_inl.h" />
     <ClInclude Include="openjpeg.h" />
     <ClInclude Include="opj_clock.h" />
     <ClInclude Include="opj_codec.h" />
@@ -50,6 +51,8 @@
     <ClInclude Include="t2.h" />
     <ClInclude Include="tcd.h" />
     <ClInclude Include="tgt.h" />
+    <ClInclude Include="thread.h" />
+    <ClInclude Include="tls_keys.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="bio.c" />
@@ -72,6 +75,7 @@
     <ClCompile Include="t2.c" />
     <ClCompile Include="tcd.c" />
     <ClCompile Include="tgt.c" />
+    <ClCompile Include="thread.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AUTHORS.md" />
