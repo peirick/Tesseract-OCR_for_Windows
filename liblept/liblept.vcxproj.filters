@@ -618,6 +618,9 @@
     <ClCompile Include="..\leptonica\src\dnafunc1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\leptonica\src\strokes.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\leptonica\leptonica-license.txt" />

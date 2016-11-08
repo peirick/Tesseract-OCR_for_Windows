@@ -211,6 +211,7 @@
     <ClCompile Include="..\leptonica\src\spixio.c" />
     <ClCompile Include="..\leptonica\src\stack.c" />
     <ClCompile Include="..\leptonica\src\stringcode.c" />
+    <ClCompile Include="..\leptonica\src\strokes.c" />
     <ClCompile Include="..\leptonica\src\sudoku.c" />
     <ClCompile Include="..\leptonica\src\textops.c" />
     <ClCompile Include="..\leptonica\src\tiffio.c" />
