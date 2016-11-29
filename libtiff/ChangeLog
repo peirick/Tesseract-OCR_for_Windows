@@ -1,3 +1,485 @@
+2016-11-19  Bob Friesenhahn  <bfriesen@simple.dallas.tx.us>
+
+	* libtiff 4.0.7 released.
+
+	* configure.ac: Update for 4.0.7 release.
+
+	* tools/tiffdump.c (ReadDirectory): Remove uint32 cast to
+	_TIFFmalloc() argument which resulted in Coverity report.  Added
+	more mutiplication overflow checks.
+
+2016-11-18 Even Rouault <even.rouault at spatialys.com>
+
+	* tools/tiffcrop.c: Fix memory leak in (recent) error code path.
+	Fixes Coverity 1394415.
+
+2016-11-17  Bob Friesenhahn  <bfriesen@simple.dallas.tx.us>
+
+	* libtiff/tif_getimage.c: Fix some benign warnings which appear in
+	64-bit compilation under Microsoft Visual Studio of the form
+	"Arithmetic overflow: 32-bit value is shifted, then cast to 64-bit
+	value.  Results might not be an expected value.".  Problem was
+	reported on November 16, 2016 on the tiff mailing list.
+
+2016-11-16 Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_dirread.c: in TIFFFetchNormalTag(), do not dereference
+	NULL pointer when values of tags with TIFF_SETGET_C16_ASCII / TIFF_SETGET_C32_ASCII
+	access are 0-byte arrays.
+	Fixes http://bugzilla.maptools.org/show_bug.cgi?id=2593 (regression introduced
+	by previous fix done on 2016-11-11 for CVE-2016-9297).
+	Reported by Henri Salo. Assigned as CVE-2016-9448
+
+2016-11-12  Bob Friesenhahn  <bfriesen@simple.dallas.tx.us>
+
+	* tools/tiffinfo.c (TIFFReadContigTileData): Fix signed/unsigned
+	comparison warning.
+	(TIFFReadSeparateTileData): Fix signed/unsigned comparison
+	warning.
+
+	* tools/tiffcrop.c (readContigTilesIntoBuffer): Fix
+	signed/unsigned comparison warning.
+
+	* html/v4.0.7.html: Add a file to document the pending 4.0.7
+	release.
+
+2016-11-11 Even Rouault <even.rouault at spatialys.com>
+
+	* tools/tiff2pdf.c: avoid undefined behaviour related to overlapping
+	of source and destination buffer in memcpy() call in
+	t2p_sample_rgbaa_to_rgb()
+	Fixes http://bugzilla.maptools.org/show_bug.cgi?id=2577
+
+2016-11-11 Even Rouault <even.rouault at spatialys.com>
+
+	* tools/tiff2pdf.c: fix potential integer overflows on 32 bit builds
+	in t2p_read_tiff_size()
+	Fixes http://bugzilla.maptools.org/show_bug.cgi?id=2576
+
+2016-11-11 Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_aux.c: fix crash in TIFFVGetFieldDefaulted()
+	when requesting Predictor tag and that the zip/lzw codec is not
+	configured.
+	Fixes http://bugzilla.maptools.org/show_bug.cgi?id=2591
+
+2016-11-11 Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_dirread.c: in TIFFFetchNormalTag(), make sure that
+	values of tags with TIFF_SETGET_C16_ASCII / TIFF_SETGET_C32_ASCII
+	access are null terminated, to avoid potential read outside buffer
+	in _TIFFPrintField().
+	Fixes http://bugzilla.maptools.org/show_bug.cgi?id=2590 (CVE-2016-9297)
+
+2016-11-11 Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_dirread.c: reject images with OJPEG compression that
+	have no TileOffsets/StripOffsets tag, when OJPEG compression is
+	disabled. Prevent null pointer dereference in TIFFReadRawStrip1()
+	and other functions that expect td_stripbytecount to be non NULL.
+	Fixes http://bugzilla.maptools.org/show_bug.cgi?id=2585
+
+2016-11-11 Even Rouault <even.rouault at spatialys.com>
+
+	* tools/tiffcrop.c: fix multiple uint32 overflows in
+	writeBufferToSeparateStrips(), writeBufferToContigTiles() and
+	writeBufferToSeparateTiles() that could cause heap buffer overflows.
+	Reported by Henri Salo from Nixu Corporation.
+	Fixes http://bugzilla.maptools.org/show_bug.cgi?id=2592
+
+2016-11-10 Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_strip.c: make TIFFNumberOfStrips() return the td->td_nstrips
+	value when it is non-zero, instead of recomputing it. This is needed in
+	TIFF_STRIPCHOP mode where td_nstrips is modified. Fixes a read outsize of
+	array in tiffsplit (or other utilities using TIFFNumberOfStrips()).
+	Fixes http://bugzilla.maptools.org/show_bug.cgi?id=2587 (CVE-2016-9273)
+
+2016-11-04 Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_predic.c: fix memory leaks in error code paths added in
+	previous commit (fix for MSVR 35105)
+
+2016-10-31 Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_predict.h, libtiff/tif_predict.c:
+	Replace assertions by runtime checks to avoid assertions in debug mode,
+	or buffer overflows in release mode. Can happen when dealing with
+	unusual tile size like YCbCr with subsampling. Reported as MSVR 35105
+	by Axel Souchet	& Vishal Chauhan from the MSRC Vulnerabilities & Mitigations
+	team.
+
+2016-10-26 Even Rouault <even.rouault at spatialys.com>
+
+	* tools/fax2tiff.c: fix segfault when specifying -r without
+	argument. Patch by Yuriy M. Kaminskiy.
+	Fixes http://bugzilla.maptools.org/show_bug.cgi?id=2572
+
+2016-10-25 Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_dir.c: discard values of SMinSampleValue and
+	SMaxSampleValue when they have been read and the value of
+	SamplesPerPixel is changed afterwards (like when reading a
+	OJPEG compressed image with a missing SamplesPerPixel tag,
+	and whose photometric is RGB or YCbCr, forcing SamplesPerPixel
+	being 3). Otherwise when rewriting the directory (for example
+	with tiffset, we will expect 3 values whereas the array had been
+	allocated with just one), thus causing a out of bound read access.
+	Fixes http://bugzilla.maptools.org/show_bug.cgi?id=2500
+	(CVE-2014-8127, duplicate: CVE-2016-3658)
+	
+	* libtiff/tif_dirwrite.c: avoid null pointer dereference on td_stripoffset
+	when writing directory, if FIELD_STRIPOFFSETS was artificially set
+	for a hack case	in OJPEG case.
+	Fixes http://bugzilla.maptools.org/show_bug.cgi?id=2500
+	(CVE-2014-8127, duplicate: CVE-2016-3658)
+
+2016-10-25 Even Rouault <even.rouault at spatialys.com>
+
+	* tools/tiffinfo.c: fix out-of-bound read on some tiled images.
+	(http://bugzilla.maptools.org/show_bug.cgi?id=2517)
+
+	* libtiff/tif_compress.c: make TIFFNoDecode() return 0 to indicate an
+	error and make upper level read routines treat it accordingly.
+	(linked to the test case of http://bugzilla.maptools.org/show_bug.cgi?id=2517)
+
+2016-10-14 Even Rouault <even.rouault at spatialys.com>
+
+	* tools/tiffcrop.c: fix out-of-bound read of up to 3 bytes in
+	readContigTilesIntoBuffer(). Reported as MSVR 35092 by Axel Souchet
+	& Vishal Chauhan from the MSRC Vulnerabilities & Mitigations team.
+
+2016-10-09 Even Rouault <even.rouault at spatialys.com>
+
+	* tools/tiff2pdf.c: fix write buffer overflow of 2 bytes on JPEG
+	compressed images. Reported by Tyler Bohan of Cisco Talos as
+	TALOS-CAN-0187 / CVE-2016-5652.
+	Also prevents writing 2 extra uninitialized bytes to the file stream.
+
+2016-10-08 Even Rouault <even.rouault at spatialys.com>
+
+	* tools/tiffcp.c: fix out-of-bounds write on tiled images with odd
+	tile width vs image width. Reported as MSVR 35103
+	by Axel Souchet and Vishal Chauhan from the MSRC Vulnerabilities &
+	Mitigations team.
+
+2016-10-08 Even Rouault <even.rouault at spatialys.com>
+
+	* tools/tiff2pdf.c: fix read -largely- outsize of buffer in
+	t2p_readwrite_pdf_image_tile(), causing crash, when reading a
+	JPEG compressed image with TIFFTAG_JPEGTABLES length being one.
+	Reported as MSVR 35101 by Axel Souchet and Vishal Chauhan from
+	the MSRC Vulnerabilities & Mitigations team. CVE-2016-9453
+
+2016-10-08 Even Rouault <even.rouault at spatialys.com>
+
+	* tools/tiffcp.c: fix read of undefined variable in case of missing
+	required tags. Found on test case of MSVR 35100.
+	* tools/tiffcrop.c: fix read of undefined buffer in
+	readContigStripsIntoBuffer() due to uint16 overflow. Probably not a
+	security issue but I can be wrong. Reported as MSVR 35100 by Axel
+	Souchet from the MSRC Vulnerabilities & Mitigations team.
+
+2016-09-25  Bob Friesenhahn  <bfriesen@simple.dallas.tx.us>
+
+	* html: Change as many remotesensing.org broken links to a working
+	URL as possible.
+
+2016-09-24  Bob Friesenhahn  <bfriesen@simple.dallas.tx.us>
+
+	* libtiff/tif_getimage.c (TIFFRGBAImageOK): Reject attempts to
+	read floating point images.
+
+	* libtiff/tif_predict.c (PredictorSetup): Enforce bits-per-sample
+	requirements of floating point predictor (3).  Fixes CVE-2016-3622
+	"Divide By Zero in the tiff2rgba tool."
+
+2016-09-23 Even Rouault <even.rouault at spatialys.com>
+
+	* tools/tiffcrop.c: fix various out-of-bounds write vulnerabilities
+	in heap or stack allocated buffers. Reported as MSVR 35093,
+	MSVR 35096 and MSVR 35097. Discovered by Axel Souchet and Vishal
+	Chauhan from the MSRC Vulnerabilities & Mitigations team.
+	* tools/tiff2pdf.c: fix out-of-bounds write vulnerabilities in
+	heap allocate buffer in t2p_process_jpeg_strip(). Reported as MSVR
+	35098. Discovered by Axel Souchet and Vishal Chauhan from the MSRC
+	Vulnerabilities & Mitigations team.
+	* libtiff/tif_pixarlog.c: fix out-of-bounds write vulnerabilities
+	in heap allocated buffers. Reported as MSVR 35094. Discovered by
+	Axel Souchet and Vishal Chauhan from the MSRC Vulnerabilities &
+	Mitigations team.
+	* libtiff/tif_write.c: fix issue in error code path of TIFFFlushData1()
+	that didn't reset the tif_rawcc and tif_rawcp members. I'm not
+	completely sure if that could happen in practice outside of the odd
+	behaviour of t2p_seekproc() of tiff2pdf). The report points that a
+	better fix could be to check the return value of TIFFFlushData1() in
+	places where it isn't done currently, but it seems this patch is enough.
+	Reported as MSVR 35095. Discovered by Axel Souchet & Vishal Chauhan &
+	Suha Can from the MSRC Vulnerabilities & Mitigations team.
+
+2016-09-20  Bob Friesenhahn  <bfriesen@simple.dallas.tx.us>
+
+	* html/man/index.html: Comment out links to documentation for
+	abandoned utilities.
+
+2016-09-17 Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_lzma.c: typo fix in comment
+
+2016-09-04 Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/*.c: fix warnings raised by clang 3.9 -Wcomma
+
+2016-09-03 Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_dirwrite.c, libtiff/tif_color.c: fix warnings raised
+	by GCC 5 / clang -Wfloat-conversion
+
+2016-08-16 Even Rouault <even.rouault at spatialys.com>
+
+	* tools/tiffcrop.c: fix C99'ism.
+
+2016-08-15 Even Rouault <even.rouault at spatialys.com>
+
+	* tools/tiff2bw.c: fix weight computation that could result of color
+	value overflow (no security implication). Fix bugzilla #2550.
+	Patch by Frank Freudenberg.
+
+2016-08-15 Even Rouault <even.rouault at spatialys.com>
+
+	* tools/rgb2ycbcr.c: validate values of -v and -h parameters to
+	avoid potential divide by zero. Fixes CVE-2016-3623 (bugzilla #2569)
+
+2016-08-15 Even Rouault <even.rouault at spatialys.com>
+
+	* tools/tiffcrop.c: Fix out-of-bounds write in loadImage().
+	From patch libtiff-CVE-2016-3991.patch from
+	libtiff-4.0.3-25.el7_2.src.rpm by Nikola Forro (bugzilla #2543)
+
+2016-08-15 Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_pixarlog.c: Fix write buffer overflow in PixarLogEncode
+	if more input samples are provided than expected by PixarLogSetupEncode.
+	Idea based on libtiff-CVE-2016-3990.patch from
+	libtiff-4.0.3-25.el7_2.src.rpm by Nikola Forro, but with different and
+	simpler check. (bugzilla #2544)
+
+2016-08-15 Even Rouault <even.rouault at spatialys.com>
+
+	* tools/tiff2rgba.c: Fix integer overflow in size of allocated
+	buffer, when -b mode is enabled, that could result in out-of-bounds
+	write. Based initially on patch tiff-CVE-2016-3945.patch from
+	libtiff-4.0.3-25.el7_2.src.rpm by Nikola Forro, with correction for
+	invalid tests that rejected valid files. (bugzilla #2545)
+
+2016-07-11 Even Rouault <even.rouault at spatialys.com>
+
+	* tools/tiffcrop.c: Avoid access outside of stack allocated array
+	on a tiled separate TIFF with more than 8 samples per pixel.
+	Reported by Kaixiang Zhang of the Cloud Security Team, Qihoo 360
+	(CVE-2016-5321 / CVE-2016-5323 , bugzilla #2558 / #2559)
+
+2016-07-10 Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_read.c: Fix out-of-bounds read on
+	memory-mapped files in TIFFReadRawStrip1() and TIFFReadRawTile1()
+	when stripoffset is beyond tmsize_t max value (reported by
+	Mathias Svensson)
+
+2016-07-10 Even Rouault <even.rouault at spatialys.com>
+
+	* tools/tiffdump.c: fix a few misaligned 64-bit reads warned
+	by -fsanitize
+
+2016-07-03 Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_read.c: make TIFFReadEncodedStrip() and
+	TIFFReadEncodedTile() directly use user provided buffer when
+	no compression (and other conditions) to save a memcpy().
+
+	* libtiff/tif_write.c: make TIFFWriteEncodedStrip() and
+	TIFFWriteEncodedTile() directly use user provided buffer when
+	no compression to save a memcpy().
+
+2016-07-01  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_luv.c: validate that for COMPRESSION_SGILOG and
+	PHOTOMETRIC_LOGL, there is only one sample per pixel. Avoid
+	potential invalid memory write on corrupted/unexpected images when
+	using the TIFFRGBAImageBegin() interface (reported by
+	Clay Wood)
+
+2016-06-28  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_pixarlog.c: fix potential buffer write overrun in
+	PixarLogDecode() on corrupted/unexpected images (reported by Mathias Svensson)
+	(CVE-2016-5875)
+
+2016-06-15  Bob Friesenhahn  <bfriesen@simple.dallas.tx.us>
+
+	* libtiff/libtiff.def: Added _TIFFMultiply32 and _TIFFMultiply64
+	to libtiff.def
+
+2016-06-05  Bob Friesenhahn  <bfriesen@simple.dallas.tx.us>
+
+	* tools/Makefile.am: The libtiff tools bmp2tiff, gif2tiff,
+	ras2tiff, sgi2tiff, sgisv, and ycbcr are completely removed from
+	the distribution.  The libtiff tools rgb2ycbcr and thumbnail are
+	only built in the build tree for testing.  Old files are put in
+	new 'archive' subdirectory of the source repository, but not in
+	distribution archives.  These changes are made in order to lessen
+	the maintenance burden.
+
+2016-05-10  Bob Friesenhahn  <bfriesen@simple.dallas.tx.us>
+
+	* libtiff/tif_config.vc.h (HAVE_SNPRINTF): Add a '1' to the
+	HAVE_SNPRINTF definition.'
+
+2016-05-09  Bob Friesenhahn  <bfriesen@simple.dallas.tx.us>
+
+	* libtiff/tif_config.vc.h (HAVE_SNPRINTF): Applied patch by Edward
+	Lam to define HAVE_SNPRINTF for Visual Studio 2015.
+
+2016-04-27  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_dirread.c: when compiled with DEFER_STRILE_LOAD,
+	fix regression, introduced on 2014-12-23, when reading a one-strip
+	file without a StripByteCounts tag. GDAL #6490
+
+2016-04-07  Bob Friesenhahn  <bfriesen@simple.dallas.tx.us>
+
+	* html/bugs.html: Replace Andrey Kiselev with Bob Friesenhahn for
+	purposes of security issue reporting.
+
+2016-01-23  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/*: upstream typo fixes (mostly contributed by Kurt Schwehr)
+	coming from GDAL internal libtiff
+
+2016-01-09  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_fax3.h: make Param member of TIFFFaxTabEnt structure
+	a uint16 to reduce size of the binary.
+
+2016-01-03  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_read.c, tif_dirread.c: fix indentation issues raised
+	by GCC 6 -Wmisleading-indentation
+
+2015-12-27  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_pixarlog.c: avoid zlib error messages to pass a NULL
+	string to %s formatter, which is undefined behaviour in sprintf().
+
+2015-12-27  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_next.c: fix potential out-of-bound write in NeXTDecode()
+	triggered by http://lcamtuf.coredump.cx/afl/vulns/libtiff5.tif
+	(bugzilla #2508)
+
+2015-12-27  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_luv.c: fix potential out-of-bound writes in decode
+	functions in non debug builds by replacing assert()s by regular if
+	checks (bugzilla #2522).
+	Fix potential out-of-bound reads in case of short input data.
+
+2015-12-26  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_getimage.c: fix out-of-bound reads in TIFFRGBAImage
+	interface in case of unsupported values of SamplesPerPixel/ExtraSamples
+	for LogLUV / CIELab. Add explicit call to TIFFRGBAImageOK() in
+	TIFFRGBAImageBegin(). Fix CVE-2015-8665 reported by limingxing and
+	CVE-2015-8683 reported by zzf of Alibaba.
+
+2015-12-21  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_dirread.c: workaround false positive warning of Clang Static
+	Analyzer about null pointer dereference in TIFFCheckDirOffset().
+
+2015-12-19  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_fax3.c: remove dead assignment in Fax3PutEOLgdal(). Found
+	by Clang Static Analyzer
+
+2015-12-18  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_dirwrite.c: fix truncation to 32 bit of file offsets in
+	TIFFLinkDirectory() and TIFFWriteDirectorySec() when aligning directory
+	offsets on a even offset (affects BigTIFF). This was a regression of the
+	changeset of 2015-10-19.
+
+2015-12-12  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_write.c: TIFFWriteEncodedStrip() and TIFFWriteEncodedTile()
+	should return -1 in case of failure of tif_encodestrip() as documented
+	* libtiff/tif_dumpmode.c: DumpModeEncode() should return 0 in case of
+	failure so that the above mentionned functions detect the error.
+
+2015-12-06  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/uvcode.h: const'ify uv_code array
+
+2015-12-06  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_dirinfo.c: const'ify tiffFields, exifFields,
+	tiffFieldArray and exifFieldArray arrays
+
+2015-12-06  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_print.c: constify photoNames and orientNames arrays
+
+2015-12-06  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_close.c, libtiff/tif_extension.c : rename link
+	variable to avoid -Wshadow warnings
+
+2015-11-22  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/*.c: fix typos in comments (patch by Kurt Schwehr)
+ 
+2015-11-22  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/*.c: fix MSVC warnings related to cast shortening and
+	assignment within conditional expression
+
+2015-11-18  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/*.c: fix clang -Wshorten-64-to-32 warnings
+
+2015-11-18  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_dirread.c: initialize double* data at line 3693 to NULL
+	to please MSVC 2013
+
+2015-11-17  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_dirread.c: prevent reading ColorMap or TransferFunction
+	if BitsPerPixel > 24, so as to avoid huge memory allocation and file
+	read attempts
+
+2015-11-02  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_dirread.c: remove duplicated assignment (reported by
+	Clang static analyzer)
+
+2015-10-28  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_dir.c, libtiff/tif_dirinfo.c, libtiff/tif_compress.c,
+	libtiff/tif_jpeg_12.c: suppress warnings about 'no previous
+	declaration/prototype'
+
+2015-10-19  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tiffiop.h, libtiff/tif_dirwrite.c: suffix constants by U to fix 
+	'warning: negative integer implicitly converted to unsigned type' warning
+	(part of -Wconversion)
+
+2015-10-17  Even Rouault <even.rouault at spatialys.com>
+
+	* libtiff/tif_dir.c, libtiff/tif_dirread.c, libtiff/tif_getimage.c,
+	  libtiff/tif_print.c: fix -Wshadow warnings (only in libtiff/)
+
 2015-09-12  Bob Friesenhahn  <bfriesen@simple.dallas.tx.us>
 
 	* libtiff 4.0.6 released.
