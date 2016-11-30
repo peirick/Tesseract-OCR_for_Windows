@@ -11,8 +11,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\lib\openjp2\opj_config_private.h" />
-    <ClInclude Include="src\lib\openjp2\opj_config.h" />
     <ClInclude Include="opj_config.h">
       <Filter>Header Files</Filter>
     </ClInclude>

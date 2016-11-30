@@ -44,8 +44,6 @@
     <ClInclude Include="opj_stdint.h" />
     <ClInclude Include="pi.h" />
     <ClInclude Include="raw.h" />
-    <ClInclude Include="src\lib\openjp2\opj_config.h" />
-    <ClInclude Include="src\lib\openjp2\opj_config_private.h" />
     <ClInclude Include="t1.h" />
     <ClInclude Include="t1_luts.h" />
     <ClInclude Include="t2.h" />
