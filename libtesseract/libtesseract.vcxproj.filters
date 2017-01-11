@@ -52,1614 +52,1602 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\tesseract_3.04\AUTHORS" />
-    <None Include="..\tesseract_3.04\ChangeLog" />
-    <None Include="..\tesseract_3.04\COPYING" />
-    <None Include="..\tesseract_3.04\INSTALL" />
-    <None Include="..\tesseract_3.04\NEWS" />
-    <None Include="..\tesseract_3.04\README.md" />
-    <None Include="..\tesseract_3.04\ReleaseNotes" />
-    <None Include="..\tesseract_3.04\api\Makefile.in">
+    <None Include="..\tesseract_3.05\AUTHORS" />
+    <None Include="..\tesseract_3.05\ChangeLog" />
+    <None Include="..\tesseract_3.05\COPYING" />
+    <None Include="..\tesseract_3.05\INSTALL" />
+    <None Include="..\tesseract_3.05\NEWS" />
+    <None Include="..\tesseract_3.05\README.md" />
+    <None Include="..\tesseract_3.05\ReleaseNotes" />
+    <None Include="..\tesseract_3.05\api\Makefile.in">
       <Filter>Source Files\api</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\tesseract_3.04\api\renderer.cpp">
+    <ClCompile Include="..\tesseract_3.05\api\renderer.cpp">
       <Filter>Source Files\api</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\api\baseapi.cpp">
+    <ClCompile Include="..\tesseract_3.05\api\baseapi.cpp">
       <Filter>Source Files\api</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\api\capi.cpp">
+    <ClCompile Include="..\tesseract_3.05\api\capi.cpp">
       <Filter>Source Files\api</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\api\pdfrenderer.cpp">
+    <ClCompile Include="..\tesseract_3.05\api\pdfrenderer.cpp">
       <Filter>Source Files\api</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\tfacepp.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\tfacepp.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\thresholder.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\thresholder.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\werdit.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\werdit.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\adaptions.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\adaptions.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\applybox.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\applybox.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\control.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\control.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\cube_control.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\cube_control.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\cube_reco_context.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\cube_reco_context.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\cubeclassifier.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\cubeclassifier.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\docqual.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\docqual.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\equationdetect.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\equationdetect.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\fixspace.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\fixspace.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\fixxht.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\fixxht.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\ltrresultiterator.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\ltrresultiterator.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\osdetect.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\osdetect.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\output.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\output.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\pageiterator.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\pageiterator.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\pagesegmain.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\pagesegmain.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\pagewalk.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\pagewalk.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\par_control.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\par_control.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\paragraphs.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\paragraphs.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\paramsd.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\paramsd.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\pgedit.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\pgedit.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\recogtraining.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\recogtraining.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\reject.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\reject.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\resultiterator.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\resultiterator.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\superscript.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\superscript.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\tessbox.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\tessbox.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\tessedit.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\tessedit.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\tesseract_cube_combiner.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\tesseract_cube_combiner.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\tesseractclass.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\tesseractclass.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccmain\tessvars.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccmain\tessvars.cpp">
       <Filter>Source Files\ccmain</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\blamer.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\blamer.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\blobbox.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\blobbox.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\blobs.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\blobs.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\blread.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\blread.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\boxread.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\boxread.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\boxword.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\boxword.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\ccstruct.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\ccstruct.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\coutln.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\coutln.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\detlinefit.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\detlinefit.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\dppoint.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\dppoint.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\fontinfo.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\fontinfo.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\genblob.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\genblob.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\imagedata.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\linlsq.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\linlsq.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\matrix.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\matrix.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\mod128.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\mod128.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\normalis.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\normalis.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\ocrblock.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\ocrblock.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\ocrpara.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\ocrpara.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\ocrrow.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\ocrrow.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\otsuthr.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\otsuthr.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\pageres.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\pageres.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\params_training_featdef.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\params_training_featdef.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\pdblock.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\pdblock.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\points.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\points.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\polyaprx.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\polyaprx.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\polyblk.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\polyblk.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\publictypes.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\publictypes.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\quadlsq.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\quadlsq.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\quspline.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\quspline.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\ratngs.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\ratngs.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\rect.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\rect.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\rejctmap.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\rejctmap.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\seam.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\seam.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\split.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\split.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\statistc.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\statistc.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\stepblob.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\stepblob.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\vecfuncs.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\vecfuncs.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccstruct\werd.cpp">
       <Filter>Source Files\ccstruct</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccstruct\werd.cpp">
-      <Filter>Source Files\ccstruct</Filter>
-    </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccutil\ambigs.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccutil\ambigs.cpp">
       <Filter>Source Files\ccutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccutil\basedir.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccutil\basedir.cpp">
       <Filter>Source Files\ccutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccutil\bits16.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccutil\bits16.cpp">
       <Filter>Source Files\ccutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccutil\bitvector.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccutil\bitvector.cpp">
       <Filter>Source Files\ccutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccutil\ccutil.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccutil\ccutil.cpp">
       <Filter>Source Files\ccutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccutil\clst.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccutil\clst.cpp">
       <Filter>Source Files\ccutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccutil\elst.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccutil\elst.cpp">
       <Filter>Source Files\ccutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccutil\elst2.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccutil\elst2.cpp">
       <Filter>Source Files\ccutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccutil\errcode.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccutil\errcode.cpp">
       <Filter>Source Files\ccutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccutil\globaloc.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccutil\globaloc.cpp">
       <Filter>Source Files\ccutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccutil\indexmapbidi.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccutil\indexmapbidi.cpp">
       <Filter>Source Files\ccutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccutil\mainblk.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccutil\mainblk.cpp">
       <Filter>Source Files\ccutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccutil\memry.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccutil\memry.cpp">
       <Filter>Source Files\ccutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccutil\params.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccutil\params.cpp">
       <Filter>Source Files\ccutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccutil\scanutils.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccutil\scanutils.cpp">
       <Filter>Source Files\ccutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccutil\serialis.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccutil\serialis.cpp">
       <Filter>Source Files\ccutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccutil\strngs.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccutil\strngs.cpp">
       <Filter>Source Files\ccutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccutil\tessdatamanager.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccutil\tessdatamanager.cpp">
       <Filter>Source Files\ccutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccutil\tprintf.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccutil\tprintf.cpp">
       <Filter>Source Files\ccutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccutil\unichar.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccutil\unichar.cpp">
       <Filter>Source Files\ccutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccutil\unicharmap.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccutil\unicharmap.cpp">
       <Filter>Source Files\ccutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccutil\unicharset.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccutil\unicharset.cpp">
       <Filter>Source Files\ccutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccutil\unicodes.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccutil\unicodes.cpp">
       <Filter>Source Files\ccutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\ccutil\universalambigs.cpp">
+    <ClCompile Include="..\tesseract_3.05\ccutil\universalambigs.cpp">
       <Filter>Source Files\ccutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\adaptive.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\adaptive.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\adaptmatch.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\adaptmatch.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\blobclass.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\blobclass.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\classify.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\classify.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\cluster.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\cluster.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\clusttool.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\clusttool.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\cutoffs.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\cutoffs.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\errorcounter.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\errorcounter.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\featdefs.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\featdefs.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\float2int.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\float2int.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\fpoint.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\fpoint.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\intfeaturedist.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\intfeaturedist.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\intfeaturemap.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\intfeaturemap.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\intfeaturespace.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\intfeaturespace.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\intfx.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\intfx.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\intmatcher.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\intmatcher.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\intproto.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\intproto.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\kdtree.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\kdtree.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\mastertrainer.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\mastertrainer.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\mf.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\mf.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\mfdefs.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\mfdefs.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\mfoutline.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\mfoutline.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\mfx.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\mfx.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\normfeat.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\normfeat.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\normmatch.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\normmatch.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\ocrfeatures.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\ocrfeatures.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\outfeat.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\outfeat.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\picofeat.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\picofeat.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\protos.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\protos.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\sampleiterator.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\sampleiterator.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\shapeclassifier.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\shapeclassifier.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\shapetable.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\shapetable.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\tessclassifier.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\tessclassifier.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\trainingsample.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\trainingsample.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\classify\trainingsampleset.cpp">
+    <ClCompile Include="..\tesseract_3.05\classify\trainingsampleset.cpp">
       <Filter>Source Files\classify</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\altlist.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\altlist.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\beam_search.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\beam_search.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\bmp_8.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\bmp_8.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\cached_file.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\cached_file.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\char_altlist.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\char_altlist.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\char_bigrams.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\char_bigrams.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\char_samp.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\char_samp.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\char_samp_enum.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\char_samp_enum.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\char_samp_set.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\char_samp_set.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\char_set.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\char_set.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\classifier_factory.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\classifier_factory.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\con_comp.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\con_comp.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\conv_net_classifier.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\conv_net_classifier.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\cube_line_object.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\cube_line_object.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\cube_line_segmenter.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\cube_line_segmenter.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\cube_object.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\cube_object.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\cube_search_object.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\cube_search_object.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\cube_tuning_params.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\cube_tuning_params.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\cube_utils.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\cube_utils.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\feature_bmp.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\feature_bmp.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\feature_chebyshev.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\feature_chebyshev.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\feature_hybrid.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\feature_hybrid.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\hybrid_neural_net_classifier.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\hybrid_neural_net_classifier.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\search_column.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\search_column.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\search_node.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\search_node.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\tess_lang_mod_edge.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\tess_lang_mod_edge.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\tess_lang_model.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\tess_lang_model.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\word_altlist.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\word_altlist.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\word_list_lang_model.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\word_list_lang_model.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\word_size_model.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\word_size_model.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cube\word_unigrams.cpp">
+    <ClCompile Include="..\tesseract_3.05\cube\word_unigrams.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cutil\bitvec.cpp">
+    <ClCompile Include="..\tesseract_3.05\cutil\bitvec.cpp">
       <Filter>Source Files\cutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cutil\callcpp.cpp">
+    <ClCompile Include="..\tesseract_3.05\cutil\callcpp.cpp">
       <Filter>Source Files\cutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cutil\cutil.cpp">
+    <ClCompile Include="..\tesseract_3.05\cutil\cutil.cpp">
       <Filter>Source Files\cutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cutil\cutil_class.cpp">
+    <ClCompile Include="..\tesseract_3.05\cutil\cutil_class.cpp">
       <Filter>Source Files\cutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cutil\danerror.cpp">
+    <ClCompile Include="..\tesseract_3.05\cutil\danerror.cpp">
       <Filter>Source Files\cutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cutil\efio.cpp">
+    <ClCompile Include="..\tesseract_3.05\cutil\efio.cpp">
       <Filter>Source Files\cutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cutil\emalloc.cpp">
+    <ClCompile Include="..\tesseract_3.05\cutil\emalloc.cpp">
       <Filter>Source Files\cutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cutil\freelist.cpp">
+    <ClCompile Include="..\tesseract_3.05\cutil\freelist.cpp">
       <Filter>Source Files\cutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cutil\listio.cpp">
+    <ClCompile Include="..\tesseract_3.05\cutil\oldlist.cpp">
       <Filter>Source Files\cutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cutil\oldlist.cpp">
+    <ClCompile Include="..\tesseract_3.05\cutil\structures.cpp">
       <Filter>Source Files\cutil</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\cutil\structures.cpp">
-      <Filter>Source Files\cutil</Filter>
-    </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\dict\trie.cpp">
+    <ClCompile Include="..\tesseract_3.05\dict\trie.cpp">
       <Filter>Source Files\dict</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\dict\context.cpp">
+    <ClCompile Include="..\tesseract_3.05\dict\context.cpp">
       <Filter>Source Files\dict</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\dict\dawg.cpp">
+    <ClCompile Include="..\tesseract_3.05\dict\dawg.cpp">
       <Filter>Source Files\dict</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\dict\dawg_cache.cpp">
+    <ClCompile Include="..\tesseract_3.05\dict\dawg_cache.cpp">
       <Filter>Source Files\dict</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\dict\dict.cpp">
+    <ClCompile Include="..\tesseract_3.05\dict\dict.cpp">
       <Filter>Source Files\dict</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\dict\hyphen.cpp">
+    <ClCompile Include="..\tesseract_3.05\dict\hyphen.cpp">
       <Filter>Source Files\dict</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\dict\permdawg.cpp">
+    <ClCompile Include="..\tesseract_3.05\dict\permdawg.cpp">
       <Filter>Source Files\dict</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\dict\stopper.cpp">
+    <ClCompile Include="..\tesseract_3.05\dict\stopper.cpp">
       <Filter>Source Files\dict</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\neural_networks\runtime\input_file_buffer.cpp">
+    <ClCompile Include="..\tesseract_3.05\neural_networks\runtime\input_file_buffer.cpp">
       <Filter>Source Files\neural_networks\runtime</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\neural_networks\runtime\neural_net.cpp">
+    <ClCompile Include="..\tesseract_3.05\neural_networks\runtime\neural_net.cpp">
       <Filter>Source Files\neural_networks\runtime</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\neural_networks\runtime\neuron.cpp">
+    <ClCompile Include="..\tesseract_3.05\neural_networks\runtime\neuron.cpp">
       <Filter>Source Files\neural_networks\runtime</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\neural_networks\runtime\sigmoid_table.cpp">
+    <ClCompile Include="..\tesseract_3.05\neural_networks\runtime\sigmoid_table.cpp">
       <Filter>Source Files\neural_networks\runtime</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\opencl\openclwrapper.cpp">
+    <ClCompile Include="..\tesseract_3.05\opencl\openclwrapper.cpp">
       <Filter>Source Files\opencl</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\alignedblob.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\alignedblob.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\baselinedetect.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\baselinedetect.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\bbgrid.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\bbgrid.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\blkocc.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\blkocc.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\blobgrid.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\blobgrid.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\ccnontextdetect.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\ccnontextdetect.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\cjkpitch.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\cjkpitch.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\colfind.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\colfind.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\colpartition.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\colpartition.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\colpartitiongrid.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\colpartitiongrid.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\colpartitionset.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\colpartitionset.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\devanagari_processing.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\devanagari_processing.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\drawedg.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\drawedg.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\drawtord.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\drawtord.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\edgblob.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\edgblob.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\edgloop.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\edgloop.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\equationdetectbase.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\equationdetectbase.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\fpchop.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\fpchop.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\gap_map.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\gap_map.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\imagefind.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\imagefind.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\linefind.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\linefind.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\makerow.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\makerow.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\oldbasel.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\oldbasel.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\pithsync.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\pithsync.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\pitsync1.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\pitsync1.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\scanedg.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\scanedg.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\sortflts.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\sortflts.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\strokewidth.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\strokewidth.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\tabfind.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\tabfind.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\tablefind.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\tablefind.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\tablerecog.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\tablerecog.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\tabvector.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\tabvector.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\textlineprojection.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\textlineprojection.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\textord.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\textord.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\topitch.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\topitch.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\tordmain.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\tordmain.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\tospace.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\tospace.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\tovars.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\tovars.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\underlin.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\underlin.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\wordseg.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\wordseg.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\textord\workingpartset.cpp">
+    <ClCompile Include="..\tesseract_3.05\textord\workingpartset.cpp">
       <Filter>Source Files\textord</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\viewer\scrollview.cpp">
+    <ClCompile Include="..\tesseract_3.05\viewer\scrollview.cpp">
       <Filter>Source Files\viewer</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\viewer\svmnode.cpp">
+    <ClCompile Include="..\tesseract_3.05\viewer\svmnode.cpp">
       <Filter>Source Files\viewer</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\viewer\svpaint.cpp">
+    <ClCompile Include="..\tesseract_3.05\viewer\svpaint.cpp">
       <Filter>Source Files\viewer</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\viewer\svutil.cpp">
+    <ClCompile Include="..\tesseract_3.05\viewer\svutil.cpp">
       <Filter>Source Files\viewer</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\vs2010\port\gettimeofday.cpp">
+    <ClCompile Include="..\tesseract_3.05\vs2010\port\gettimeofday.cpp">
       <Filter>Source Files\port</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\vs2010\port\strcasestr.cpp">
+    <ClCompile Include="..\tesseract_3.05\vs2010\port\strcasestr.cpp">
       <Filter>Source Files\port</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\vs2010\port\strtok_r.cpp">
+    <ClCompile Include="..\tesseract_3.05\vs2010\port\strtok_r.cpp">
       <Filter>Source Files\port</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\wordrec\associate.cpp">
+    <ClCompile Include="..\tesseract_3.05\wordrec\associate.cpp">
       <Filter>Source Files\wordrec</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\wordrec\chop.cpp">
+    <ClCompile Include="..\tesseract_3.05\wordrec\chop.cpp">
       <Filter>Source Files\wordrec</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\wordrec\chopper.cpp">
+    <ClCompile Include="..\tesseract_3.05\wordrec\chopper.cpp">
       <Filter>Source Files\wordrec</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\wordrec\drawfx.cpp">
+    <ClCompile Include="..\tesseract_3.05\wordrec\drawfx.cpp">
       <Filter>Source Files\wordrec</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\wordrec\findseam.cpp">
+    <ClCompile Include="..\tesseract_3.05\wordrec\findseam.cpp">
       <Filter>Source Files\wordrec</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\wordrec\gradechop.cpp">
+    <ClCompile Include="..\tesseract_3.05\wordrec\gradechop.cpp">
       <Filter>Source Files\wordrec</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\wordrec\language_model.cpp">
+    <ClCompile Include="..\tesseract_3.05\wordrec\language_model.cpp">
       <Filter>Source Files\wordrec</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\wordrec\lm_consistency.cpp">
+    <ClCompile Include="..\tesseract_3.05\wordrec\lm_consistency.cpp">
       <Filter>Source Files\wordrec</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\wordrec\lm_pain_points.cpp">
+    <ClCompile Include="..\tesseract_3.05\wordrec\lm_pain_points.cpp">
       <Filter>Source Files\wordrec</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\wordrec\lm_state.cpp">
+    <ClCompile Include="..\tesseract_3.05\wordrec\lm_state.cpp">
       <Filter>Source Files\wordrec</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\wordrec\outlines.cpp">
+    <ClCompile Include="..\tesseract_3.05\wordrec\outlines.cpp">
       <Filter>Source Files\wordrec</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\wordrec\params_model.cpp">
+    <ClCompile Include="..\tesseract_3.05\wordrec\params_model.cpp">
       <Filter>Source Files\wordrec</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\wordrec\pieces.cpp">
+    <ClCompile Include="..\tesseract_3.05\wordrec\pieces.cpp">
       <Filter>Source Files\wordrec</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\wordrec\plotedges.cpp">
+    <ClCompile Include="..\tesseract_3.05\wordrec\plotedges.cpp">
       <Filter>Source Files\wordrec</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\wordrec\render.cpp">
+    <ClCompile Include="..\tesseract_3.05\wordrec\render.cpp">
       <Filter>Source Files\wordrec</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\wordrec\segsearch.cpp">
+    <ClCompile Include="..\tesseract_3.05\wordrec\segsearch.cpp">
       <Filter>Source Files\wordrec</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\wordrec\tface.cpp">
+    <ClCompile Include="..\tesseract_3.05\wordrec\tface.cpp">
       <Filter>Source Files\wordrec</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\wordrec\wordclass.cpp">
+    <ClCompile Include="..\tesseract_3.05\wordrec\wordclass.cpp">
       <Filter>Source Files\wordrec</Filter>
     </ClCompile>
-    <ClCompile Include="..\tesseract_3.04\wordrec\wordrec.cpp">
+    <ClCompile Include="..\tesseract_3.05\wordrec\wordrec.cpp">
       <Filter>Source Files\wordrec</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\tesseract_3.04\api\renderer.h">
+    <ClInclude Include="..\tesseract_3.05\api\renderer.h">
       <Filter>Source Files\api</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\api\apitypes.h">
+    <ClInclude Include="..\tesseract_3.05\api\apitypes.h">
       <Filter>Source Files\api</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\api\baseapi.h">
+    <ClInclude Include="..\tesseract_3.05\api\baseapi.h">
       <Filter>Source Files\api</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\api\capi.h">
+    <ClInclude Include="..\tesseract_3.05\api\capi.h">
       <Filter>Source Files\api</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccmain\control.h">
+    <ClInclude Include="..\tesseract_3.05\ccmain\control.h">
       <Filter>Source Files\ccmain</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccmain\cube_reco_context.h">
+    <ClInclude Include="..\tesseract_3.05\ccmain\cube_reco_context.h">
       <Filter>Source Files\ccmain</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccmain\cubeclassifier.h">
+    <ClInclude Include="..\tesseract_3.05\ccmain\cubeclassifier.h">
       <Filter>Source Files\ccmain</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccmain\docqual.h">
+    <ClInclude Include="..\tesseract_3.05\ccmain\docqual.h">
       <Filter>Source Files\ccmain</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccmain\equationdetect.h">
+    <ClInclude Include="..\tesseract_3.05\ccmain\equationdetect.h">
       <Filter>Source Files\ccmain</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccmain\fixspace.h">
+    <ClInclude Include="..\tesseract_3.05\ccmain\fixspace.h">
       <Filter>Source Files\ccmain</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccmain\ltrresultiterator.h">
+    <ClInclude Include="..\tesseract_3.05\ccmain\ltrresultiterator.h">
       <Filter>Source Files\ccmain</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccmain\mutableiterator.h">
+    <ClInclude Include="..\tesseract_3.05\ccmain\mutableiterator.h">
       <Filter>Source Files\ccmain</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccmain\osdetect.h">
+    <ClInclude Include="..\tesseract_3.05\ccmain\osdetect.h">
       <Filter>Source Files\ccmain</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccmain\output.h">
+    <ClInclude Include="..\tesseract_3.05\ccmain\output.h">
       <Filter>Source Files\ccmain</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccmain\pageiterator.h">
+    <ClInclude Include="..\tesseract_3.05\ccmain\pageiterator.h">
       <Filter>Source Files\ccmain</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccmain\paragraphs.h">
+    <ClInclude Include="..\tesseract_3.05\ccmain\paragraphs.h">
       <Filter>Source Files\ccmain</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccmain\paragraphs_internal.h">
+    <ClInclude Include="..\tesseract_3.05\ccmain\paragraphs_internal.h">
       <Filter>Source Files\ccmain</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccmain\paramsd.h">
+    <ClInclude Include="..\tesseract_3.05\ccmain\paramsd.h">
       <Filter>Source Files\ccmain</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccmain\pgedit.h">
+    <ClInclude Include="..\tesseract_3.05\ccmain\pgedit.h">
       <Filter>Source Files\ccmain</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccmain\reject.h">
+    <ClInclude Include="..\tesseract_3.05\ccmain\reject.h">
       <Filter>Source Files\ccmain</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccmain\resultiterator.h">
+    <ClInclude Include="..\tesseract_3.05\ccmain\resultiterator.h">
       <Filter>Source Files\ccmain</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccmain\tessbox.h">
+    <ClInclude Include="..\tesseract_3.05\ccmain\tessbox.h">
       <Filter>Source Files\ccmain</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccmain\tessedit.h">
+    <ClInclude Include="..\tesseract_3.05\ccmain\tessedit.h">
       <Filter>Source Files\ccmain</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccmain\tesseract_cube_combiner.h">
+    <ClInclude Include="..\tesseract_3.05\ccmain\tesseract_cube_combiner.h">
       <Filter>Source Files\ccmain</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccmain\tesseractclass.h">
+    <ClInclude Include="..\tesseract_3.05\ccmain\tesseractclass.h">
       <Filter>Source Files\ccmain</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccmain\tessvars.h">
+    <ClInclude Include="..\tesseract_3.05\ccmain\tessvars.h">
       <Filter>Source Files\ccmain</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccmain\thresholder.h">
+    <ClInclude Include="..\tesseract_3.05\ccmain\thresholder.h">
       <Filter>Source Files\ccmain</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccmain\werdit.h">
+    <ClInclude Include="..\tesseract_3.05\ccmain\werdit.h">
       <Filter>Source Files\ccmain</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\imagedata.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\ipoints.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\ipoints.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\linlsq.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\linlsq.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\matrix.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\matrix.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\mod128.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\mod128.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\normalis.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\normalis.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\ocrblock.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\ocrblock.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\ocrpara.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\ocrpara.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\ocrrow.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\ocrrow.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\otsuthr.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\otsuthr.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\pageres.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\pageres.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\params_training_featdef.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\params_training_featdef.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\pdblock.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\pdblock.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\points.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\points.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\polyaprx.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\polyaprx.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\polyblk.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\polyblk.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\publictypes.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\publictypes.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\quadlsq.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\quadlsq.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\quadratc.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\quadratc.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\quspline.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\quspline.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\ratngs.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\ratngs.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\rect.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\rect.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\rejctmap.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\rejctmap.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\seam.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\seam.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\split.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\split.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\statistc.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\statistc.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\stepblob.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\stepblob.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\vecfuncs.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\vecfuncs.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\werd.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\werd.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\blamer.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\blamer.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\blckerr.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\blckerr.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\blobbox.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\blobbox.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\blobs.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\blobs.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\blread.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\blread.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\boxread.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\boxread.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\boxword.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\boxword.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\ccstruct.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\ccstruct.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\coutln.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\coutln.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\crakedge.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\crakedge.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\detlinefit.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\detlinefit.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\dppoint.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\dppoint.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\fontinfo.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\fontinfo.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\genblob.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\genblob.h">
+    <ClInclude Include="..\tesseract_3.05\ccstruct\hpdsizes.h">
       <Filter>Source Files\ccstruct</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccstruct\hpdsizes.h">
-      <Filter>Source Files\ccstruct</Filter>
-    </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\nwmain.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\nwmain.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\object_cache.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\object_cache.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\ocrclass.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\ocrclass.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\params.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\params.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\platform.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\platform.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\qrsequence.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\qrsequence.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\scanutils.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\scanutils.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\serialis.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\serialis.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\sorthelper.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\sorthelper.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\stderr.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\stderr.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\strngs.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\strngs.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\tesscallback.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\tesscallback.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\tessdatamanager.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\tessdatamanager.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\tprintf.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\tprintf.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\unichar.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\unichar.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\unicharmap.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\unicharmap.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\unicharset.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\unicharset.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\unicity_table.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\unicity_table.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\unicodes.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\unicodes.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\universalambigs.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\universalambigs.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\ambigs.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\ambigs.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\basedir.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\basedir.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\bits16.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\bits16.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\bitvector.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\bitvector.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\ccutil.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\ccutil.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\clst.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\clst.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\doubleptr.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\doubleptr.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\elst.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\elst.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\elst2.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\elst2.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\errcode.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\errcode.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\fileerr.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\fileerr.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\genericheap.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\genericheap.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\genericvector.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\genericvector.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\globaloc.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\globaloc.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\hashfn.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\hashfn.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\helpers.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\helpers.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\host.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\host.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\indexmapbidi.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\indexmapbidi.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\kdpair.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\kdpair.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\lsterr.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\lsterr.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\memry.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\memry.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\ccutil\ndminx.h">
+    <ClInclude Include="..\tesseract_3.05\ccutil\ndminx.h">
       <Filter>Source Files\ccutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\mfx.h">
+    <ClInclude Include="..\tesseract_3.05\classify\mfx.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\normfeat.h">
+    <ClInclude Include="..\tesseract_3.05\classify\normfeat.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\normmatch.h">
+    <ClInclude Include="..\tesseract_3.05\classify\normmatch.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\ocrfeatures.h">
+    <ClInclude Include="..\tesseract_3.05\classify\ocrfeatures.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\outfeat.h">
+    <ClInclude Include="..\tesseract_3.05\classify\outfeat.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\picofeat.h">
+    <ClInclude Include="..\tesseract_3.05\classify\picofeat.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\protos.h">
+    <ClInclude Include="..\tesseract_3.05\classify\protos.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\sampleiterator.h">
+    <ClInclude Include="..\tesseract_3.05\classify\sampleiterator.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\shapeclassifier.h">
+    <ClInclude Include="..\tesseract_3.05\classify\shapeclassifier.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\shapetable.h">
+    <ClInclude Include="..\tesseract_3.05\classify\shapetable.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\tessclassifier.h">
+    <ClInclude Include="..\tesseract_3.05\classify\tessclassifier.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\trainingsample.h">
+    <ClInclude Include="..\tesseract_3.05\classify\trainingsample.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\trainingsampleset.h">
+    <ClInclude Include="..\tesseract_3.05\classify\trainingsampleset.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\adaptive.h">
+    <ClInclude Include="..\tesseract_3.05\classify\adaptive.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\blobclass.h">
+    <ClInclude Include="..\tesseract_3.05\classify\blobclass.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\classify.h">
+    <ClInclude Include="..\tesseract_3.05\classify\classify.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\cluster.h">
+    <ClInclude Include="..\tesseract_3.05\classify\cluster.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\clusttool.h">
+    <ClInclude Include="..\tesseract_3.05\classify\clusttool.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\cutoffs.h">
+    <ClInclude Include="..\tesseract_3.05\classify\cutoffs.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\errorcounter.h">
+    <ClInclude Include="..\tesseract_3.05\classify\errorcounter.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\featdefs.h">
+    <ClInclude Include="..\tesseract_3.05\classify\featdefs.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\float2int.h">
+    <ClInclude Include="..\tesseract_3.05\classify\float2int.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\fpoint.h">
+    <ClInclude Include="..\tesseract_3.05\classify\fpoint.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\intfeaturedist.h">
+    <ClInclude Include="..\tesseract_3.05\classify\intfeaturedist.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\intfeaturemap.h">
+    <ClInclude Include="..\tesseract_3.05\classify\intfeaturemap.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\intfeaturespace.h">
+    <ClInclude Include="..\tesseract_3.05\classify\intfeaturespace.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\intfx.h">
+    <ClInclude Include="..\tesseract_3.05\classify\intfx.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\intmatcher.h">
+    <ClInclude Include="..\tesseract_3.05\classify\intmatcher.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\intproto.h">
+    <ClInclude Include="..\tesseract_3.05\classify\intproto.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\kdtree.h">
+    <ClInclude Include="..\tesseract_3.05\classify\kdtree.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\mastertrainer.h">
+    <ClInclude Include="..\tesseract_3.05\classify\mastertrainer.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\mf.h">
+    <ClInclude Include="..\tesseract_3.05\classify\mf.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\mfdefs.h">
+    <ClInclude Include="..\tesseract_3.05\classify\mfdefs.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\classify\mfoutline.h">
+    <ClInclude Include="..\tesseract_3.05\classify\mfoutline.h">
       <Filter>Source Files\classify</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\feature_hybrid.h">
+    <ClInclude Include="..\tesseract_3.05\cube\feature_hybrid.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\hybrid_neural_net_classifier.h">
+    <ClInclude Include="..\tesseract_3.05\cube\hybrid_neural_net_classifier.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\lang_mod_edge.h">
+    <ClInclude Include="..\tesseract_3.05\cube\lang_mod_edge.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\lang_model.h">
+    <ClInclude Include="..\tesseract_3.05\cube\lang_model.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\search_column.h">
+    <ClInclude Include="..\tesseract_3.05\cube\search_column.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\search_node.h">
+    <ClInclude Include="..\tesseract_3.05\cube\search_node.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\search_object.h">
+    <ClInclude Include="..\tesseract_3.05\cube\search_object.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\string_32.h">
+    <ClInclude Include="..\tesseract_3.05\cube\string_32.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\tess_lang_mod_edge.h">
+    <ClInclude Include="..\tesseract_3.05\cube\tess_lang_mod_edge.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\tess_lang_model.h">
+    <ClInclude Include="..\tesseract_3.05\cube\tess_lang_model.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\tuning_params.h">
+    <ClInclude Include="..\tesseract_3.05\cube\tuning_params.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\word_altlist.h">
+    <ClInclude Include="..\tesseract_3.05\cube\word_altlist.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\word_list_lang_model.h">
+    <ClInclude Include="..\tesseract_3.05\cube\word_list_lang_model.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\word_size_model.h">
+    <ClInclude Include="..\tesseract_3.05\cube\word_size_model.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\word_unigrams.h">
+    <ClInclude Include="..\tesseract_3.05\cube\word_unigrams.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\altlist.h">
+    <ClInclude Include="..\tesseract_3.05\cube\altlist.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\beam_search.h">
+    <ClInclude Include="..\tesseract_3.05\cube\beam_search.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\bmp_8.h">
+    <ClInclude Include="..\tesseract_3.05\cube\bmp_8.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\cached_file.h">
+    <ClInclude Include="..\tesseract_3.05\cube\cached_file.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\char_altlist.h">
+    <ClInclude Include="..\tesseract_3.05\cube\char_altlist.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\char_bigrams.h">
+    <ClInclude Include="..\tesseract_3.05\cube\char_bigrams.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\char_samp.h">
+    <ClInclude Include="..\tesseract_3.05\cube\char_samp.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\char_samp_enum.h">
+    <ClInclude Include="..\tesseract_3.05\cube\char_samp_enum.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\char_samp_set.h">
+    <ClInclude Include="..\tesseract_3.05\cube\char_samp_set.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\char_set.h">
+    <ClInclude Include="..\tesseract_3.05\cube\char_set.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\classifier_base.h">
+    <ClInclude Include="..\tesseract_3.05\cube\classifier_base.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\classifier_factory.h">
+    <ClInclude Include="..\tesseract_3.05\cube\classifier_factory.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\con_comp.h">
+    <ClInclude Include="..\tesseract_3.05\cube\con_comp.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\conv_net_classifier.h">
+    <ClInclude Include="..\tesseract_3.05\cube\conv_net_classifier.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\cube_const.h">
+    <ClInclude Include="..\tesseract_3.05\cube\cube_const.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\cube_line_object.h">
+    <ClInclude Include="..\tesseract_3.05\cube\cube_line_object.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\cube_line_segmenter.h">
+    <ClInclude Include="..\tesseract_3.05\cube\cube_line_segmenter.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\cube_object.h">
+    <ClInclude Include="..\tesseract_3.05\cube\cube_object.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\cube_search_object.h">
+    <ClInclude Include="..\tesseract_3.05\cube\cube_search_object.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\cube_tuning_params.h">
+    <ClInclude Include="..\tesseract_3.05\cube\cube_tuning_params.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\cube_utils.h">
+    <ClInclude Include="..\tesseract_3.05\cube\cube_utils.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\feature_base.h">
+    <ClInclude Include="..\tesseract_3.05\cube\feature_base.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\feature_bmp.h">
+    <ClInclude Include="..\tesseract_3.05\cube\feature_bmp.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cube\feature_chebyshev.h">
+    <ClInclude Include="..\tesseract_3.05\cube\feature_chebyshev.h">
       <Filter>Source Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cutil\bitvec.h">
+    <ClInclude Include="..\tesseract_3.05\cutil\bitvec.h">
       <Filter>Source Files\cutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cutil\callcpp.h">
+    <ClInclude Include="..\tesseract_3.05\cutil\callcpp.h">
       <Filter>Source Files\cutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cutil\const.h">
+    <ClInclude Include="..\tesseract_3.05\cutil\const.h">
       <Filter>Source Files\cutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cutil\cutil.h">
+    <ClInclude Include="..\tesseract_3.05\cutil\cutil.h">
       <Filter>Source Files\cutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cutil\cutil_class.h">
+    <ClInclude Include="..\tesseract_3.05\cutil\cutil_class.h">
       <Filter>Source Files\cutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cutil\danerror.h">
+    <ClInclude Include="..\tesseract_3.05\cutil\danerror.h">
       <Filter>Source Files\cutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cutil\efio.h">
+    <ClInclude Include="..\tesseract_3.05\cutil\efio.h">
       <Filter>Source Files\cutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cutil\emalloc.h">
+    <ClInclude Include="..\tesseract_3.05\cutil\emalloc.h">
       <Filter>Source Files\cutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cutil\freelist.h">
+    <ClInclude Include="..\tesseract_3.05\cutil\freelist.h">
       <Filter>Source Files\cutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cutil\globals.h">
+    <ClInclude Include="..\tesseract_3.05\cutil\globals.h">
       <Filter>Source Files\cutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cutil\listio.h">
+    <ClInclude Include="..\tesseract_3.05\cutil\oldlist.h">
       <Filter>Source Files\cutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cutil\oldlist.h">
+    <ClInclude Include="..\tesseract_3.05\cutil\structures.h">
       <Filter>Source Files\cutil</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\cutil\structures.h">
-      <Filter>Source Files\cutil</Filter>
-    </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\dict\dawg.h">
+    <ClInclude Include="..\tesseract_3.05\dict\dawg.h">
       <Filter>Source Files\dict</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\dict\dawg_cache.h">
+    <ClInclude Include="..\tesseract_3.05\dict\dawg_cache.h">
       <Filter>Source Files\dict</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\dict\dict.h">
+    <ClInclude Include="..\tesseract_3.05\dict\dict.h">
       <Filter>Source Files\dict</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\dict\matchdefs.h">
+    <ClInclude Include="..\tesseract_3.05\dict\matchdefs.h">
       <Filter>Source Files\dict</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\dict\stopper.h">
+    <ClInclude Include="..\tesseract_3.05\dict\stopper.h">
       <Filter>Source Files\dict</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\dict\trie.h">
+    <ClInclude Include="..\tesseract_3.05\dict\trie.h">
       <Filter>Source Files\dict</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\neural_networks\runtime\input_file_buffer.h">
+    <ClInclude Include="..\tesseract_3.05\neural_networks\runtime\input_file_buffer.h">
       <Filter>Source Files\neural_networks\runtime</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\neural_networks\runtime\neural_net.h">
+    <ClInclude Include="..\tesseract_3.05\neural_networks\runtime\neural_net.h">
       <Filter>Source Files\neural_networks\runtime</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\neural_networks\runtime\neuron.h">
+    <ClInclude Include="..\tesseract_3.05\neural_networks\runtime\neuron.h">
       <Filter>Source Files\neural_networks\runtime</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\opencl\openclwrapper.h">
+    <ClInclude Include="..\tesseract_3.05\opencl\openclwrapper.h">
       <Filter>Source Files\opencl</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\opencl\oclkernels.h">
+    <ClInclude Include="..\tesseract_3.05\opencl\oclkernels.h">
       <Filter>Source Files\opencl</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\opencl\opencl_device_selection.h">
+    <ClInclude Include="..\tesseract_3.05\opencl\opencl_device_selection.h">
       <Filter>Source Files\opencl</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\pithsync.h">
+    <ClInclude Include="..\tesseract_3.05\textord\pithsync.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\pitsync1.h">
+    <ClInclude Include="..\tesseract_3.05\textord\pitsync1.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\scanedg.h">
+    <ClInclude Include="..\tesseract_3.05\textord\scanedg.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\sortflts.h">
+    <ClInclude Include="..\tesseract_3.05\textord\sortflts.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\strokewidth.h">
+    <ClInclude Include="..\tesseract_3.05\textord\strokewidth.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\tabfind.h">
+    <ClInclude Include="..\tesseract_3.05\textord\tabfind.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\tablefind.h">
+    <ClInclude Include="..\tesseract_3.05\textord\tablefind.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\tablerecog.h">
+    <ClInclude Include="..\tesseract_3.05\textord\tablerecog.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\tabvector.h">
+    <ClInclude Include="..\tesseract_3.05\textord\tabvector.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\textlineprojection.h">
+    <ClInclude Include="..\tesseract_3.05\textord\textlineprojection.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\textord.h">
+    <ClInclude Include="..\tesseract_3.05\textord\textord.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\topitch.h">
+    <ClInclude Include="..\tesseract_3.05\textord\topitch.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\tordmain.h">
+    <ClInclude Include="..\tesseract_3.05\textord\tordmain.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\tovars.h">
+    <ClInclude Include="..\tesseract_3.05\textord\tovars.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\underlin.h">
+    <ClInclude Include="..\tesseract_3.05\textord\underlin.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\wordseg.h">
+    <ClInclude Include="..\tesseract_3.05\textord\wordseg.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\workingpartset.h">
+    <ClInclude Include="..\tesseract_3.05\textord\workingpartset.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\alignedblob.h">
+    <ClInclude Include="..\tesseract_3.05\textord\alignedblob.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\baselinedetect.h">
+    <ClInclude Include="..\tesseract_3.05\textord\baselinedetect.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\bbgrid.h">
+    <ClInclude Include="..\tesseract_3.05\textord\bbgrid.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\blkocc.h">
+    <ClInclude Include="..\tesseract_3.05\textord\blkocc.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\blobgrid.h">
+    <ClInclude Include="..\tesseract_3.05\textord\blobgrid.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\ccnontextdetect.h">
+    <ClInclude Include="..\tesseract_3.05\textord\ccnontextdetect.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\cjkpitch.h">
+    <ClInclude Include="..\tesseract_3.05\textord\cjkpitch.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\colfind.h">
+    <ClInclude Include="..\tesseract_3.05\textord\colfind.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\colpartition.h">
+    <ClInclude Include="..\tesseract_3.05\textord\colpartition.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\colpartitiongrid.h">
+    <ClInclude Include="..\tesseract_3.05\textord\colpartitiongrid.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\colpartitionset.h">
+    <ClInclude Include="..\tesseract_3.05\textord\colpartitionset.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\devanagari_processing.h">
+    <ClInclude Include="..\tesseract_3.05\textord\devanagari_processing.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\drawedg.h">
+    <ClInclude Include="..\tesseract_3.05\textord\drawedg.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\drawtord.h">
+    <ClInclude Include="..\tesseract_3.05\textord\drawtord.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\edgblob.h">
+    <ClInclude Include="..\tesseract_3.05\textord\edgblob.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\edgloop.h">
+    <ClInclude Include="..\tesseract_3.05\textord\edgloop.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\equationdetectbase.h">
+    <ClInclude Include="..\tesseract_3.05\textord\equationdetectbase.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\fpchop.h">
+    <ClInclude Include="..\tesseract_3.05\textord\fpchop.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\gap_map.h">
+    <ClInclude Include="..\tesseract_3.05\textord\gap_map.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\imagefind.h">
+    <ClInclude Include="..\tesseract_3.05\textord\imagefind.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\linefind.h">
+    <ClInclude Include="..\tesseract_3.05\textord\linefind.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\makerow.h">
+    <ClInclude Include="..\tesseract_3.05\textord\makerow.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\textord\oldbasel.h">
+    <ClInclude Include="..\tesseract_3.05\textord\oldbasel.h">
       <Filter>Source Files\textord</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\viewer\scrollview.h">
+    <ClInclude Include="..\tesseract_3.05\viewer\scrollview.h">
       <Filter>Source Files\viewer</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\viewer\svmnode.h">
+    <ClInclude Include="..\tesseract_3.05\viewer\svmnode.h">
       <Filter>Source Files\viewer</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\viewer\svutil.h">
+    <ClInclude Include="..\tesseract_3.05\viewer\svutil.h">
       <Filter>Source Files\viewer</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\vs2010\port\gettimeofday.h">
+    <ClInclude Include="..\tesseract_3.05\vs2010\port\gettimeofday.h">
       <Filter>Source Files\port</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\vs2010\port\mathfix.h">
+    <ClInclude Include="..\tesseract_3.05\vs2010\port\mathfix.h">
       <Filter>Source Files\port</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\vs2010\port\strcasestr.h">
+    <ClInclude Include="..\tesseract_3.05\vs2010\port\strcasestr.h">
       <Filter>Source Files\port</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\vs2010\port\strtok_r.h">
+    <ClInclude Include="..\tesseract_3.05\vs2010\port\strtok_r.h">
       <Filter>Source Files\port</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\vs2010\port\vcsversion.h">
+    <ClInclude Include="..\tesseract_3.05\vs2010\port\vcsversion.h">
       <Filter>Source Files\port</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\wordrec\chopper.h">
+    <ClInclude Include="..\tesseract_3.05\wordrec\chopper.h">
       <Filter>Source Files\wordrec</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\wordrec\drawfx.h">
+    <ClInclude Include="..\tesseract_3.05\wordrec\drawfx.h">
       <Filter>Source Files\wordrec</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\wordrec\findseam.h">
+    <ClInclude Include="..\tesseract_3.05\wordrec\findseam.h">
       <Filter>Source Files\wordrec</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\wordrec\gradechop.h">
+    <ClInclude Include="..\tesseract_3.05\wordrec\gradechop.h">
       <Filter>Source Files\wordrec</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\wordrec\language_model.h">
+    <ClInclude Include="..\tesseract_3.05\wordrec\language_model.h">
       <Filter>Source Files\wordrec</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\wordrec\lm_consistency.h">
+    <ClInclude Include="..\tesseract_3.05\wordrec\lm_consistency.h">
       <Filter>Source Files\wordrec</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\wordrec\lm_pain_points.h">
+    <ClInclude Include="..\tesseract_3.05\wordrec\lm_pain_points.h">
       <Filter>Source Files\wordrec</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\wordrec\lm_state.h">
+    <ClInclude Include="..\tesseract_3.05\wordrec\lm_state.h">
       <Filter>Source Files\wordrec</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\wordrec\measure.h">
+    <ClInclude Include="..\tesseract_3.05\wordrec\measure.h">
       <Filter>Source Files\wordrec</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\wordrec\outlines.h">
+    <ClInclude Include="..\tesseract_3.05\wordrec\outlines.h">
       <Filter>Source Files\wordrec</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\wordrec\params_model.h">
+    <ClInclude Include="..\tesseract_3.05\wordrec\params_model.h">
       <Filter>Source Files\wordrec</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\wordrec\plotedges.h">
+    <ClInclude Include="..\tesseract_3.05\wordrec\plotedges.h">
       <Filter>Source Files\wordrec</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\wordrec\render.h">
+    <ClInclude Include="..\tesseract_3.05\wordrec\render.h">
       <Filter>Source Files\wordrec</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\wordrec\wordrec.h">
+    <ClInclude Include="..\tesseract_3.05\wordrec\wordrec.h">
       <Filter>Source Files\wordrec</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\wordrec\associate.h">
+    <ClInclude Include="..\tesseract_3.05\wordrec\associate.h">
       <Filter>Source Files\wordrec</Filter>
     </ClInclude>
-    <ClInclude Include="..\tesseract_3.04\wordrec\chop.h">
+    <ClInclude Include="..\tesseract_3.05\wordrec\chop.h">
       <Filter>Source Files\wordrec</Filter>
     </ClInclude>
   </ItemGroup>

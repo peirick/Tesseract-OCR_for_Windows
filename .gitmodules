@@ -1,8 +1,8 @@
-[submodule "tesseract_3.04"]
-	path = tesseract_3.04
-	url = https://github.com/tesseract-ocr/tesseract.git
-	branch = 3.04
 [submodule "leptonica"]
 	path = leptonica
 	url = https://github.com/DanBloomberg/leptonica.git
 	branch = master
+[submodule "tesseract_3.05"]
+	path = tesseract_3.05
+	url = https://github.com/tesseract-ocr/tesseract.git
+	branch = 3.05

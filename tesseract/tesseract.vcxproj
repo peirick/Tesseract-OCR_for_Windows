@@ -19,13 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\tesseract_3.04\vs2010\tesseract\resource.h" />
+    <ClInclude Include="..\tesseract_3.05\vs2010\tesseract\resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\tesseract_3.04\vs2010\tesseract\tesseract.rc" />
+    <ResourceCompile Include="..\tesseract_3.05\vs2010\tesseract\tesseract.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\tesseract_3.04\api\tesseractmain.cpp" />
+    <ClCompile Include="..\tesseract_3.05\api\tesseractmain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\libtesseract\libtesseract.vcxproj">
@@ -107,7 +107,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)tesseract_3.04\vs2010\port;$(SolutionDir)tesseract_3.04\api;$(SolutionDir)tesseract_3.04\ccmain;$(SolutionDir)tesseract_3.04\ccutil;$(SolutionDir)tesseract_3.04\ccstruct;$(SolutionDir)tesseract_3.04\classify;$(SolutionDir)tesseract_3.04\cube;$(SolutionDir)tesseract_3.04\cutil;$(SolutionDir)tesseract_3.04\dict;$(SolutionDir)tesseract_3.04\neural_networks\runtime;$(SolutionDir)tesseract_3.04\textord;$(SolutionDir)tesseract_3.04\viewer;$(SolutionDir)tesseract_3.04\opencl;$(SolutionDir)tesseract_3.04\wordrec;$(SolutionDir)leptonica\src;$(SolutionDir)liblept</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)tesseract_3.05\vs2010\port;$(SolutionDir)tesseract_3.05\api;$(SolutionDir)tesseract_3.05\ccmain;$(SolutionDir)tesseract_3.05\ccutil;$(SolutionDir)tesseract_3.05\ccstruct;$(SolutionDir)tesseract_3.05\classify;$(SolutionDir)tesseract_3.05\cube;$(SolutionDir)tesseract_3.05\cutil;$(SolutionDir)tesseract_3.05\dict;$(SolutionDir)tesseract_3.05\neural_networks\runtime;$(SolutionDir)tesseract_3.05\textord;$(SolutionDir)tesseract_3.05\viewer;$(SolutionDir)tesseract_3.05\opencl;$(SolutionDir)tesseract_3.05\wordrec;$(SolutionDir)leptonica\src;$(SolutionDir)liblept</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
@@ -128,7 +128,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)tesseract_3.04\vs2010\port;$(SolutionDir)tesseract_3.04\api;$(SolutionDir)tesseract_3.04\ccmain;$(SolutionDir)tesseract_3.04\ccutil;$(SolutionDir)tesseract_3.04\ccstruct;$(SolutionDir)tesseract_3.04\classify;$(SolutionDir)tesseract_3.04\cube;$(SolutionDir)tesseract_3.04\cutil;$(SolutionDir)tesseract_3.04\dict;$(SolutionDir)tesseract_3.04\neural_networks\runtime;$(SolutionDir)tesseract_3.04\textord;$(SolutionDir)tesseract_3.04\viewer;$(SolutionDir)tesseract_3.04\opencl;$(SolutionDir)tesseract_3.04\wordrec;$(SolutionDir)leptonica\src;$(SolutionDir)liblept</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)tesseract_3.05\vs2010\port;$(SolutionDir)tesseract_3.05\api;$(SolutionDir)tesseract_3.05\ccmain;$(SolutionDir)tesseract_3.05\ccutil;$(SolutionDir)tesseract_3.05\ccstruct;$(SolutionDir)tesseract_3.05\classify;$(SolutionDir)tesseract_3.05\cube;$(SolutionDir)tesseract_3.05\cutil;$(SolutionDir)tesseract_3.05\dict;$(SolutionDir)tesseract_3.05\neural_networks\runtime;$(SolutionDir)tesseract_3.05\textord;$(SolutionDir)tesseract_3.05\viewer;$(SolutionDir)tesseract_3.05\opencl;$(SolutionDir)tesseract_3.05\wordrec;$(SolutionDir)leptonica\src;$(SolutionDir)liblept</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
@@ -151,7 +151,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)tesseract_3.04\vs2010\port;$(SolutionDir)tesseract_3.04\api;$(SolutionDir)tesseract_3.04\ccmain;$(SolutionDir)tesseract_3.04\ccutil;$(SolutionDir)tesseract_3.04\ccstruct;$(SolutionDir)tesseract_3.04\classify;$(SolutionDir)tesseract_3.04\cube;$(SolutionDir)tesseract_3.04\cutil;$(SolutionDir)tesseract_3.04\dict;$(SolutionDir)tesseract_3.04\neural_networks\runtime;$(SolutionDir)tesseract_3.04\textord;$(SolutionDir)tesseract_3.04\viewer;$(SolutionDir)tesseract_3.04\opencl;$(SolutionDir)tesseract_3.04\wordrec;$(SolutionDir)leptonica\src;$(SolutionDir)liblept</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)tesseract_3.05\vs2010\port;$(SolutionDir)tesseract_3.05\api;$(SolutionDir)tesseract_3.05\ccmain;$(SolutionDir)tesseract_3.05\ccutil;$(SolutionDir)tesseract_3.05\ccstruct;$(SolutionDir)tesseract_3.05\classify;$(SolutionDir)tesseract_3.05\cube;$(SolutionDir)tesseract_3.05\cutil;$(SolutionDir)tesseract_3.05\dict;$(SolutionDir)tesseract_3.05\neural_networks\runtime;$(SolutionDir)tesseract_3.05\textord;$(SolutionDir)tesseract_3.05\viewer;$(SolutionDir)tesseract_3.05\opencl;$(SolutionDir)tesseract_3.05\wordrec;$(SolutionDir)leptonica\src;$(SolutionDir)liblept</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <StringPooling>true</StringPooling>
@@ -178,7 +178,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)tesseract_3.04\vs2010\port;$(SolutionDir)tesseract_3.04\api;$(SolutionDir)tesseract_3.04\ccmain;$(SolutionDir)tesseract_3.04\ccutil;$(SolutionDir)tesseract_3.04\ccstruct;$(SolutionDir)tesseract_3.04\classify;$(SolutionDir)tesseract_3.04\cube;$(SolutionDir)tesseract_3.04\cutil;$(SolutionDir)tesseract_3.04\dict;$(SolutionDir)tesseract_3.04\neural_networks\runtime;$(SolutionDir)tesseract_3.04\textord;$(SolutionDir)tesseract_3.04\viewer;$(SolutionDir)tesseract_3.04\opencl;$(SolutionDir)tesseract_3.04\wordrec;$(SolutionDir)leptonica\src;$(SolutionDir)liblept</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)tesseract_3.05\vs2010\port;$(SolutionDir)tesseract_3.05\api;$(SolutionDir)tesseract_3.05\ccmain;$(SolutionDir)tesseract_3.05\ccutil;$(SolutionDir)tesseract_3.05\ccstruct;$(SolutionDir)tesseract_3.05\classify;$(SolutionDir)tesseract_3.05\cube;$(SolutionDir)tesseract_3.05\cutil;$(SolutionDir)tesseract_3.05\dict;$(SolutionDir)tesseract_3.05\neural_networks\runtime;$(SolutionDir)tesseract_3.05\textord;$(SolutionDir)tesseract_3.05\viewer;$(SolutionDir)tesseract_3.05\opencl;$(SolutionDir)tesseract_3.05\wordrec;$(SolutionDir)leptonica\src;$(SolutionDir)liblept</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <StringPooling>true</StringPooling>
