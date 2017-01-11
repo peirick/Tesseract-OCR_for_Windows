@@ -657,7 +657,6 @@
     <ClInclude Include="src\webp\decode.h" />
     <ClInclude Include="src\webp\demux.h" />
     <ClInclude Include="src\webp\encode.h" />
-    <ClInclude Include="src\webp\extras.h" />
     <ClInclude Include="src\webp\format_constants.h" />
     <ClInclude Include="src\webp\mux.h" />
     <ClInclude Include="src\webp\mux_types.h" />

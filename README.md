@@ -15,4 +15,4 @@ This repository should help developers to compile tesseract OCR with Visual Stud
 * [libjpeg 9b](http://ijg.org/)
 * [OpenJPEG 2.1.2](http://www.openjpeg.org/)
 * [jbig2enc 0.28](https://github.com/agl/jbig2enc)
-* [webp 0.5.1](https://chromium.googlesource.com/webm/libwebp)
+* [webp master](https://chromium.googlesource.com/webm/libwebp)

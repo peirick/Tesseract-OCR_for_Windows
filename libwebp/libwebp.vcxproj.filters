@@ -474,9 +474,6 @@
     <ClInclude Include="src\webp\encode.h">
       <Filter>Source Files\webp</Filter>
     </ClInclude>
-    <ClInclude Include="src\webp\extras.h">
-      <Filter>Source Files\webp</Filter>
-    </ClInclude>
     <ClInclude Include="src\dsp\common_sse2.h">
       <Filter>Source Files\dsp</Filter>
     </ClInclude>
