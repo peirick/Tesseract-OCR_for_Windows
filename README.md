@@ -10,7 +10,7 @@ This repository should help developers to compile tesseract OCR with Visual Stud
 ## Used Libraries
 * [Giflib 5.1.4](http://giflib.sourceforge.net/)
 * [libtiff 4.0.7](http://simplesystems.org/libtiff/)
-* [zlib 1.2.8](http://www.zlib.net/)
+* [zlib 1.2.11](http://www.zlib.net/)
 * [libpng 1.6.28]( http://www.libpng.org/pub/png/libpng.html)
 * [libjpeg 9b](http://ijg.org/)
 * [OpenJPEG 2.1.2](http://www.openjpeg.org/)
