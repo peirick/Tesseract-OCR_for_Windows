@@ -3,16 +3,14 @@
 # Visual Studio 2015 Projects for Tessearct and dependencies.
 This repository should help developers to compile tesseract OCR with Visual Studio 2015. It contains a *build_tesseract.bat* to build the latest tesseract version.
 
-## Used Repositories
-* https://github.com/DanBloomberg/leptonica
-* https://github.com/tesseract-ocr/tesseract
-
 ## Used Libraries
 * [Giflib 5.1.4](http://giflib.sourceforge.net/)
-* [libtiff 4.0.7](http://simplesystems.org/libtiff/)
+* [libtiff 4.0.8](http://simplesystems.org/libtiff/)
 * [zlib 1.2.11](http://www.zlib.net/)
-* [libpng 1.6.28]( http://www.libpng.org/pub/png/libpng.html)
+* [libpng 1.6.29]( http://www.libpng.org/pub/png/libpng.html)
 * [libjpeg 9b](http://ijg.org/)
 * [OpenJPEG 2.1.2](http://www.openjpeg.org/)
 * [jbig2enc 0.28](https://github.com/agl/jbig2enc)
 * [webp master](https://chromium.googlesource.com/webm/libwebp)
+* [leptonica master](https://github.com/DanBloomberg/leptonica)
+* [tesseract 3.05](https://github.com/tesseract-ocr/tesseract)
