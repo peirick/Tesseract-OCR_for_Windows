@@ -9,7 +9,7 @@ A simple *test_tesseract.bat* is available to show how to run OCR on different i
 * [Giflib 5.1.4](http://giflib.sourceforge.net/)
 * [libtiff 4.0.9](http://simplesystems.org/libtiff/)
 * [zlib 1.2.11](http://www.zlib.net/)
-* [libpng 1.6.29]( http://www.libpng.org/pub/png/libpng.html)
+* [libpng 1.6.34]( http://www.libpng.org/pub/png/libpng.html)
 * [libjpeg 9b](http://ijg.org/)
 * [OpenJPEG 2.1.2](http://www.openjpeg.org/)
 * [jbig2enc 0.28](https://github.com/agl/jbig2enc)
