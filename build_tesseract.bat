@@ -12,6 +12,12 @@ rmdir /S /Q Release
 msbuild tesseract.sln /p:Configuration=Release /p:Platform=x86 /m
 @if %errorlevel% NEQ 0 GOTO ERROR
 
+rmdir /S /Q Debug
+@if %errorlevel% NEQ 0 GOTO ERROR
+
+msbuild tesseract.sln /p:Configuration=Debug /p:Platform=x86 /m
+@if %errorlevel% NEQ 0 GOTO ERROR
+
 @GOTO END
 :ERROR
 @ECHO "Program failed, please check this log file for errors ..." 
