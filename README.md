@@ -11,7 +11,7 @@ A simple *test_tesseract.bat* is available to show how to run OCR on different i
 * [zlib 1.2.11](http://www.zlib.net/)
 * [libpng 1.6.34]( http://www.libpng.org/pub/png/libpng.html)
 * [libjpeg 9b](http://ijg.org/)
-* [OpenJPEG 2.1.2](http://www.openjpeg.org/)
+* [OpenJPEG 2.3.0](http://www.openjpeg.org/)
 * [jbig2enc 0.28](https://github.com/agl/jbig2enc)
 * [webp master](https://chromium.googlesource.com/webm/libwebp)
 * [leptonica master](https://github.com/DanBloomberg/leptonica)

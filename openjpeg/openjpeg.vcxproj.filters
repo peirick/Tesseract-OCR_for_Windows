@@ -11,12 +11,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="opj_config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="opj_config_private.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="opj_includes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -33,9 +27,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="pi.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="raw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="t1.h">
@@ -107,6 +98,18 @@
     <ClInclude Include="mqc_inl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="opj_common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sparse_array.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="opj_config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="opj_config_private.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="openjpeg.c">
@@ -116,9 +119,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pi.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="raw.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="t1.c">
@@ -170,6 +170,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="thread.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sparse_array.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -35,6 +35,7 @@
     <ClInclude Include="openjpeg.h" />
     <ClInclude Include="opj_clock.h" />
     <ClInclude Include="opj_codec.h" />
+    <ClInclude Include="opj_common.h" />
     <ClInclude Include="opj_config.h" />
     <ClInclude Include="opj_config_private.h" />
     <ClInclude Include="opj_includes.h" />
@@ -43,7 +44,7 @@
     <ClInclude Include="opj_malloc.h" />
     <ClInclude Include="opj_stdint.h" />
     <ClInclude Include="pi.h" />
-    <ClInclude Include="raw.h" />
+    <ClInclude Include="sparse_array.h" />
     <ClInclude Include="t1.h" />
     <ClInclude Include="t1_luts.h" />
     <ClInclude Include="t2.h" />
@@ -68,7 +69,7 @@
     <ClCompile Include="opj_clock.c" />
     <ClCompile Include="opj_malloc.c" />
     <ClCompile Include="pi.c" />
-    <ClCompile Include="raw.c" />
+    <ClCompile Include="sparse_array.c" />
     <ClCompile Include="t1.c" />
     <ClCompile Include="t2.c" />
     <ClCompile Include="tcd.c" />
