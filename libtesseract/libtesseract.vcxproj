@@ -269,7 +269,6 @@
     <ClCompile Include="..\tesseract_3.05\viewer\svpaint.cpp" />
     <ClCompile Include="..\tesseract_3.05\viewer\svutil.cpp" />
     <ClCompile Include="..\tesseract_3.05\vs2010\port\gettimeofday.cpp" />
-    <ClCompile Include="..\tesseract_3.05\vs2010\port\strcasestr.cpp" />
     <ClCompile Include="..\tesseract_3.05\vs2010\port\strtok_r.cpp" />
     <ClCompile Include="..\tesseract_3.05\wordrec\associate.cpp" />
     <ClCompile Include="..\tesseract_3.05\wordrec\chop.cpp" />
@@ -547,7 +546,6 @@
     <ClInclude Include="..\tesseract_3.05\viewer\svutil.h" />
     <ClInclude Include="..\tesseract_3.05\vs2010\port\gettimeofday.h" />
     <ClInclude Include="..\tesseract_3.05\vs2010\port\mathfix.h" />
-    <ClInclude Include="..\tesseract_3.05\vs2010\port\strcasestr.h" />
     <ClInclude Include="..\tesseract_3.05\vs2010\port\strtok_r.h" />
     <ClInclude Include="..\tesseract_3.05\vs2010\port\vcsversion.h" />
     <ClInclude Include="..\tesseract_3.05\wordrec\associate.h" />
