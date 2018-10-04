@@ -515,8 +515,10 @@ main(int argc, char **argv) {
     ret = jbig2_produce_page(ctx, i, -1, -1, &length);
     if (pdfmode) {
 		uint32_t width  = _byteswap_ulong(*(uint32_t*)(ret + 11));
-		uint32_t height = _byteswap_ulong(*(uint32_t*)(ret + 15));
-		doc->addImage(width, height, ret, length);
+		uint32_t height = _byteswap_ulong(*(uint32_t*)(ret + 15));   
+        uint32_t xres = _byteswap_ulong(*(uint32_t*)(ret + 19));
+        uint32_t yres = _byteswap_ulong(*(uint32_t*)(ret + 23));
+		doc->addImage(width, height, xres, yres, ret, length);
 	
     } else {
       write(1, ret, length);
