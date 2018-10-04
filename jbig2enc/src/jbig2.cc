@@ -389,7 +389,15 @@ main(int argc, char **argv) {
       }
       l_int32 filetype;
       findFileFormatStream(fp, &filetype);
-      if (filetype==IFF_TIFF && tiffGetCount(fp, &numsubimages)) {
+      if ((filetype==IFF_TIFF 
+          || filetype==IFF_TIFF_G3
+          || filetype == IFF_TIFF_G4
+          || filetype == IFF_TIFF_JPEG
+          || filetype == IFF_TIFF_LZW
+          || filetype == IFF_TIFF_PACKBITS
+          || filetype == IFF_TIFF_RLE
+          || filetype == IFF_TIFF_ZIP
+          ) && tiffGetCount(fp, &numsubimages)) {
         return 1;
       }
       lept_fclose(fp);
