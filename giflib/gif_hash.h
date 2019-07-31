@@ -2,14 +2,19 @@
 
 gif_hash.h - magfic constants and declarations for GIF LZW
 
+SPDX-License-Identifier: MIT
+
 ******************************************************************************/
 
 #ifndef _GIF_HASH_H_
 #define _GIF_HASH_H_
 
-#ifdef HAVE_UNISTD_H
+#ifdef _WIN32
+#include <io.h>
+#else
 #include <unistd.h>
-#endif
+#endif /* _WIN32 */
+
 #include <stdint.h>
 
 #define HT_SIZE			8192	   /* 12bits = 4096 or twice as big! */

@@ -9,10 +9,10 @@ gif_hash.c -- module to support the following operations:
 
 This module is used to hash the GIF codes during encoding.
 
+SPDX-License-Identifier: MIT
+
 *****************************************************************************/
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
+
 #include <stdint.h>
 #include <stdlib.h>
 #include <fcntl.h>

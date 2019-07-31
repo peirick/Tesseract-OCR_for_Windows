@@ -1,6 +1,105 @@
 			GIFLIB NEWS
 
 
+Version 5.2.1
+==============
+
+This is the "Maybe I shouldn't have dome a release while imn surgical recovery" release.
+
+* In gifbuild.c, avoid a core dump on no color map.
+
+* Restore inadvertently removed library version numbers in Makefile.
+
+Version 5.2.0
+=============
+
+The undocumented and deprecated GifQuantizeBuffer() entry point
+has been moved to the util library to reduce libgif size and attack
+surface. Applications needing this function are couraged to link the
+util library or make their own copy.
+
+The following obsolete utility programs are no longer installed:
+gifecho, giffilter, gifinto, gifsponge. These were either installed in
+error or have been obsolesced by modern image-transformmation tools
+like ImageMagick convert. They may be removed entirely in a future
+release.
+
+* Address SourceForge issue #136: Stack-buffer-overflow in gifcolor.c:84
+
+* Address SF bug #134: Giflib fails to slurp significant number of gifs
+
+* Apply SPDX convention for license tagging.
+
+Version 5.1.9
+=============
+
+The documentation directory now includes an HTMlified version of the
+GIF89 standard, and a more detailed description of how LZW compression
+is applied to GIFs.
+
+* Address SF bug #129: The latest version of giflib cannot be build on windows.
+
+* Address SF bug #126: Cannot compile giflib using c89
+
+Version 5.1.8
+=============
+
+* Address SF bug #119: MemorySanitizer: FPE on unknown address
+
+* Address SF bug #125: 5.1.7: xmlto is still required for tarball
+
+* Address SF bug #124: 5.1.7: ar invocation is not crosscompile compatible
+
+* Address SF bug #122: 5.1.7 installs manpages to wrong directory
+
+* Address SF bug #121: make: getversion: Command not found
+
+* Address SF bug #120: 5.1.7 does not build a proper library - no 
+
+Version 5.1.7
+=============
+
+Correct a minor packaging error (superfluous symlinks) in the 5.1.6 tarballs.
+
+Version 5.1.6
+=============
+
+Build Fixes
+-----------
+
+Fix library installation in the Makefile.
+
+Version 5.1.5
+=============
+
+Code Fixes
+----------
+
+* Fix SF bug #114: Null dereferences in main() of gifclrmp
+
+* Fix SF bug #113: Heap Buffer Overflow-2 in function DGifDecompressLine()
+  in cgif.c.  This had been assigned CVE-2018-11490.
+
+* Fix SF bug #111: segmentation fault in PrintCodeBlock
+
+* Fix SF bug #109: Segmentation fault of giftool reading a crafted file
+
+* Fix SF bug #107: Floating point exception in giftext utility
+
+* Fix SF bug #105: heap buffer overflow in DumpScreen2RGB in gif2rgb.c:317
+
+* Fix SF bug #104: Ineffective bounds check in DGifSlurp
+
+^ Fix SF bug #103: GIFLIB 5.1.4: DGifSlurp fails on empty comment
+
+* Fix SF bug #87: Heap buffer overflow in 5.1.2 (gif2rgb).
+
+Build Fixes
+-----------
+
+The horrible old autoconf build system has been removed with extreme prejudice. 
+You now build this simply by running "make" from the top-level directory.
+
 Version 5.1.4
 =============
 
@@ -186,7 +285,7 @@ Documentation and polish
 
 Retirements
 -----------
-* gifinter is gone.  Use convert -interlace from the ImageMagick suite.
+* gifinter is gone.  Use "convert -interlace line" from the ImageMagick suite.
 
 Code Fixes
 ----------

@@ -9,6 +9,8 @@
  and was removed in 4.2.  Then it turned out some client apps were
  actually using it, so it was restored in 5.0.
 
+SPDX-License-Identifier: MIT
+
 ******************************************************************************/
 
 #include <stdlib.h>
@@ -198,14 +200,14 @@ SubdivColorMap(NewColorMapType * NewColorSubdiv,
                unsigned int ColorMapSize,
                unsigned int *NewColorMapSize) {
 
-    int MaxSize;
-    unsigned int i, j, Index = 0, NumEntries, MinColor, MaxColor;
-    long Sum, Count;
+    unsigned int i, j, Index = 0;
     QuantizedColorType *QuantizedColor, **SortArray;
 
     while (ColorMapSize > *NewColorMapSize) {
         /* Find candidate for subdivision: */
-        MaxSize = -1;
+	long Sum, Count;
+        int MaxSize = -1;
+	unsigned int NumEntries, MinColor, MaxColor;
         for (i = 0; i < *NewColorMapSize; i++) {
             for (j = 0; j < 3; j++) {
                 if ((((int)NewColorSubdiv[i].RGBWidth[j]) > MaxSize) &&

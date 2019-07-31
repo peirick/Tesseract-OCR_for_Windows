@@ -6,11 +6,10 @@ The functions here and in dgif_lib.c are partitioned carefully so that
 if you only require one of read and write capability, only one of these
 two modules will be linked.  Preserve this property!
 
+SPDX-License-Identifier: MIT
+
 *****************************************************************************/
 
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
 #include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -20,6 +19,7 @@ two modules will be linked.  Preserve this property!
 #ifdef _WIN32
 #include <io.h>
 #else
+#include <unistd.h>
 #include <sys/types.h>
 #endif /* _WIN32 */
 #include <sys/stat.h>
@@ -46,6 +46,13 @@ static int EGifBufferedOutput(GifFileType * GifFile, GifByteType * Buf,
 #define LOBYTE(x)	((x) & 0xff)
 #define HIBYTE(x)	(((x) >> 8) & 0xff)
 
+#ifndef S_IREAD
+#define S_IREAD S_IRUSR
+#endif
+
+#ifndef S_IWRITE
+#define S_IWRITE S_IWUSR
+#endif
 /******************************************************************************
  Open a new GIF file for write, specified by name. If TestExistance then
  if the file exists this routines fails (returns NULL).
@@ -272,6 +279,7 @@ EGifPutScreenDesc(GifFileType *GifFile,
     GifByteType Buf[3];
     GifFilePrivateType *Private = (GifFilePrivateType *) GifFile->Private;
     const char *write_version;
+    GifFile->SColorMap = NULL;
 
     if (Private->FileState & FILE_STATE_SCREEN) {
         /* If already has screen descriptor - something is wrong! */
@@ -382,19 +390,21 @@ EGifPutImageDesc(GifFileType *GifFile,
     GifFile->Image.Width = Width;
     GifFile->Image.Height = Height;
     GifFile->Image.Interlace = Interlace;
-    if (ColorMap) {
-	if (GifFile->Image.ColorMap != NULL) {
-	    GifFreeMapObject(GifFile->Image.ColorMap);
+    if (ColorMap != GifFile->Image.ColorMap) {
+	if (ColorMap) {
+	    if (GifFile->Image.ColorMap != NULL) {
+		GifFreeMapObject(GifFile->Image.ColorMap);
+		GifFile->Image.ColorMap = NULL;
+	    }
+	    GifFile->Image.ColorMap = GifMakeMapObject(ColorMap->ColorCount,
+						    ColorMap->Colors);
+	    if (GifFile->Image.ColorMap == NULL) {
+		GifFile->Error = E_GIF_ERR_NOT_ENOUGH_MEM;
+		return GIF_ERROR;
+	    }
+	} else {
 	    GifFile->Image.ColorMap = NULL;
 	}
-        GifFile->Image.ColorMap = GifMakeMapObject(ColorMap->ColorCount,
-                                                ColorMap->Colors);
-        if (GifFile->Image.ColorMap == NULL) {
-            GifFile->Error = E_GIF_ERR_NOT_ENOUGH_MEM;
-            return GIF_ERROR;
-        }
-    } else {
-        GifFile->Image.ColorMap = NULL;
     }
 
     /* Put the image descriptor into the file: */
@@ -770,44 +780,45 @@ EGifCloseFile(GifFileType *GifFile, int *ErrorCode)
     Private = (GifFilePrivateType *) GifFile->Private;
     if (Private == NULL)
 	return GIF_ERROR;
-    if (!IS_WRITEABLE(Private)) {
+    else if (!IS_WRITEABLE(Private)) {
         /* This file was NOT open for writing: */
 	if (ErrorCode != NULL)
 	    *ErrorCode = E_GIF_ERR_NOT_WRITEABLE;
 	free(GifFile);
         return GIF_ERROR;
-    }
+    } else {
+	//cppcheck-suppress nullPointerRedundantCheck
+	File = Private->File;
 
-    File = Private->File;
+	Buf = TERMINATOR_INTRODUCER;
+	InternalWrite(GifFile, &Buf, 1);
 
-    Buf = TERMINATOR_INTRODUCER;
-    InternalWrite(GifFile, &Buf, 1);
+	if (GifFile->Image.ColorMap) {
+	    GifFreeMapObject(GifFile->Image.ColorMap);
+	    GifFile->Image.ColorMap = NULL;
+	}
+	if (GifFile->SColorMap) {
+	    GifFreeMapObject(GifFile->SColorMap);
+	    GifFile->SColorMap = NULL;
+	}
+	if (Private) {
+	    if (Private->HashTable) {
+		free((char *) Private->HashTable);
+	    }
+	    free((char *) Private);
+	}
 
-    if (GifFile->Image.ColorMap) {
-        GifFreeMapObject(GifFile->Image.ColorMap);
-        GifFile->Image.ColorMap = NULL;
-    }
-    if (GifFile->SColorMap) {
-        GifFreeMapObject(GifFile->SColorMap);
-        GifFile->SColorMap = NULL;
-    }
-    if (Private) {
-        if (Private->HashTable) {
-            free((char *) Private->HashTable);
-        }
-	free((char *) Private);
-    }
+	if (File && fclose(File) != 0) {
+	    if (ErrorCode != NULL)
+		*ErrorCode = E_GIF_ERR_CLOSE_FAILED;
+	    free(GifFile);
+	    return GIF_ERROR;
+	}
 
-    if (File && fclose(File) != 0) {
-	if (ErrorCode != NULL)
-	    *ErrorCode = E_GIF_ERR_CLOSE_FAILED;
 	free(GifFile);
-        return GIF_ERROR;
+	if (ErrorCode != NULL)
+	    *ErrorCode = E_GIF_SUCCEEDED;
     }
-
-    free(GifFile);
-    if (ErrorCode != NULL)
-	*ErrorCode = E_GIF_SUCCEEDED;
     return GIF_OK;
 }
 
@@ -882,9 +893,7 @@ EGifCompressLine(GifFileType *GifFile,
                  GifPixelType *Line,
                  const int LineLen)
 {
-    int i = 0, CrntCode, NewCode;
-    unsigned long NewKey;
-    GifPixelType Pixel;
+    int i = 0, CrntCode;
     GifHashTableType *HashTable;
     GifFilePrivateType *Private = (GifFilePrivateType *) GifFile->Private;
 
@@ -896,11 +905,12 @@ EGifCompressLine(GifFileType *GifFile,
         CrntCode = Private->CrntCode;    /* Get last code in compression. */
 
     while (i < LineLen) {   /* Decode LineLen items. */
-        Pixel = Line[i++];  /* Get next pixel from stream. */
+	GifPixelType Pixel = Line[i++];  /* Get next pixel from stream. */
         /* Form a new unique key to search hash table for the code combines 
          * CrntCode as Prefix string with Pixel as postfix char.
          */
-        NewKey = (((uint32_t) CrntCode) << 8) + Pixel;
+	int NewCode;
+	unsigned long NewKey = (((uint32_t) CrntCode) << 8) + Pixel;
         if ((NewCode = _ExistsHashTable(HashTable, NewKey)) >= 0) {
             /* This Key is already there, or the string is old one, so
              * simple take new code as our CrntCode:
@@ -1058,11 +1068,10 @@ EGifWriteExtensions(GifFileType *GifFileOut,
 			       int ExtensionBlockCount) 
 {
     if (ExtensionBlocks) {
-        ExtensionBlock *ep;
 	int j;
 
 	for (j = 0; j < ExtensionBlockCount; j++) {
-	    ep = &ExtensionBlocks[j];
+	    ExtensionBlock *ep = &ExtensionBlocks[j];
 	    if (ep->Function != CONTINUE_EXT_FUNC_CODE)
 		if (EGifPutExtensionLeader(GifFileOut, ep->Function) == GIF_ERROR)
 		    return (GIF_ERROR);

@@ -122,7 +122,11 @@
 
 /* Support Deflate compression */
 /* #undef ZIP_SUPPORT */
-#define ZIP_SUPPORT
+#define ZIP_SUPPORT 1
+
+/* Support WEBP compression */
+/* #undef WEBP_SUPPORT */
+#define WEBP_SUPPORT 1
 
 /* Support strip chopping (whether or not to convert single-strip uncompressed
    images to mutiple strips of ~8Kb to reduce memory usage) */
