@@ -11,16 +11,16 @@
 //
 // Author: Skal (pascal.massimino@gmail.com)
 
-#include "./dsp.h"
+#include "src/dsp/dsp.h"
 
 #if defined(WEBP_USE_SSE2)
 #include <emmintrin.h>
 
 //------------------------------------------------------------------------------
 
-static int DispatchAlpha(const uint8_t* alpha, int alpha_stride,
-                         int width, int height,
-                         uint8_t* dst, int dst_stride) {
+static int DispatchAlpha_SSE2(const uint8_t* alpha, int alpha_stride,
+                              int width, int height,
+                              uint8_t* dst, int dst_stride) {
   // alpha_and stores an 'and' operation of all the alpha[] values. The final
   // value is not 0xff if any of the alpha[] is not equal to 0xff.
   uint32_t alpha_and = 0xff;
@@ -72,9 +72,9 @@ static int DispatchAlpha(const uint8_t* alpha, int alpha_stride,
   return (alpha_and != 0xff);
 }
 
-static void DispatchAlphaToGreen(const uint8_t* alpha, int alpha_stride,
-                                 int width, int height,
-                                 uint32_t* dst, int dst_stride) {
+static void DispatchAlphaToGreen_SSE2(const uint8_t* alpha, int alpha_stride,
+                                      int width, int height,
+                                      uint32_t* dst, int dst_stride) {
   int i, j;
   const __m128i zero = _mm_setzero_si128();
   const int limit = width & ~15;
@@ -98,9 +98,9 @@ static void DispatchAlphaToGreen(const uint8_t* alpha, int alpha_stride,
   }
 }
 
-static int ExtractAlpha(const uint8_t* argb, int argb_stride,
-                        int width, int height,
-                        uint8_t* alpha, int alpha_stride) {
+static int ExtractAlpha_SSE2(const uint8_t* argb, int argb_stride,
+                             int width, int height,
+                             uint8_t* alpha, int alpha_stride) {
   // alpha_and stores an 'and' operation of all the alpha[] values. The final
   // value is not 0xff if any of the alpha[] is not equal to 0xff.
   uint32_t alpha_and = 0xff;
@@ -151,30 +151,35 @@ static int ExtractAlpha(const uint8_t* argb, int argb_stride,
 
 // We can't use a 'const int' for the SHUFFLE value, because it has to be an
 // immediate in the _mm_shufflexx_epi16() instruction. We really need a macro.
-// We use: v / 255 = (v + 1 + (v >> 8)) >> 8, where v = alpha * {r,g,b} is
-// a 16bit value.
-#define APPLY_ALPHA(RGBX, SHUFFLE) do {                           \
-  const __m128i argb0 = _mm_loadl_epi64((const __m128i*)&(RGBX)); \
-  const __m128i argb1 = _mm_unpacklo_epi8(argb0, zero);           \
-  const __m128i alpha0 = _mm_or_si128(argb1, kMask);              \
-  const __m128i alpha1 = _mm_shufflelo_epi16(alpha0, SHUFFLE);    \
-  const __m128i alpha2 = _mm_shufflehi_epi16(alpha1, SHUFFLE);    \
-  /* alpha2 = [ff a0 a0 a0][ff a1 a1 a1] */                       \
-  const __m128i A0 = _mm_mullo_epi16(alpha2, argb1);              \
-  const __m128i A1 = _mm_srli_epi16(A0, 8);                       \
-  const __m128i A2 = _mm_add_epi16(A1, A0);                       \
-  const __m128i A3 = _mm_add_epi16(A2, one);                      \
-  const __m128i A4 = _mm_srli_epi16(A3, 8);                       \
-  const __m128i A5 = _mm_packus_epi16(A4, zero);                  \
-  _mm_storel_epi64((__m128i*)&(RGBX), A5);                        \
+// We use: v / 255 = (v * 0x8081) >> 23, where v = alpha * {r,g,b} is a 16bit
+// value.
+#define APPLY_ALPHA(RGBX, SHUFFLE) do {                              \
+  const __m128i argb0 = _mm_loadu_si128((const __m128i*)&(RGBX));    \
+  const __m128i argb1_lo = _mm_unpacklo_epi8(argb0, zero);           \
+  const __m128i argb1_hi = _mm_unpackhi_epi8(argb0, zero);           \
+  const __m128i alpha0_lo = _mm_or_si128(argb1_lo, kMask);           \
+  const __m128i alpha0_hi = _mm_or_si128(argb1_hi, kMask);           \
+  const __m128i alpha1_lo = _mm_shufflelo_epi16(alpha0_lo, SHUFFLE); \
+  const __m128i alpha1_hi = _mm_shufflelo_epi16(alpha0_hi, SHUFFLE); \
+  const __m128i alpha2_lo = _mm_shufflehi_epi16(alpha1_lo, SHUFFLE); \
+  const __m128i alpha2_hi = _mm_shufflehi_epi16(alpha1_hi, SHUFFLE); \
+  /* alpha2 = [ff a0 a0 a0][ff a1 a1 a1] */                          \
+  const __m128i A0_lo = _mm_mullo_epi16(alpha2_lo, argb1_lo);        \
+  const __m128i A0_hi = _mm_mullo_epi16(alpha2_hi, argb1_hi);        \
+  const __m128i A1_lo = _mm_mulhi_epu16(A0_lo, kMult);               \
+  const __m128i A1_hi = _mm_mulhi_epu16(A0_hi, kMult);               \
+  const __m128i A2_lo = _mm_srli_epi16(A1_lo, 7);                    \
+  const __m128i A2_hi = _mm_srli_epi16(A1_hi, 7);                    \
+  const __m128i A3 = _mm_packus_epi16(A2_lo, A2_hi);                 \
+  _mm_storeu_si128((__m128i*)&(RGBX), A3);                           \
 } while (0)
 
 static void ApplyAlphaMultiply_SSE2(uint8_t* rgba, int alpha_first,
                                     int w, int h, int stride) {
   const __m128i zero = _mm_setzero_si128();
-  const __m128i one = _mm_set1_epi16(1);
+  const __m128i kMult = _mm_set1_epi16(0x8081u);
   const __m128i kMask = _mm_set_epi16(0, 0xff, 0xff, 0, 0, 0xff, 0xff, 0);
-  const int kSpan = 2;
+  const int kSpan = 4;
   while (h-- > 0) {
     uint32_t* const rgbx = (uint32_t*)rgba;
     int i;
@@ -205,6 +210,61 @@ static void ApplyAlphaMultiply_SSE2(uint8_t* rgba, int alpha_first,
 #undef MULTIPLIER
 #undef PREMULTIPLY
 
+//------------------------------------------------------------------------------
+// Alpha detection
+
+static int HasAlpha8b_SSE2(const uint8_t* src, int length) {
+  const __m128i all_0xff = _mm_set1_epi8((char)0xff);
+  int i = 0;
+  for (; i + 16 <= length; i += 16) {
+    const __m128i v = _mm_loadu_si128((const __m128i*)(src + i));
+    const __m128i bits = _mm_cmpeq_epi8(v, all_0xff);
+    const int mask = _mm_movemask_epi8(bits);
+    if (mask != 0xffff) return 1;
+  }
+  for (; i < length; ++i) if (src[i] != 0xff) return 1;
+  return 0;
+}
+
+static int HasAlpha32b_SSE2(const uint8_t* src, int length) {
+  const __m128i alpha_mask = _mm_set1_epi32(0xff);
+  const __m128i all_0xff = _mm_set1_epi8((char)0xff);
+  int i = 0;
+  // We don't know if we can access the last 3 bytes after the last alpha
+  // value 'src[4 * length - 4]' (because we don't know if alpha is the first
+  // or the last byte of the quadruplet). Hence the '-3' protection below.
+  length = length * 4 - 3;   // size in bytes
+  for (; i + 64 <= length; i += 64) {
+    const __m128i a0 = _mm_loadu_si128((const __m128i*)(src + i +  0));
+    const __m128i a1 = _mm_loadu_si128((const __m128i*)(src + i + 16));
+    const __m128i a2 = _mm_loadu_si128((const __m128i*)(src + i + 32));
+    const __m128i a3 = _mm_loadu_si128((const __m128i*)(src + i + 48));
+    const __m128i b0 = _mm_and_si128(a0, alpha_mask);
+    const __m128i b1 = _mm_and_si128(a1, alpha_mask);
+    const __m128i b2 = _mm_and_si128(a2, alpha_mask);
+    const __m128i b3 = _mm_and_si128(a3, alpha_mask);
+    const __m128i c0 = _mm_packs_epi32(b0, b1);
+    const __m128i c1 = _mm_packs_epi32(b2, b3);
+    const __m128i d  = _mm_packus_epi16(c0, c1);
+    const __m128i bits = _mm_cmpeq_epi8(d, all_0xff);
+    const int mask = _mm_movemask_epi8(bits);
+    if (mask != 0xffff) return 1;
+  }
+  for (; i + 32 <= length; i += 32) {
+    const __m128i a0 = _mm_loadu_si128((const __m128i*)(src + i +  0));
+    const __m128i a1 = _mm_loadu_si128((const __m128i*)(src + i + 16));
+    const __m128i b0 = _mm_and_si128(a0, alpha_mask);
+    const __m128i b1 = _mm_and_si128(a1, alpha_mask);
+    const __m128i c  = _mm_packs_epi32(b0, b1);
+    const __m128i d  = _mm_packus_epi16(c, c);
+    const __m128i bits = _mm_cmpeq_epi8(d, all_0xff);
+    const int mask = _mm_movemask_epi8(bits);
+    if (mask != 0xffff) return 1;
+  }
+  for (; i <= length; i += 4) if (src[i] != 0xff) return 1;
+  return 0;
+}
+
 // -----------------------------------------------------------------------------
 // Apply alpha value to rows
 
@@ -214,10 +274,11 @@ static void MultARGBRow_SSE2(uint32_t* const ptr, int width, int inverse) {
     const int kSpan = 2;
     const __m128i zero = _mm_setzero_si128();
     const __m128i k128 = _mm_set1_epi16(128);
+    const __m128i kMult = _mm_set1_epi16(0x0101);
     const __m128i kMask = _mm_set_epi16(0, 0xff, 0, 0, 0, 0xff, 0, 0);
     for (x = 0; x + kSpan <= width; x += kSpan) {
       // To compute 'result = (int)(a * x / 255. + .5)', we use:
-      //   tmp = a * v + 128, result = (tmp + (tmp >> 8)) >> 8
+      //   tmp = a * v + 128, result = (tmp * 0x0101u) >> 16
       const __m128i A0 = _mm_loadl_epi64((const __m128i*)&ptr[x]);
       const __m128i A1 = _mm_unpacklo_epi8(A0, zero);
       const __m128i A2 = _mm_or_si128(A1, kMask);
@@ -226,42 +287,36 @@ static void MultARGBRow_SSE2(uint32_t* const ptr, int width, int inverse) {
       // here, A4 = [ff a0 a0 a0][ff a1 a1 a1]
       const __m128i A5 = _mm_mullo_epi16(A4, A1);
       const __m128i A6 = _mm_add_epi16(A5, k128);
-      const __m128i A7 = _mm_srli_epi16(A6, 8);
-      const __m128i A8 = _mm_add_epi16(A7, A6);
-      const __m128i A9 = _mm_srli_epi16(A8, 8);
-      const __m128i A10 = _mm_packus_epi16(A9, zero);
+      const __m128i A7 = _mm_mulhi_epu16(A6, kMult);
+      const __m128i A10 = _mm_packus_epi16(A7, zero);
       _mm_storel_epi64((__m128i*)&ptr[x], A10);
     }
   }
   width -= x;
-  if (width > 0) WebPMultARGBRowC(ptr + x, width, inverse);
+  if (width > 0) WebPMultARGBRow_C(ptr + x, width, inverse);
 }
 
 static void MultRow_SSE2(uint8_t* const ptr, const uint8_t* const alpha,
                          int width, int inverse) {
   int x = 0;
   if (!inverse) {
-    const int kSpan = 8;
     const __m128i zero = _mm_setzero_si128();
-    const __m128i kRound = _mm_set1_epi16(1 << 7);
-    const int w2 = width & ~(kSpan - 1);
-    for (x = 0; x < w2; x += kSpan) {
+    const __m128i k128 = _mm_set1_epi16(128);
+    const __m128i kMult = _mm_set1_epi16(0x0101);
+    for (x = 0; x + 8 <= width; x += 8) {
       const __m128i v0 = _mm_loadl_epi64((__m128i*)&ptr[x]);
+      const __m128i a0 = _mm_loadl_epi64((const __m128i*)&alpha[x]);
       const __m128i v1 = _mm_unpacklo_epi8(v0, zero);
-      const __m128i alpha0 = _mm_loadl_epi64((const __m128i*)&alpha[x]);
-      const __m128i alpha1 = _mm_unpacklo_epi8(alpha0, zero);
-      const __m128i alpha2 = _mm_unpacklo_epi8(alpha0, alpha0);
-      const __m128i v2 = _mm_mulhi_epu16(v1, alpha2);
-      const __m128i v3 = _mm_mullo_epi16(v1, alpha1);
-      const __m128i v4 = _mm_adds_epu16(v2, v3);
-      const __m128i v5 = _mm_adds_epu16(v4, kRound);
-      const __m128i v6 = _mm_srli_epi16(v5, 8);
-      const __m128i v7 = _mm_packus_epi16(v6, zero);
-      _mm_storel_epi64((__m128i*)&ptr[x], v7);
+      const __m128i a1 = _mm_unpacklo_epi8(a0, zero);
+      const __m128i v2 = _mm_mullo_epi16(v1, a1);
+      const __m128i v3 = _mm_add_epi16(v2, k128);
+      const __m128i v4 = _mm_mulhi_epu16(v3, kMult);
+      const __m128i v5 = _mm_packus_epi16(v4, zero);
+      _mm_storel_epi64((__m128i*)&ptr[x], v5);
     }
   }
   width -= x;
-  if (width > 0) WebPMultRowC(ptr + x, alpha + x, width, inverse);
+  if (width > 0) WebPMultRow_C(ptr + x, alpha + x, width, inverse);
 }
 
 //------------------------------------------------------------------------------
@@ -273,9 +328,12 @@ WEBP_TSAN_IGNORE_FUNCTION void WebPInitAlphaProcessingSSE2(void) {
   WebPMultARGBRow = MultARGBRow_SSE2;
   WebPMultRow = MultRow_SSE2;
   WebPApplyAlphaMultiply = ApplyAlphaMultiply_SSE2;
-  WebPDispatchAlpha = DispatchAlpha;
-  WebPDispatchAlphaToGreen = DispatchAlphaToGreen;
-  WebPExtractAlpha = ExtractAlpha;
+  WebPDispatchAlpha = DispatchAlpha_SSE2;
+  WebPDispatchAlphaToGreen = DispatchAlphaToGreen_SSE2;
+  WebPExtractAlpha = ExtractAlpha_SSE2;
+
+  WebPHasAlpha8b = HasAlpha8b_SSE2;
+  WebPHasAlpha32b = HasAlpha32b_SSE2;
 }
 
 #else  // !WEBP_USE_SSE2
