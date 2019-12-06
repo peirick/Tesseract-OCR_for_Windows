@@ -33,7 +33,7 @@ include_regular_expression("^.*$")
 # OPENJPEG version number, useful for packaging and doxygen doc:
 set(OPENJPEG_VERSION_MAJOR 2)
 set(OPENJPEG_VERSION_MINOR 3)
-set(OPENJPEG_VERSION_BUILD 0)
+set(OPENJPEG_VERSION_BUILD 1)
 set(OPENJPEG_VERSION
   "${OPENJPEG_VERSION_MAJOR}.${OPENJPEG_VERSION_MINOR}.${OPENJPEG_VERSION_BUILD}")
 set(PACKAGE_VERSION
@@ -56,6 +56,7 @@ set(PACKAGE_VERSION
 #   2.1.2 |  7
 #   2.2.0 |  7
 #   2.3.0 |  7
+#   2.3.1 |  7
 # above is the recommendation by the OPJ team. If you really need to override this default,
 # you can specify your own OPENJPEG_SOVERSION at cmake configuration time:
 # cmake -DOPENJPEG_SOVERSION:STRING=42 /path/to/openjpeg
@@ -351,8 +352,8 @@ include (cmake/OpenJPEGCPack.cmake)
 
 #-----------------------------------------------------------------------------
 # pkgconfig support
-# enabled by default on Unix, disabled by default on other platforms
-if(UNIX)
+# enabled by default on Unix or if using GCC, disabled by default on other platforms
+if(UNIX OR CMAKE_COMPILER_IS_GNUCC)
   option(BUILD_PKGCONFIG_FILES "Build and install pkg-config files" ON)
 else()
   option(BUILD_PKGCONFIG_FILES "Build and install pkg-config files" OFF)
