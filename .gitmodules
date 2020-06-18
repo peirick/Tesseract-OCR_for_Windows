@@ -6,3 +6,7 @@
 	path = tesseract_3.05
 	url = https://github.com/tesseract-ocr/tesseract.git
 	branch = 3.05
+[submodule "tesseract_4.1"]
+	path = tesseract_4.1
+	url = https://github.com/tesseract-ocr/tesseract.git
+	branch = 4.1
