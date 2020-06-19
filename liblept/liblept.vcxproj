@@ -19,12 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\leptonica\src\*.h" />
     <ClInclude Include="endianness.h" />
     <ClInclude Include="config_auto.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\leptonica\src\*.c" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\leptonica\leptonica-license.txt" />
@@ -82,26 +78,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
@@ -149,7 +145,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>COMPILER_MSVC;OPJ_STATIC;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;COMPILER_MSVC;OPJ_STATIC;HAVE_CONFIG_H;USE_WIN32_FILEIO;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAs>CompileAsCpp</CompileAs>
       <AdditionalIncludeDirectories>$(SolutionDir)openjpeg;$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg;$(SolutionDir)libtiff;$(SolutionDir)giflib;$(SolutionDir)libwebp\src;$(ProjectDir)</AdditionalIncludeDirectories>
       <StringPooling>true</StringPooling>
@@ -176,7 +172,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>COMPILER_MSVC;OPJ_STATIC;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;COMPILER_MSVC;OPJ_STATIC;HAVE_CONFIG_H;USE_WIN32_FILEIO;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAs>CompileAsCpp</CompileAs>
       <AdditionalIncludeDirectories>$(SolutionDir)openjpeg;$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg;$(SolutionDir)libtiff;$(SolutionDir)giflib;$(SolutionDir)libwebp\src;$(ProjectDir)</AdditionalIncludeDirectories>
       <StringPooling>true</StringPooling>
@@ -205,7 +201,7 @@
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>COMPILER_MSVC;OPJ_STATIC;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;NO_CONSOLE_IO;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;COMPILER_MSVC;OPJ_STATIC;HAVE_CONFIG_H;USE_WIN32_FILEIO;NO_CONSOLE_IO;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAs>CompileAsCpp</CompileAs>
       <AdditionalIncludeDirectories>$(SolutionDir)openjpeg;$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg;$(SolutionDir)libtiff;$(SolutionDir)giflib;$(SolutionDir)libwebp\src;$(ProjectDir)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -237,7 +233,7 @@
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>COMPILER_MSVC;OPJ_STATIC;HAVE_CONFIG_H;_CRT_SECURE_NO_WARNINGS;NO_CONSOLE_IO;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;COMPILER_MSVC;OPJ_STATIC;HAVE_CONFIG_H;USE_WIN32_FILEIO;NO_CONSOLE_IO;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAs>CompileAsCpp</CompileAs>
       <AdditionalIncludeDirectories>$(SolutionDir)openjpeg;$(SolutionDir)zlib\include;$(SolutionDir)libpng;$(SolutionDir)libjpeg;$(SolutionDir)libtiff;$(SolutionDir)giflib;$(SolutionDir)libwebp\src;$(ProjectDir)</AdditionalIncludeDirectories>
       <OmitFramePointers>false</OmitFramePointers>

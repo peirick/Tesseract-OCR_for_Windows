@@ -7,3 +7,4 @@
 #define  HAVE_LIBWEBP     1
 #define  HAVE_LIBJP2K     1
 #define  LIBJP2K_HEADER   <openjpeg.h>
+#define  PACKAGE_VERSION  "4.1.1"  
