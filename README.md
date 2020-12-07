@@ -15,4 +15,4 @@ A simple *test_tesseract.bat* is available to show how to run OCR on different i
 * [jbig2enc 0.28](https://github.com/agl/jbig2enc)
 * [webp master](https://chromium.googlesource.com/webm/libwebp)
 * [leptonica master](https://github.com/DanBloomberg/leptonica)
-* [tesseract 3.05](https://github.com/tesseract-ocr/tesseract)
+* [tesseract 4.1](https://github.com/tesseract-ocr/tesseract)
