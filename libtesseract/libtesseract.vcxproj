@@ -497,6 +497,7 @@
     <ClInclude Include="..\tesseract_4.1\src\wordrec\plotedges.h" />
     <ClInclude Include="..\tesseract_4.1\src\wordrec\render.h" />
     <ClInclude Include="..\tesseract_4.1\src\wordrec\wordrec.h" />
+    <ClInclude Include="config_auto.h" />
     <ClInclude Include="tess_version.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -568,7 +569,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>GRAPHICS_DISABLED;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_CRT_SECURE_NO_WARNINGS;_LIB;USE_STD_NAMESPACE;HAVE_CONFIG_H;WINDLLNAME="$(TargetFileName)"; WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>HAVE_CONFIG_H;GRAPHICS_DISABLED;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_CRT_SECURE_NO_WARNINGS;_LIB;USE_STD_NAMESPACE;WINDLLNAME="$(TargetFileName)"; WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)libtesseract;$(SolutionDir)tesseract_4.1\src\api;$(SolutionDir)tesseract_4.1\src\arch;$(SolutionDir)tesseract_4.1\src\ccmain;$(SolutionDir)tesseract_4.1\src\ccstruct;$(SolutionDir)tesseract_4.1\src\ccutil;$(SolutionDir)tesseract_4.1\src\classify;$(SolutionDir)tesseract_4.1\src\cutil;$(SolutionDir)tesseract_4.1\src\dict;$(SolutionDir)tesseract_4.1\src\lstm;$(SolutionDir)tesseract_4.1\src\opencl;$(SolutionDir)tesseract_4.1\src\textord;$(SolutionDir)tesseract_4.1\src\viewer;$(SolutionDir)tesseract_4.1\src\wordrec;$(SolutionDir)liblept;$(SolutionDir)leptonica\src</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <StringPooling>true</StringPooling>
@@ -577,6 +578,8 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <FloatingPointModel>Fast</FloatingPointModel>
       <AdditionalOptions />
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -589,7 +592,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>GRAPHICS_DISABLED;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_CRT_SECURE_NO_WARNINGS;_LIB;USE_STD_NAMESPACE;HAVE_CONFIG_H;WINDLLNAME="$(TargetFileName)"; _DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>HAVE_CONFIG_H;GRAPHICS_DISABLED;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_CRT_SECURE_NO_WARNINGS;_LIB;USE_STD_NAMESPACE;WINDLLNAME="$(TargetFileName)"; _DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)libtesseract;$(SolutionDir)tesseract_4.1\src\api;$(SolutionDir)tesseract_4.1\src\arch;$(SolutionDir)tesseract_4.1\src\ccmain;$(SolutionDir)tesseract_4.1\src\ccstruct;$(SolutionDir)tesseract_4.1\src\ccutil;$(SolutionDir)tesseract_4.1\src\classify;$(SolutionDir)tesseract_4.1\src\cutil;$(SolutionDir)tesseract_4.1\src\dict;$(SolutionDir)tesseract_4.1\src\lstm;$(SolutionDir)tesseract_4.1\src\opencl;$(SolutionDir)tesseract_4.1\src\textord;$(SolutionDir)tesseract_4.1\src\viewer;$(SolutionDir)tesseract_4.1\src\wordrec;$(SolutionDir)liblept;$(SolutionDir)leptonica\src</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <StringPooling>true</StringPooling>
@@ -598,6 +601,8 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <FloatingPointModel>Fast</FloatingPointModel>
       <AdditionalOptions />
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -612,7 +617,7 @@
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>GRAPHICS_DISABLED;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_CRT_SECURE_NO_WARNINGS;_LIB;USE_STD_NAMESPACE;HAVE_CONFIG_H;WINDLLNAME="$(TargetFileName)"; WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>HAVE_CONFIG_H;GRAPHICS_DISABLED;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_CRT_SECURE_NO_WARNINGS;_LIB;USE_STD_NAMESPACE;WINDLLNAME="$(TargetFileName)"; WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)libtesseract;$(SolutionDir)tesseract_4.1\src\api;$(SolutionDir)tesseract_4.1\src\arch;$(SolutionDir)tesseract_4.1\src\ccmain;$(SolutionDir)tesseract_4.1\src\ccstruct;$(SolutionDir)tesseract_4.1\src\ccutil;$(SolutionDir)tesseract_4.1\src\classify;$(SolutionDir)tesseract_4.1\src\cutil;$(SolutionDir)tesseract_4.1\src\dict;$(SolutionDir)tesseract_4.1\src\lstm;$(SolutionDir)tesseract_4.1\src\opencl;$(SolutionDir)tesseract_4.1\src\textord;$(SolutionDir)tesseract_4.1\src\viewer;$(SolutionDir)tesseract_4.1\src\wordrec;$(SolutionDir)liblept;$(SolutionDir)leptonica\src</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -622,6 +627,8 @@
       </AdditionalOptions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <DisableSpecificWarnings>4305</DisableSpecificWarnings>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -638,7 +645,7 @@
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>GRAPHICS_DISABLED;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_CRT_SECURE_NO_WARNINGS;_LIB;USE_STD_NAMESPACE;HAVE_CONFIG_H;WINDLLNAME="$(TargetFileName)"; NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>HAVE_CONFIG_H;GRAPHICS_DISABLED;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_CRT_SECURE_NO_WARNINGS;_LIB;USE_STD_NAMESPACE;WINDLLNAME="$(TargetFileName)"; NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)libtesseract;$(SolutionDir)tesseract_4.1\src\api;$(SolutionDir)tesseract_4.1\src\arch;$(SolutionDir)tesseract_4.1\src\ccmain;$(SolutionDir)tesseract_4.1\src\ccstruct;$(SolutionDir)tesseract_4.1\src\ccutil;$(SolutionDir)tesseract_4.1\src\classify;$(SolutionDir)tesseract_4.1\src\cutil;$(SolutionDir)tesseract_4.1\src\dict;$(SolutionDir)tesseract_4.1\src\lstm;$(SolutionDir)tesseract_4.1\src\opencl;$(SolutionDir)tesseract_4.1\src\textord;$(SolutionDir)tesseract_4.1\src\viewer;$(SolutionDir)tesseract_4.1\src\wordrec;$(SolutionDir)liblept;$(SolutionDir)leptonica\src</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -648,6 +655,8 @@
       </AdditionalOptions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <DisableSpecificWarnings>4305</DisableSpecificWarnings>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

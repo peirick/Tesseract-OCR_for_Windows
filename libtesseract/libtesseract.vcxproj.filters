@@ -1372,9 +1372,6 @@
     <ClInclude Include="..\tesseract_4.1\src\api\capi.h">
       <Filter>Source Files\api</Filter>
     </ClInclude>
-    <ClInclude Include="tess_version.h">
-      <Filter>Source Files\api</Filter>
-    </ClInclude>
     <ClInclude Include="..\tesseract_4.1\src\lstm\functions.h">
       <Filter>Source Files\lstm</Filter>
     </ClInclude>
@@ -1444,5 +1441,7 @@
     <ClInclude Include="..\tesseract_4.1\src\lstm\fullyconnected.h">
       <Filter>Source Files\lstm</Filter>
     </ClInclude>
+    <ClInclude Include="tess_version.h" />
+    <ClInclude Include="config_auto.h" />
   </ItemGroup>
 </Project>

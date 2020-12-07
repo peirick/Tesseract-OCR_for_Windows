@@ -106,7 +106,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;HAVE_TIFFIO_H;USE_WIN32_FILEIO;USE_WIN32_FILEIOWIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HAVE_TIFFIO_H;USE_WIN32_FILEIO;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)tesseract;$(SolutionDir)libtesseract;$(SolutionDir)tesseract_4.1\src\arch;$(SolutionDir)tesseract_4.1\src\api;$(SolutionDir)tesseract_4.1\src\ccmain;$(SolutionDir)tesseract_4.1\src\ccstruct;$(SolutionDir)tesseract_4.1\src\ccutil;$(SolutionDir)tesseract_4.1\src\classify;$(SolutionDir)tesseract_4.1\src\cutil;$(SolutionDir)tesseract_4.1\src\dict;$(SolutionDir)tesseract_4.1\src\lstm;$(SolutionDir)tesseract_4.1\src\opencl;$(SolutionDir)tesseract_4.1\src\textord;$(SolutionDir)tesseract_4.1\src\viewer;$(SolutionDir)tesseract_4.1\src\wordrec;$(SolutionDir)leptonica\src;$(SolutionDir)liblept;$(SolutionDir)libtiff</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <StringPooling>true</StringPooling>
@@ -115,6 +115,8 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <FloatingPointModel>Fast</FloatingPointModel>
       <AdditionalOptions />
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -128,7 +130,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;HAVE_TIFFIO_H;USE_WIN32_FILEIO;USE_WIN32_FILEIO_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HAVE_TIFFIO_H;USE_WIN32_FILEIO;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)tesseract;$(SolutionDir)libtesseract;$(SolutionDir)tesseract_4.1\src\arch;$(SolutionDir)tesseract_4.1\src\api;$(SolutionDir)tesseract_4.1\src\ccmain;$(SolutionDir)tesseract_4.1\src\ccstruct;$(SolutionDir)tesseract_4.1\src\ccutil;$(SolutionDir)tesseract_4.1\src\classify;$(SolutionDir)tesseract_4.1\src\cutil;$(SolutionDir)tesseract_4.1\src\dict;$(SolutionDir)tesseract_4.1\src\lstm;$(SolutionDir)tesseract_4.1\src\opencl;$(SolutionDir)tesseract_4.1\src\textord;$(SolutionDir)tesseract_4.1\src\viewer;$(SolutionDir)tesseract_4.1\src\wordrec;$(SolutionDir)leptonica\src;$(SolutionDir)liblept;$(SolutionDir)libtiff</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <StringPooling>true</StringPooling>
@@ -137,6 +139,8 @@
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <FloatingPointModel>Fast</FloatingPointModel>
       <AdditionalOptions />
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -152,7 +156,7 @@
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;HAVE_TIFFIO_H;USE_WIN32_FILEIO;USE_WIN32_FILEIOWIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HAVE_TIFFIO_H;USE_WIN32_FILEIO;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)tesseract;$(SolutionDir)libtesseract;$(SolutionDir)tesseract_4.1\src\arch;$(SolutionDir)tesseract_4.1\src\api;$(SolutionDir)tesseract_4.1\src\ccmain;$(SolutionDir)tesseract_4.1\src\ccstruct;$(SolutionDir)tesseract_4.1\src\ccutil;$(SolutionDir)tesseract_4.1\src\classify;$(SolutionDir)tesseract_4.1\src\cutil;$(SolutionDir)tesseract_4.1\src\dict;$(SolutionDir)tesseract_4.1\src\lstm;$(SolutionDir)tesseract_4.1\src\opencl;$(SolutionDir)tesseract_4.1\src\textord;$(SolutionDir)tesseract_4.1\src\viewer;$(SolutionDir)tesseract_4.1\src\wordrec;$(SolutionDir)leptonica\src;$(SolutionDir)liblept;$(SolutionDir)libtiff</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -162,6 +166,8 @@
       </AdditionalOptions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <CompileAs>CompileAsCpp</CompileAs>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -180,7 +186,7 @@
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;HAVE_TIFFIO_H;USE_WIN32_FILEIO;USE_WIN32_FILEIONDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HAVE_TIFFIO_H;USE_WIN32_FILEIO;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)tesseract;$(SolutionDir)libtesseract;$(SolutionDir)tesseract_4.1\src\arch;$(SolutionDir)tesseract_4.1\src\api;$(SolutionDir)tesseract_4.1\src\ccmain;$(SolutionDir)tesseract_4.1\src\ccstruct;$(SolutionDir)tesseract_4.1\src\ccutil;$(SolutionDir)tesseract_4.1\src\classify;$(SolutionDir)tesseract_4.1\src\cutil;$(SolutionDir)tesseract_4.1\src\dict;$(SolutionDir)tesseract_4.1\src\lstm;$(SolutionDir)tesseract_4.1\src\opencl;$(SolutionDir)tesseract_4.1\src\textord;$(SolutionDir)tesseract_4.1\src\viewer;$(SolutionDir)tesseract_4.1\src\wordrec;$(SolutionDir)leptonica\src;$(SolutionDir)liblept;$(SolutionDir)libtiff</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -190,6 +196,8 @@
       </AdditionalOptions>
       <FloatingPointModel>Fast</FloatingPointModel>
       <CompileAs>CompileAsCpp</CompileAs>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -1,3 +1,4 @@
+#include <Windows.h>
 #define  HAVE_LIBJPEG     1
 #define  HAVE_LIBTIFF     1
 #define  HAVE_LIBPNG      1
@@ -6,5 +7,3 @@
 #define  HAVE_LIBUNGIF    0
 #define  HAVE_LIBWEBP     1
 #define  HAVE_LIBJP2K     1
-#define  LIBJP2K_HEADER   <openjpeg.h>
-#define  PACKAGE_VERSION  "4.1.1"  
