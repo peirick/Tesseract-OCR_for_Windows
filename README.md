@@ -1,6 +1,6 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/s6f0wfcklpcgih99/branch/master?svg=true)](https://ci.appveyor.com/project/peirick/tesseract-ocr-for-windows/branch/master)
 
-# Visual Studio Projects for Tessearct and dependencies.
+# Visual Studio Projects for Tesseract and dependencies.
 This repository should help developers to compile tesseract OCR with Visual Studio.
 It contains a *build_tesseract.bat* to build the latest tesseract version.
 A simple *test_tesseract.bat* is available to show how to run OCR on different image fileformats and generate a pdf.
