@@ -33,6 +33,7 @@
     <ClInclude Include="..\leptonica\src\dewarp.h" />
     <ClInclude Include="..\leptonica\src\environ.h" />
     <ClInclude Include="..\leptonica\src\gplot.h" />
+    <ClInclude Include="..\leptonica\src\hashmap.h" />
     <ClInclude Include="..\leptonica\src\heap.h" />
     <ClInclude Include="..\leptonica\src\imageio.h" />
     <ClInclude Include="..\leptonica\src\jbclass.h" />
@@ -161,7 +162,6 @@
     <ClCompile Include="..\leptonica\src\fhmtgenlow.1.c" />
     <ClCompile Include="..\leptonica\src\finditalic.c" />
     <ClCompile Include="..\leptonica\src\flipdetect.c" />
-    <ClCompile Include="..\leptonica\src\fliphmtgen.c" />
     <ClCompile Include="..\leptonica\src\fmorphauto.c" />
     <ClCompile Include="..\leptonica\src\fmorphgen.1.c" />
     <ClCompile Include="..\leptonica\src\fmorphgenlow.1.c" />
@@ -173,6 +173,7 @@
     <ClCompile Include="..\leptonica\src\graphics.c" />
     <ClCompile Include="..\leptonica\src\graymorph.c" />
     <ClCompile Include="..\leptonica\src\grayquant.c" />
+    <ClCompile Include="..\leptonica\src\hashmap.c" />
     <ClCompile Include="..\leptonica\src\heap.c" />
     <ClCompile Include="..\leptonica\src\jbclass.c" />
     <ClCompile Include="..\leptonica\src\jp2kheader.c" />

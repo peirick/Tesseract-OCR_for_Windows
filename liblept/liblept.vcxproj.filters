@@ -196,6 +196,9 @@
     <ClInclude Include="..\leptonica\src\sudoku.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\leptonica\src\hashmap.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\leptonica\src\affine.c">
@@ -379,9 +382,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\leptonica\src\flipdetect.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\leptonica\src\fliphmtgen.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\leptonica\src\fmorphauto.c">
@@ -1268,6 +1268,9 @@
     </ClCompile>
     <ClCompile Include="..\leptonica\src\webpanimio.c">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\leptonica\src\hashmap.c">
+      <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

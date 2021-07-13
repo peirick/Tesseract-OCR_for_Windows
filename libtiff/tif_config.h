@@ -1,6 +1,24 @@
 #ifndef _TIF_CONFIG_H_
 #define _TIF_CONFIG_H_
 
+#include "tiffconf.h"
+
+/* Support CCITT Group 3 & 4 algorithms */
+#define CCITT_SUPPORT 1
+
+/* Pick up YCbCr subsampling info from the JPEG data stream to support files
+   lacking the tag (default enabled). */
+#define CHECK_JPEG_YCBCR_SUBSAMPLING 1
+
+/* enable partial strip reading for large strips (experimental) */
+#define CHUNKY_STRIP_READ_SUPPORT 1
+
+/* Support C++ stream API (requires C++ compiler) */
+#define CXX_SUPPORT 1
+
+/* enable deferred strip/tile offset/size loading (experimental) */
+#define DEFER_STRILE_LOAD 1
+
 /* Define to 1 if you have the <assert.h> header file. */
 #define HAVE_ASSERT_H 1
 
@@ -29,10 +47,18 @@
 /* Define to 1 if you have the `setmode' function. */
 #define HAVE_SETMODE 1
 
-/* Define to 1 if you have the `snprintf' function. */
-#if defined(_MSC_VER) && (_MSC_VER >= 1900)
-#define HAVE_SNPRINTF 1
-#endif
+/* Define to 1 if you have the <unistd.h> header file. */
+// #define HAVE_UNISTD_H 1
+
+/* 8/12 bit libjpeg dual mode enabled */
+// #define JPEG_DUAL_MODE_8_12 1 1
+
+/* Support LERC compression */
+// #define LERC_SUPPORT 1
+
+/* Support LZMA2 compression */
+// #define LZMA_SUPPORT 1
+
 
 /* Define to 1 if you have the declaration of `optarg', and to 0 if you don't. */
 #define HAVE_DECL_OPTARG 0
@@ -112,14 +138,16 @@
 /* Visual Studio 2015 / VC 14 / MSVC 19.00 finally has snprintf() */
 #if defined(_MSC_VER) && _MSC_VER < 1900
 #define snprintf _snprintf
+#else
+#define HAVE_SNPRINTF 1
 #endif
 
 /* Define to 1 if your processor stores words with the most significant byte
    first (like Motorola and SPARC, unlike Intel and VAX). */
-/* #undef WORDS_BIGENDIAN */
+   /* #undef WORDS_BIGENDIAN */
 
-/* Define to `__inline__' or `__inline' if that's what the C compiler
-   calls it, or to nothing if 'inline' is not supported under any name.  */
+   /* Define to `__inline__' or `__inline' if that's what the C compiler
+      calls it, or to nothing if 'inline' is not supported under any name.  */
 #ifndef __cplusplus
 # ifndef inline
 #  define inline __inline
@@ -131,10 +159,10 @@
 #pragma warning(disable : 4996) /* function deprecation warnings */
 
 #endif /* _TIF_CONFIG_H_ */
-/*
- * Local Variables:
- * mode: c
- * c-basic-offset: 8
- * fill-column: 78
- * End:
- */
+      /*
+       * Local Variables:
+       * mode: c
+       * c-basic-offset: 8
+       * fill-column: 78
+       * End:
+       */
