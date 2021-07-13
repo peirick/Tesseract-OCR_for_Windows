@@ -1,6 +1,8 @@
 # CMake build for libtiff
+# Run "cmake" to generate the build files for your platform
 #
 # Copyright © 2015 Open Microscopy Environment / University of Dundee
+# Copyright © 2021 Roger Leigh <rleigh@codelibre.net>
 # Written by Roger Leigh <rleigh@codelibre.net>
 #
 # Permission to use, copy, modify, distribute, and sell this software and
@@ -22,148 +24,174 @@
 # LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
 # OF THIS SOFTWARE.
 
-# Generate headers
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tif_config.h.cmake.in
-               ${CMAKE_CURRENT_BINARY_DIR}/tif_config.h
-               @ONLY)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tiffconf.h.cmake.in
-               ${CMAKE_CURRENT_BINARY_DIR}/tiffconf.h
-               @ONLY)
+cmake_minimum_required(VERSION 3.9.0)
 
-extra_dist(
-  SConstruct
-  tif_config.h-vms
-  tif_config.vc.h
-  tif_config.wince.h
-  tiffconf.vc.h
-  tiffconf.wince.h
-  libtiff.def
-  libtiff.map
-  libtiffxx.map)
+# Default policy is from 3.9.0
+cmake_policy(VERSION 3.9.0)
 
-set(tiff_HEADERS
-  tiff.h
-  tiffio.h
-  tiffvers.h)
+# Find CMake modules in cmake/
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
-set(tiff_noinst_HEADERS
-  t4.h
-  tif_dir.h
-  tif_predict.h
-  tiffiop.h
-  uvcode.h)
+# Read version information from configure.ac.
+include(AutotoolsVersion)
+message(STATUS "Building tiff version ${LIBTIFF_VERSION_FULL}")
+message(STATUS "libtiff library version ${SO_VERSION}")
+string(TIMESTAMP BUILD_DATE "%Y%m%d")
+message(STATUS "libtiff build date: ${BUILD_DATE}")
 
-set(nodist_tiff_HEADERS
-  ${CMAKE_CURRENT_BINARY_DIR}/tiffconf.h)
 
-set(tiff_SOURCES
-  tif_aux.c
-  tif_close.c
-  tif_codec.c
-  tif_color.c
-  tif_compress.c
-  tif_dir.c
-  tif_dirinfo.c
-  tif_dirread.c
-  tif_dirwrite.c
-  tif_dumpmode.c
-  tif_error.c
-  tif_extension.c
-  tif_fax3.c
-  tif_fax3sm.c
-  tif_flush.c
-  tif_getimage.c
-  tif_jbig.c
-  tif_jpeg.c
-  tif_jpeg_12.c
-  tif_luv.c
-  tif_lzma.c
-  tif_lzw.c
-  tif_next.c
-  tif_ojpeg.c
-  tif_open.c
-  tif_packbits.c
-  tif_pixarlog.c
-  tif_predict.c
-  tif_print.c
-  tif_read.c
-  tif_strip.c
-  tif_swab.c
-  tif_thunder.c
-  tif_tile.c
-  tif_version.c
-  tif_warning.c
-  tif_webp.c
-  tif_write.c
-  tif_zip.c
-  tif_zstd.c)
+set(BUILD_SHARED_LIBS ON CACHE BOOL "Build shared libraries")
 
-set(tiffxx_HEADERS
-  tiffio.hxx)
 
-set(tiffxx_SOURCES
-  tif_stream.cxx)
+# Disable deprecated features to ensure clean build
+add_definitions(-DTIFF_DISABLE_DEPRECATED)
 
-if(USE_WIN32_FILEIO)
-  extra_dist(tif_unix.c)
-  list(APPEND tiff_SOURCES tif_win32.c)
+
+# Project definition
+set(CMAKE_C_STANDARD 99)
+project(tiff
+        VERSION "${LIBTIFF_VERSION}"
+        LANGUAGES C CXX)
+
+# Autotools compatibility
+include(AutotoolsCompat)
+
+# Compiler checks (warning flags, etc.)
+include(CompilerChecks)
+
+# Linker checks (version script, etc.)
+include(LinkerChecks)
+
+# Processor checks (endianness, fill order, floating point, etc.)
+include(ProcessorChecks)
+
+# Checks for headers
+include(IncludeChecks)
+
+# Checks for functions and other symbols
+include(SymbolChecks)
+
+# Standard installation paths
+include(GNUInstallDirs)
+# Documentation install directory (default to cmake project docdir)
+set(LIBTIFF_DOCDIR "${CMAKE_INSTALL_FULL_DOCDIR}")
+
+# CTest testing
+enable_testing()
+
+# Checks for type presence and size
+include(TypeSizeChecks)
+
+# Check for POSIX Large File Support (LFS)
+include(LargeFileSupport)
+
+# Options for internal codec support
+include(InternalCodecs)
+
+# Check for Deflate codec
+include(DeflateCodec)
+
+# Check for PixarLog codec
+include(PixarLogCodec)
+
+# Check for JPEG codec
+include(JPEGCodec)
+
+# Check for JBIG codec
+include(JBIGCodec)
+
+# Check for LERC codec
+include(LERCCodec)
+
+# Check for LZMA codec
+include(LZMACodec)
+
+# Check for ZSTD codec
+include(ZSTDCodec)
+
+# Check for WebP codec
+include(WebPCodec)
+
+# Option for C++ libtiffxx library
+include(CXXLibrary)
+
+# Checks for OpenGL support
+include(OpenGLChecks)
+
+# Windows support
+include(WindowsSupport)
+
+# Orthogonal features
+include(LibraryFeatures)
+
+# pkg-config support
+include(PkgConfig)
+
+# math.h/libm portability
+find_package(CMath REQUIRED)
+
+# Release support
+include(Release)
+
+
+# Process subdirectories
+add_subdirectory(port)
+add_subdirectory(libtiff)
+add_subdirectory(tools)
+add_subdirectory(test)
+add_subdirectory(contrib)
+add_subdirectory(build)
+add_subdirectory(man)
+add_subdirectory(html)
+
+
+message(STATUS "")
+message(STATUS "Libtiff is now configured for ${CMAKE_SYSTEM}")
+message(STATUS "")
+message(STATUS "  Installation directory:             ${prefix}")
+message(STATUS "  Documentation directory:            ${LIBTIFF_DOCDIR}")
+message(STATUS "  C compiler:                         ${CMAKE_C_COMPILER}")
+message(STATUS "  C++ compiler:                       ${CMAKE_CXX_COMPILER}")
+message(STATUS "  Build shared libraries:             ${BUILD_SHARED_LIBS}")
+message(STATUS "  Enable linker symbol versioning:    ${HAVE_LD_VERSION_SCRIPT}")
+message(STATUS "  Support Microsoft Document Imaging: ${mdi}")
+message(STATUS "  Use win32 IO:                       ${USE_WIN32_FILEIO}")
+message(STATUS "")
+message(STATUS " Support for internal codecs:")
+message(STATUS "  CCITT Group 3 & 4 algorithms:       ${ccitt}")
+message(STATUS "  Macintosh PackBits algorithm:       ${packbits}")
+message(STATUS "  LZW algorithm:                      ${lzw}")
+message(STATUS "  ThunderScan 4-bit RLE algorithm:    ${thunder}")
+message(STATUS "  NeXT 2-bit RLE algorithm:           ${next}")
+message(STATUS "  LogLuv high dynamic range encoding: ${logluv}")
+message(STATUS "")
+message(STATUS " Support for external codecs:")
+message(STATUS "  ZLIB support:                       Requested:${zlib} Availability:${ZLIB_FOUND} Support:${ZLIB_SUPPORT}")
+if(ZLIB_SUPPORT)
+  message(STATUS "  libdeflate support:                 Requested:${libdeflate} Availability:${DEFLATE_FOUND} Support:${LIBDEFLATE_SUPPORT}")
 else()
-  extra_dist(tif_win32.c)
-  list(APPEND tiff_SOURCES tif_unix.c)
+  message(STATUS "  libdeflate support:                 Requested:${libdeflate} Availability:${DEFLATE_FOUND} Support:${LIBDEFLATE_SUPPORT} (Depends on ZLIB Support)")
 endif()
-
-add_library(tiff ${tiff_SOURCES} ${tiff_HEADERS} ${nodist_tiff_HEADERS}
-            ${tiff_port_SOURCES} libtiff.def)
-target_include_directories(tiff
-    PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
-        ${TIFF_INCLUDES}
-)
-target_link_libraries(tiff ${TIFF_LIBRARY_DEPS})
-set_target_properties(tiff PROPERTIES SOVERSION ${SO_COMPATVERSION})
-if(NOT CYGWIN)
-    # This property causes shared libraries on Linux to have the full version
-    # encoded into their final filename.  We disable this on Cygwin because
-    # it causes cygz-${TIFF_FULL_VERSION}.dll to be created when cygz.dll
-    # seems to be the default.
-    set_target_properties(tiff PROPERTIES VERSION ${SO_VERSION})
+if(ZLIB_SUPPORT)
+  message(STATUS "  Pixar log-format algorithm:         Requested:${pixarlog} Availability:${ZLIB_FOUND} Support:${PIXARLOG_SUPPORT}")
+else()
+  message(STATUS "  Pixar log-format algorithm:         Requested:${pixarlog} Availability:${ZLIB_FOUND} Support:${PIXARLOG_SUPPORT} (Depends on ZLIB Support)")
 endif()
-if(HAVE_LD_VERSION_SCRIPT)
-  set_target_properties(tiff PROPERTIES LINK_FLAGS
-                        "-Wl,--version-script=${CMAKE_CURRENT_SOURCE_DIR}/libtiff.map")
+message(STATUS "  JPEG support:                       Requested:${jpeg} Availability:${JPEG_FOUND} Support:${JPEG_SUPPORT}")
+if(JPEG_SUPPORT)
+  message(STATUS "  Old JPEG support:                   Requested:${old-jpeg} Availability:${JPEG_SUPPORT} Support:${OJPEG_SUPPORT}")
+else()
+  message(STATUS "  Old JPEG support:                   Requested:${old-jpeg} Availability:${JPEG_SUPPORT} Support:${OJPEG_SUPPORT} (Depends on JPEG Support)")
 endif()
-
-install(TARGETS tiff
-        RUNTIME DESTINATION ${CMAKE_INSTALL_FULL_BINDIR}
-        LIBRARY DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR}
-        ARCHIVE DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR})
-
-install(FILES ${tiff_HEADERS} ${nodist_tiff_HEADERS}
-        DESTINATION "${CMAKE_INSTALL_FULL_INCLUDEDIR}")
-
-if(CXX_SUPPORT)
-  add_library(tiffxx ${tiffxx_SOURCES} ${tiffxx_HEADERS})
-  target_link_libraries(tiffxx tiff)
-  set_target_properties(tiffxx PROPERTIES SOVERSION ${SO_COMPATVERSION})
-  if(NOT CYGWIN)
-    # This property causes shared libraries on Linux to have the full version
-    # encoded into their final filename.  We disable this on Cygwin because
-    # it causes cygz-${TIFF_FULL_VERSION}.dll to be created when cygz.dll
-    # seems to be the default.
-    set_target_properties(tiffxx PROPERTIES VERSION ${SO_VERSION})
-  endif()
-  if(HAVE_LD_VERSION_SCRIPT)
-    set_target_properties(tiffxx PROPERTIES LINK_FLAGS
-                          "-Wl,--version-script=${CMAKE_CURRENT_SOURCE_DIR}/libtiffxx.map")
-  endif()
-
-  install(TARGETS tiffxx
-          RUNTIME DESTINATION ${CMAKE_INSTALL_FULL_BINDIR}
-          LIBRARY DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR}
-          ARCHIVE DESTINATION ${CMAKE_INSTALL_FULL_LIBDIR})
-
-  install(FILES ${tiffxx_HEADERS}
-          DESTINATION "${CMAKE_INSTALL_FULL_INCLUDEDIR}")
-
-endif()
+message(STATUS "  JPEG 8/12 bit dual mode:            Requested:${jpeg12} Availability:${JPEG12_FOUND} Support:${JPEG_DUAL_MODE_8_12}")
+message(STATUS "  ISO JBIG support:                   Requested:${jbig} Availability:${JBIG_FOUND} Support:${JBIG_SUPPORT}")
+message(STATUS "  LERC support:                       Requested:${lerc} Availability:${LERC_FOUND} Support:${LERC_SUPPORT}")
+message(STATUS "  LZMA2 support:                      Requested:${lzma} Availability:${LIBLZMA_FOUND} Support:${LZMA_SUPPORT}")
+message(STATUS "  ZSTD support:                       Requested:${zstd} Availability:${ZSTD_USABLE} Support:${ZSTD_SUPPORT}")
+message(STATUS "  WEBP support:                       Requested:${webp} Availability:${WEBP_FOUND} Support:${WEBP_SUPPORT}")
+message(STATUS "")
+message(STATUS "  C++ support:                        ${cxx} (requested) ${CXX_SUPPORT} (availability)")
+message(STATUS "")
+# message(STATUS "  X Athena Widgets support:           ${HAVE_XAW}")
+message(STATUS "  OpenGL support:                     ${HAVE_OPENGL}")
+message(STATUS "")
