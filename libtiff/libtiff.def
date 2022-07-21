@@ -29,10 +29,13 @@ EXPORTS	TIFFAccessTagMethods
 	TIFFFieldName
 	TIFFFieldPassCount
 	TIFFFieldReadCount
+	TIFFFieldIsAnonymous
 	TIFFFieldTag
 	TIFFFieldWithName
 	TIFFFieldWithTag
 	TIFFFieldWriteCount
+	TIFFFieldSetGetSize
+	TIFFFieldSetGetCountSize
 	TIFFFileName
 	TIFFFileno
 	TIFFFindCODEC
@@ -62,6 +65,7 @@ EXPORTS	TIFFAccessTagMethods
 	TIFFGetVersion
 	TIFFGetWriteProc
 	TIFFIsBigEndian
+	TIFFIsBigTIFF
 	TIFFIsByteSwapped
 	TIFFIsCODECConfigured
 	TIFFIsMSB2LSB
@@ -177,3 +181,4 @@ EXPORTS	TIFFAccessTagMethods
 	_TIFFMultiply64
 	_TIFFGetExifFields
 	_TIFFGetGpsFields
+

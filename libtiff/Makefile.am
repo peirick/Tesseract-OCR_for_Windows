@@ -37,6 +37,7 @@ docfiles = \
 	VERSION
 
 EXTRA_DIST = \
+	placeholder.h \
 	cmake \
 	CMakeLists.txt \
 	HOWTO-RELEASE \

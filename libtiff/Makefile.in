@@ -126,7 +126,8 @@ DIST_COMMON = $(srcdir)/Makefile.am $(top_srcdir)/configure \
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
-CONFIG_HEADER = config.h $(top_builddir)/libtiff/tif_config.h \
+CONFIG_HEADER = $(top_builddir)/config/config.h \
+	$(top_builddir)/libtiff/tif_config.h \
 	$(top_builddir)/libtiff/tiffconf.h \
 	$(top_builddir)/port/libport_config.h
 CONFIG_CLEAN_FILES = libtiff-4.pc
@@ -195,8 +196,7 @@ am__recursive_targets = \
   $(am__extra_recursive_targets)
 AM_RECURSIVE_TARGETS = $(am__recursive_targets:-recursive=) TAGS CTAGS \
 	cscope distdir distdir-am dist dist-all distcheck
-am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) \
-	$(LISP)config.h.in
+am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 # Read a list of newline-separated strings from the standard input,
 # and print each of them once, without duplicates.  Input order is
 # *not* preserved.
@@ -217,9 +217,9 @@ ETAGS = etags
 CTAGS = ctags
 CSCOPE = cscope
 DIST_SUBDIRS = $(SUBDIRS)
-am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/config.h.in \
-	$(srcdir)/libtiff-4.pc.in $(top_srcdir)/config/compile \
-	$(top_srcdir)/config/config.guess \
+am__DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/libtiff-4.pc.in \
+	$(top_srcdir)/config/compile $(top_srcdir)/config/config.guess \
+	$(top_srcdir)/config/config.h.in \
 	$(top_srcdir)/config/config.sub \
 	$(top_srcdir)/config/install-sh $(top_srcdir)/config/ltmain.sh \
 	$(top_srcdir)/config/missing ChangeLog TODO config/compile \
@@ -260,9 +260,9 @@ am__relativize = \
     dir1=`echo "$$dir1" | sed -e "$$sed_rest"`; \
   done; \
   reldir="$$dir2"
-DIST_ARCHIVES = $(distdir).tar.gz $(distdir).zip
+DIST_ARCHIVES = $(distdir).tar.gz $(distdir).tar.xz $(distdir).zip
 GZIP_ENV = --best
-DIST_TARGETS = dist-gzip dist-zip
+DIST_TARGETS = dist-xz dist-gzip dist-zip
 distuninstallcheck_listfiles = find . -type f -print
 am__distuninstallcheck_listfiles = $(distuninstallcheck_listfiles) \
   | sed 's|^\./|$(prefix)/|' | grep -v '$(infodir)/dir$$'
@@ -413,6 +413,7 @@ srcdir = @srcdir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 tiff_libs_private = @tiff_libs_private@
+tiff_requires_private = @tiff_requires_private@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
@@ -427,6 +428,7 @@ docfiles = \
 	VERSION
 
 EXTRA_DIST = \
+	placeholder.h \
 	cmake \
 	CMakeLists.txt \
 	HOWTO-RELEASE \
@@ -444,8 +446,7 @@ COVERITY_EMAIL = bfriesen@simple.dallas.tx.us
 COVERITY_TARBALL = libtiff.xz
 COVERITY_VERSION = devel-${PACKAGE_CHANGE_DATE}
 COVERITY_DESCRIPTION = 'libtiff development'
-all: config.h
-	$(MAKE) $(AM_MAKEFLAGS) all-recursive
+all: all-recursive
 
 .SUFFIXES:
 am--refresh: Makefile
@@ -482,20 +483,20 @@ $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	$(am__cd) $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
 $(am__aclocal_m4_deps):
 
-config.h: stamp-h1
-	@test -f $@ || rm -f stamp-h1
-	@test -f $@ || $(MAKE) $(AM_MAKEFLAGS) stamp-h1
+config/config.h: config/stamp-h1
+	@test -f $@ || rm -f config/stamp-h1
+	@test -f $@ || $(MAKE) $(AM_MAKEFLAGS) config/stamp-h1
 
-stamp-h1: $(srcdir)/config.h.in $(top_builddir)/config.status
-	@rm -f stamp-h1
-	cd $(top_builddir) && $(SHELL) ./config.status config.h
-$(srcdir)/config.h.in: @MAINTAINER_MODE_TRUE@ $(am__configure_deps) 
+config/stamp-h1: $(top_srcdir)/config/config.h.in $(top_builddir)/config.status
+	@rm -f config/stamp-h1
+	cd $(top_builddir) && $(SHELL) ./config.status config/config.h
+$(top_srcdir)/config/config.h.in: @MAINTAINER_MODE_TRUE@ $(am__configure_deps) 
 	($(am__cd) $(top_srcdir) && $(AUTOHEADER))
-	rm -f stamp-h1
+	rm -f config/stamp-h1
 	touch $@
 
 distclean-hdr:
-	-rm -f config.h stamp-h1
+	-rm -f config/config.h config/stamp-h1
 libtiff-4.pc: $(top_builddir)/config.status $(srcdir)/libtiff-4.pc.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 
@@ -734,7 +735,6 @@ dist-bzip2: distdir
 dist-lzip: distdir
 	tardir=$(distdir) && $(am__tar) | lzip -c $${LZIP_OPT--9} >$(distdir).tar.lz
 	$(am__post_remove_distdir)
-
 dist-xz: distdir
 	tardir=$(distdir) && $(am__tar) | XZ_OPT=$${XZ_OPT--e} xz -c >$(distdir).tar.xz
 	$(am__post_remove_distdir)
@@ -849,7 +849,7 @@ distcleancheck: distclean
 	       exit 1; } >&2
 check-am: all-am
 check: check-recursive
-all-am: Makefile $(DATA) config.h
+all-am: Makefile $(DATA)
 installdirs: installdirs-recursive
 installdirs-am:
 	for dir in "$(DESTDIR)$(docdir)" "$(DESTDIR)$(pkgconfigdir)"; do \
@@ -955,7 +955,7 @@ ps-am:
 
 uninstall-am: uninstall-dist_docDATA uninstall-pkgconfigDATA
 
-.MAKE: $(am__recursive_targets) all install-am install-strip
+.MAKE: $(am__recursive_targets) install-am install-strip
 
 .PHONY: $(am__recursive_targets) CTAGS GTAGS TAGS all all-am \
 	am--refresh check check-am clean clean-cscope clean-generic \

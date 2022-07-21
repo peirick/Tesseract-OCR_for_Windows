@@ -74,7 +74,7 @@ include(SymbolChecks)
 # Standard installation paths
 include(GNUInstallDirs)
 # Documentation install directory (default to cmake project docdir)
-set(LIBTIFF_DOCDIR "${CMAKE_INSTALL_FULL_DOCDIR}")
+set(LIBTIFF_DOCDIR "${CMAKE_INSTALL_DOCDIR}")
 
 # CTest testing
 enable_testing()
@@ -124,8 +124,6 @@ include(WindowsSupport)
 # Orthogonal features
 include(LibraryFeatures)
 
-# pkg-config support
-include(PkgConfig)
 
 # math.h/libm portability
 find_package(CMath REQUIRED)
@@ -144,6 +142,8 @@ add_subdirectory(build)
 add_subdirectory(man)
 add_subdirectory(html)
 
+# pkg-config support
+include(PkgConfig)
 
 message(STATUS "")
 message(STATUS "Libtiff is now configured for ${CMAKE_SYSTEM}")
@@ -185,7 +185,11 @@ else()
 endif()
 message(STATUS "  JPEG 8/12 bit dual mode:            Requested:${jpeg12} Availability:${JPEG12_FOUND} Support:${JPEG_DUAL_MODE_8_12}")
 message(STATUS "  ISO JBIG support:                   Requested:${jbig} Availability:${JBIG_FOUND} Support:${JBIG_SUPPORT}")
-message(STATUS "  LERC support:                       Requested:${lerc} Availability:${LERC_FOUND} Support:${LERC_SUPPORT}")
+if(ZLIB_SUPPORT)
+  message(STATUS "  LERC support:                       Requested:${lerc} Availability:${LERC_FOUND} Support:${LERC_SUPPORT}")
+else()
+  message(STATUS "  LERC support:                       Requested:${lerc} Availability:${LERC_FOUND} Support:${LERC_SUPPORT} (Depends on ZLIB Support)")
+endif()
 message(STATUS "  LZMA2 support:                      Requested:${lzma} Availability:${LIBLZMA_FOUND} Support:${LZMA_SUPPORT}")
 message(STATUS "  ZSTD support:                       Requested:${zstd} Availability:${ZSTD_USABLE} Support:${ZSTD_SUPPORT}")
 message(STATUS "  WEBP support:                       Requested:${webp} Availability:${WEBP_FOUND} Support:${WEBP_SUPPORT}")
