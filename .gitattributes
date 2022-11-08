@@ -1,0 +1,3 @@
+build_tesseract_vs2017.sh eol=lf
+build_tesseract_vs2017.bat eol=crlf
+
